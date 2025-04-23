@@ -1,24 +1,39 @@
 {
   "name": "jaat-ai",
   "version": "1.0.0",
-  "description": "JAAT-AI: Advanced AI Web Application",
-  "main": "server/server.js",
+  "description": "Advanced AI-powered dashboard with holographic UI",
+  "main": "server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "start:python": "python run.py",
-    "dev": "nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "db:push": "drizzle-kit push:pg",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:studio": "drizzle-kit studio"
   },
-  "author": "Rohit Sangwan",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "author": "JAAT-AI Team",
   "license": "MIT",
   "dependencies": {
+    "@neondatabase/serverless": "^0.6.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
+    "connect-pg-simple": "^9.0.1",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.28.6",
+    "drizzle-zod": "^0.5.1",
     "express": "^4.18.2",
-    "http-proxy-middleware": "^2.0.6",
-    "node-fetch": "^3.3.0"
+    "express-session": "^1.17.3",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "drizzle-kit": "^0.19.13",
+    "nodemon": "^3.0.1"
   }
 }

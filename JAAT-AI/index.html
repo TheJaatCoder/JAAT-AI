@@ -4,397 +4,237 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JAAT-AI | Advanced AI Platform</title>
-    <meta name="description" content="JAAT-AI is the most powerful AI platform with a revolutionary holographic interface and 70+ specialized AI modes.">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/advanced-background.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="./css/dashboard.css">
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Landing Page Specific Styles */
+        .landing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .logo-large {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(123, 53, 231, 0.5);
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 15px rgba(123, 53, 231, 0.5); }
+            50% { text-shadow: 0 0 25px rgba(123, 53, 231, 0.8); }
+            100% { text-shadow: 0 0 15px rgba(123, 53, 231, 0.5); }
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .cta-btn {
+            padding: 1rem 2rem;
+            border-radius: var(--button-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: var(--transition-normal);
+            min-width: 200px;
+        }
+        
+        .cta-btn.primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(123, 53, 231, 0.3);
+        }
+        
+        .cta-btn.primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(123, 53, 231, 0.4);
+        }
+        
+        .cta-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .cta-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-radius: var(--card-radius);
+            padding: 2rem;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: rgba(123, 53, 231, 0.3);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(123, 53, 231, 0.1);
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .feature-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-large {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cta-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="main-header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <img src="assets/images/logo.svg" alt="JAAT-AI Logo">
-                    <span>JAAT-AI</span>
-                </a>
-                
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="features.html">Features</a></li>
-                        <li><a href="ai-modes.html">AI Modes</a></li>
-                        <li><a href="premium.html">Pricing</a></li>
-                        <li><a href="#" class="btn btn-primary">Subscribe</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="auth-buttons">
-                    <a href="login.html" class="btn btn-outline">
-                        <i class="fas fa-user"></i> Login
-                    </a>
-                    <a href="signup.html" class="btn btn-primary">
-                        Sign Up
-                    </a>
-                </div>
-                
-                <button class="mobile-menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+<body class="dark-theme">
+    <!-- Holographic Background Container -->
+    <div class="holographic-background">
+        <div class="floating-particles"></div>
+        <div class="data-streams"></div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    The Most Powerful<br>
-                    <span class="highlight">AI Platform</span><br>
-                    in the Market
-                </h1>
-                <p class="hero-subtitle">
-                    Access 70+ specialized AI modes across 9 categories with
-                    our revolutionary holographic interface. Experience the
-                    next generation of AI interaction.
+    <!-- Landing Page Content -->
+    <div class="landing-container">
+        <div class="logo-large">JAAT-AI</div>
+        <div class="tagline">
+            Advanced AI platform with holographic UI and multiple AI interaction modes for powerful conversation capabilities
+        </div>
+        
+        <div class="cta-buttons">
+            <a href="./dashboard.html" class="cta-btn primary">Launch Dashboard</a>
+            <a href="#" class="cta-btn secondary">Learn More</a>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="feature-title">Multiple AI Modes</h3>
+                <p class="feature-description">
+                    Switch between specialized AI modes optimized for different tasks, from creative writing to code assistance and data analysis.
                 </p>
-                <div class="hero-buttons">
-                    <a href="#try-free" class="btn btn-primary">
-                        <i class="fas fa-play"></i> Try Free Mode
-                    </a>
-                    <a href="#learn-more" class="btn btn-outline">
-                        <i class="fas fa-info-circle"></i> Learn More
-                    </a>
-                </div>
             </div>
             
-            <div class="hologram-container">
-                <!-- Holographic elements will be added by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section" id="learn-more">
-        <div class="container">
-            <div class="section-header text-center">
-                <h2>Advanced <span class="highlight">Features</span></h2>
-                <p>Discover what makes JAAT-AI the most powerful AI platform</p>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="feature-title">Advanced Reasoning</h3>
+                <p class="feature-description">
+                    Experience next-level AI reasoning capabilities with our state-of-the-art large language models and knowledge bases.
+                </p>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>70+ AI Modes</h3>
-                    <p>Specialized AI assistants for every task, from creative writing to technical analysis</p>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-fingerprint"></i>
                 </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-vr-cardboard"></i>
-                    </div>
-                    <h3>Holographic UI</h3>
-                    <p>Immersive 3D interface with responsive animations and visual feedback</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-microphone-alt"></i>
-                    </div>
-                    <h3>Voice Integration</h3>
-                    <p>Natural conversations with advanced speech recognition and synthesis</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Lightning Fast</h3>
-                    <p>Optimized performance with responses in milliseconds, not seconds</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Privacy Focused</h3>
-                    <p>End-to-end encryption with optional local processing for sensitive data</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3>Creative Tools</h3>
-                    <p>Generate images, write stories, compose music, and more with AI assistance</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Modes Section -->
-    <section class="ai-modes-section" id="ai-modes">
-        <div class="container">
-            <div class="section-header text-center">
-                <h2>Specialized <span class="highlight">AI Modes</span></h2>
-                <p>Choose from over 70 specialized AI modes across 9 categories</p>
+                <h3 class="feature-title">Personalized Experience</h3>
+                <p class="feature-description">
+                    JAAT-AI learns from your interactions to provide increasingly personalized and relevant responses over time.
+                </p>
             </div>
             
-            <div class="mode-categories">
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-pen-fancy"></i>
-                    </div>
-                    <h3>Creative</h3>
-                    <ul>
-                        <li>Story Writer</li>
-                        <li>Poet</li>
-                        <li>Screenwriter</li>
-                        <li>Copywriter</li>
-                        <li>+ 2 more</li>
-                    </ul>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
                 </div>
-                
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Business</h3>
-                    <ul>
-                        <li>Marketing Expert</li>
-                        <li>Financial Advisor</li>
-                        <li>Business Strategist</li>
-                        <li>HR Assistant</li>
-                        <li>+ 3 more</li>
-                    </ul>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Technical</h3>
-                    <ul>
-                        <li>Code Assistant</li>
-                        <li>Debug Helper</li>
-                        <li>System Architect</li>
-                        <li>Data Scientist</li>
-                        <li>+ 4 more</li>
-                    </ul>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Educational</h3>
-                    <ul>
-                        <li>Math Tutor</li>
-                        <li>Science Explainer</li>
-                        <li>History Guide</li>
-                        <li>Language Coach</li>
-                        <li>+ 5 more</li>
-                    </ul>
-                </div>
+                <h3 class="feature-title">Privacy Focused</h3>
+                <p class="feature-description">
+                    Your data remains private and secure with our enterprise-grade security measures and optional end-to-end encryption.
+                </p>
             </div>
+        </div>
+    </div>
+    
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <!-- Our JS -->
+    <script src="./js/enhanced-holographic-ui.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize holographic UI
+            if (typeof initEnhancedHolographicUI === 'function') {
+                initEnhancedHolographicUI();
+            }
             
-            <div class="mode-cta text-center">
-                <a href="ai-modes.html" class="btn btn-outline">Explore All AI Modes</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Try Free Section -->
-    <section class="try-free-section" id="try-free">
-        <div class="container">
-            <div class="try-free-card">
-                <div class="card-content">
-                    <h2>Try JAAT-AI <span class="highlight">for Free</span></h2>
-                    <p>Experience the basic AI mode with no credit card required. Start your AI journey today!</p>
-                    <ul class="free-features">
-                        <li><i class="fas fa-check"></i> Basic AI Assistant Mode</li>
-                        <li><i class="fas fa-check"></i> 50 Messages per Day</li>
-                        <li><i class="fas fa-check"></i> Text-Based Interaction</li>
-                        <li><i class="fas fa-check"></i> Standard UI Experience</li>
-                    </ul>
-                    <div class="card-actions">
-                        <a href="signup.html" class="btn btn-primary">Start Free Trial</a>
-                        <a href="premium.html" class="btn btn-outline">View Premium Plans</a>
-                    </div>
-                </div>
-                <div class="card-image">
-                    <div class="demo-hologram"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <div class="container">
-            <div class="section-header text-center">
-                <h2>What Our <span class="highlight">Users Say</span></h2>
-                <p>Join thousands of satisfied JAAT-AI users worldwide</p>
-            </div>
-            
-            <div class="testimonials-slider">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"JAAT-AI's specialized modes have transformed how I work. The holographic interface is not just beautiful—it's incredibly intuitive!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="assets/images/user-1.svg" alt="Testimonial Author">
-                        <div>
-                            <h4>Rahul Sharma</h4>
-                            <p>Product Designer</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"I use the Creative modes daily for my content agency. The quality of writing and ideas JAAT-AI generates is incredible—it's like having a room full of experts!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="assets/images/user-2.svg" alt="Testimonial Author">
-                        <div>
-                            <h4>Priya Patel</h4>
-                            <p>Content Creator</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"The Technical modes have saved me countless hours debugging and planning. The voice integration means I can discuss solutions while still coding."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="assets/images/user-3.svg" alt="Testimonial Author">
-                        <div>
-                            <h4>Arjun Singh</h4>
-                            <p>Software Engineer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-card">
-                <h2>Ready to experience the future of AI?</h2>
-                <p>Upgrade to JAAT-AI Premium for unlimited access to all features and AI modes.</p>
-                <div class="cta-buttons">
-                    <a href="premium.html" class="btn btn-primary">Get Premium</a>
-                    <a href="contact.html" class="btn btn-outline">Contact Sales</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-about">
-                    <a href="index.html" class="logo">
-                        <img src="assets/images/logo.svg" alt="JAAT-AI Logo">
-                        <span>JAAT-AI</span>
-                    </a>
-                    <p>The most advanced AI platform with revolutionary holographic interface and specialized AI modes.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <div class="links-group">
-                        <h4>Platform</h4>
-                        <ul>
-                            <li><a href="features.html">Features</a></li>
-                            <li><a href="ai-modes.html">AI Modes</a></li>
-                            <li><a href="premium.html">Pricing</a></li>
-                            <li><a href="roadmap.html">Roadmap</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="links-group">
-                        <h4>Company</h4>
-                        <ul>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="careers.html">Careers</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="links-group">
-                        <h4>Support</h4>
-                        <ul>
-                            <li><a href="help.html">Help Center</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="community.html">Community</a></li>
-                            <li><a href="status.html">System Status</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="links-group">
-                        <h4>Legal</h4>
-                        <ul>
-                            <li><a href="terms.html">Terms of Service</a></li>
-                            <li><a href="privacy.html">Privacy Policy</a></li>
-                            <li><a href="cookies.html">Cookie Policy</a></li>
-                            <li><a href="security.html">Security</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2023 JAAT-AI. All rights reserved.</p>
-                <div class="language-selector">
-                    <select>
-                        <option value="en">English</option>
-                        <option value="es">Español</option>
-                        <option value="fr">Français</option>
-                        <option value="de">Deutsch</option>
-                        <option value="hi">हिन्दी</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Dynamic Background Elements -->
-    <div class="nebula primary"></div>
-    <div class="nebula secondary"></div>
-    <div class="nebula accent"></div>
-    <div class="holographic-grid"></div>
-    <div class="scan-line"></div>
-
-    <!-- Scripts -->
-    <script src="js/app.js"></script>
-    <script src="js/advanced-background.js"></script>
-    <script src="js/feature-loader.js"></script>
+            // Apply holographic effects to feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                if (typeof applyHolographicEffect === 'function') {
+                    applyHolographicEffect(card);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

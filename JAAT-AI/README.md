@@ -1,100 +1,101 @@
-# JAAT-AI - Advanced Holographic UI
+# JAAT-AI Platform
 
-JAAT-AI is an ultra-modern AI assistant interface with advanced animations, particle effects, and holographic UI elements.
+Advanced AI-powered dashboard with holographic UI elements and multiple AI interaction modes.
 
 ## Features
 
-- 🌟 Advanced star field with parallax layers
-- 🌠 Shooting star and cosmic glow effects
-- 💫 Interactive holographic elements
-- 🌈 Advanced animation effects
-- 📱 Fully responsive design
-- 🎨 Modern, sleek UI with holographic elements
+- **Advanced Holographic UI**: Immersive interface with 3D effects, particle animations, and interactive elements
+- **Multiple AI Modes**: Specialized AI assistants for different tasks (Content Creation, Code Assistance, Data Analysis, etc.)
+- **Responsive Design**: Optimized for all devices from mobile to desktop
+- **PostgreSQL Database**: Secure, scalable database for user data, conversations, and settings
+- **Authentication System**: Secure login, registration, and session management
+- **Subscription Plans**: Free, Pro, and Enterprise tiers with different features and credits
+- **API Access**: Interface with other systems through secured API endpoints
+
+## Technology Stack
+
+- **Frontend**: HTML, CSS, JavaScript with advanced animation techniques
+- **Backend**: Node.js with Express
+- **Database**: PostgreSQL with Drizzle ORM
+- **Authentication**: JWT, bcrypt, and session management
+- **Visualization**: Canvas-based animated charts and holographic elements
+- **Security**: Helmet, CORS protection, and secure session handling
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (12.x or higher)
+- Node.js 16+
+- PostgreSQL 12+
+- NPM or Yarn
 
 ### Installation
 
-1. Clone or download this repository
-2. Navigate to the project directory
-3. Install dependencies (optional for server)
-
-```bash
-npm install
-```
-
-### Running Locally
-
-#### Simple Method (Any Static Server)
-
-You can use any static file server to serve the files. Some options:
-
-1. **Python Simple HTTP Server**:
-   ```bash
-   # Python 3
-   python -m http.server
-   # Python 2
-   python -m SimpleHTTPServer
+1. Clone the repository
    ```
-   Then visit: http://localhost:8000
-
-2. **Node.js Static Server**:
-   ```bash
-   # Run the included Node.js server
-   node server.js
+   git clone https://github.com/your-username/jaat-ai.git
+   cd jaat-ai
    ```
-   Then visit: http://localhost:3000
 
-3. **VS Code Live Server Extension**:
-   Install the Live Server extension and click "Go Live" in the bottom right corner.
+2. Install dependencies
+   ```
+   npm install
+   ```
 
-## File Structure
+3. Set up the environment variables
+   Create a `.env` file with the following variables:
+   ```
+   DATABASE_URL=postgresql://username:password@localhost:5432/jaat_ai
+   NODE_ENV=development
+   HTTP_PORT=5000
+   HTTPS_PORT=5443
+   DOMAIN=jaat-ai.com
+   SESSION_SECRET=your-secure-session-key
+   ```
 
-- `index.html` - Main HTML file
-- `css/styles.css` - Main styles
-- `css/animations.css` - Animation styles
-- `js/animations.js` - Animation functions
-- `js/bg-animation-3d.js` - 3D background animations
-- `js/ui-animator.js` - UI animation manager
-- `js/main.js` - Main JavaScript
-- `js/particles.min.js` - Particles library
-- `advanced-animation.js` - Advanced animation effects
-- `server.js` - Simple Node.js server for local hosting
+4. Initialize the database
+   ```
+   npm run db:push
+   ```
 
-## Animation Techniques
+5. Start the development server
+   ```
+   npm run dev
+   ```
 
-JAAT-AI implements several advanced animation techniques:
+6. Access the application
+   Open [http://localhost:5000](http://localhost:5000) in your browser
 
-- **Parallax Layers**: Multiple star layers moving at different speeds
-- **Holographic Effects**: Glowing borders, shimmer effects, and tilt
-- **Energy Pulse Effects**: Pulsating glows with variable intensity
-- **Shooting Stars**: Randomly generated across the background
-- **Particle Effects**: Interactive particles that respond to user movement
-- **Cosmic Glows**: Nebula-like glowing effects in the background
-- **HUD Scan Effects**: Scanning lines similar to holographic displays
+## Deployment
 
-## Browser Compatibility
+For production deployment to jaat-ai.com:
 
-JAAT-AI works best in modern browsers:
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+1. Set NODE_ENV to 'production' in your .env file
+2. Add SSL certificates to the ./ssl directory
+3. Run `npm start` to start the production server
 
-## Accessibility
+## Available Scripts
 
-- Reduced motion option for users who prefer minimal animations
-- Proper contrast for text readability
-- Semantic HTML for screen readers
+- `npm start`: Start the server in production mode
+- `npm run dev`: Start the server in development mode with auto-reload
+- `npm run db:push`: Push schema changes to the database
+- `npm run db:generate`: Generate migration files
+- `npm run db:studio`: Open Drizzle Studio to visualize and manage the database
+
+## Accessing the Application
+
+The application is accessible at:
+- Development: http://localhost:5000
+- Production: https://jaat-ai.com
+
+## API Documentation
+
+API endpoints include:
+- `/api/health`: Health check endpoint
+- `/api/auth/login`: User login
+- `/api/auth/register`: User registration
+- `/api/modes`: Get available AI modes
 
 ## License
 
-Created by Rohit Sangwan.
-
-## Contact
-
-For questions or feedback, contact Rohit.
+MIT

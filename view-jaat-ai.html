@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI Viewer</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #0f1216;
+            color: white;
+        }
+        .header {
+            background-color: #1e222a;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+        .title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #7B35E7;
+        }
+        .nav {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-item {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .nav-item:hover {
+            background-color: #2a2e38;
+        }
+        .nav-item.active {
+            background-color: #7B35E7;
+        }
+        .iframe-container {
+            height: calc(100% - 50px);
+            width: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">JAAT-AI Viewer</div>
+        <div class="nav">
+            <div class="nav-item active" data-page="index">Landing Page</div>
+            <div class="nav-item" data-page="dashboard">Dashboard</div>
+        </div>
+    </div>
+    
+    <div class="iframe-container">
+        <iframe id="content-frame" src="./JAAT-AI/index.html"></iframe>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const iframe = document.getElementById('content-frame');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    navItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Update iframe source
+                    const page = this.getAttribute('data-page');
+                    iframe.src = `./JAAT-AI/${page}.html`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
