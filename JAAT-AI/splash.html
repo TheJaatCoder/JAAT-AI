@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI - The Most Animated & Intelligent AI</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .splash-container {
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(0, 162, 255, 0.7));
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            background: linear-gradient(to right, #4a90e2, #63e2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s infinite;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+        
+        .progress-bar {
+            width: 300px;
+            height: 4px;
+            background-color: #333;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #4a90e2, #63e2ff);
+            width: 0%;
+            animation: progress 3s forwards;
+        }
+        
+        .loading-text {
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+        
+        .credits {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <svg class="logo" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#4a90e2" stroke-width="2">
+                <animate attributeName="r" values="45;47;45" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <path d="M30,40 L50,25 L70,40 L70,70 Q50,85 30,70 Z" fill="#4a90e2">
+                <animate attributeName="fill" values="#4a90e2;#63e2ff;#4a90e2" dur="3s" repeatCount="indefinite"/>
+            </path>
+            <circle cx="40" cy="45" r="5" fill="white"/>
+            <circle cx="60" cy="45" r="5" fill="white"/>
+            <path d="M40,60 Q50,70 60,60" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        
+        <h1>JAAT-AI</h1>
+        <div class="tagline">The Most Animated & Intelligent AI</div>
+        
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <div class="loading-text">Initializing intelligent systems...</div>
+    </div>
+    
+    <div class="credits">Made with ❤️ by Rohit Sangwan | support@jaat-ai.com</div>
+    
+    <script>
+        // Redirect to main page after splash screen
+        setTimeout(() => {
+            window.location.href = '/home';
+        }, 3500);
+    </script>
+</body>
+</html>

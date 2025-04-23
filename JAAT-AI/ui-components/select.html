@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI Select Component</title>
+    <link rel="stylesheet" href="select.css">
+</head>
+<body>
+    <div class="component-demo">
+        <h2>Select Component</h2>
+        
+        <div class="component-section">
+            <h3>Basic Select</h3>
+            <div class="jaat-select">
+                <label for="basicSelect" class="jaat-select-label">Choose an option</label>
+                <div class="jaat-select-wrapper">
+                    <select id="basicSelect" class="jaat-select-input">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                        <option value="option4">Option 4</option>
+                    </select>
+                    <div class="jaat-select-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="jaat-select-hint">Select an option from the list</div>
+            </div>
+        </div>
+        
+        <div class="component-section">
+            <h3>Custom Select</h3>
+            <div class="jaat-custom-select">
+                <label for="customSelect" class="jaat-select-label">Custom dropdown</label>
+                <div class="jaat-select-container" id="customSelect">
+                    <button class="jaat-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                        <span class="jaat-select-value">Select an option</span>
+                        <span class="jaat-select-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="jaat-select-dropdown" role="listbox">
+                        <div class="jaat-select-option" role="option" data-value="option1">Option 1</div>
+                        <div class="jaat-select-option" role="option" data-value="option2">Option 2</div>
+                        <div class="jaat-select-option" role="option" data-value="option3">Option 3</div>
+                        <div class="jaat-select-option" role="option" data-value="option4">Option 4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-section">
+            <h3>Multiple Select</h3>
+            <div class="jaat-select">
+                <label for="multiSelect" class="jaat-select-label">Select multiple options</label>
+                <div class="jaat-select-wrapper">
+                    <select id="multiSelect" class="jaat-select-input" multiple>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                        <option value="option4">Option 4</option>
+                        <option value="option5">Option 5</option>
+                    </select>
+                </div>
+                <div class="jaat-select-hint">Hold Ctrl (or Cmd) to select multiple options</div>
+            </div>
+        </div>
+        
+        <div class="component-section">
+            <h3>Select with Option Groups</h3>
+            <div class="jaat-select">
+                <label for="groupedSelect" class="jaat-select-label">Categories</label>
+                <div class="jaat-select-wrapper">
+                    <select id="groupedSelect" class="jaat-select-input">
+                        <option value="" disabled selected>Select a category</option>
+                        <optgroup label="Fruits">
+                            <option value="apple">Apple</option>
+                            <option value="banana">Banana</option>
+                            <option value="cherry">Cherry</option>
+                        </optgroup>
+                        <optgroup label="Vegetables">
+                            <option value="carrot">Carrot</option>
+                            <option value="broccoli">Broccoli</option>
+                            <option value="spinach">Spinach</option>
+                        </optgroup>
+                    </select>
+                    <div class="jaat-select-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-section">
+            <h3>Select States</h3>
+            <div class="jaat-form-row">
+                <div class="jaat-select">
+                    <label for="disabledSelect" class="jaat-select-label">Disabled</label>
+                    <div class="jaat-select-wrapper">
+                        <select id="disabledSelect" class="jaat-select-input" disabled>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                        </select>
+                        <div class="jaat-select-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="jaat-select">
+                    <label for="errorSelect" class="jaat-select-label">Error State</label>
+                    <div class="jaat-select-wrapper error">
+                        <select id="errorSelect" class="jaat-select-input">
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                        </select>
+                        <div class="jaat-select-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="jaat-select-error">Please select a valid option</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="select.js"></script>
+</body>
+</html>

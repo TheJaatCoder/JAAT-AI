@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" version="1.1" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <filter id="filter1" x="-0.2" y="-0.2" width="1.4" height="1.4" color-interpolation-filters="sRGB">
+   <feGaussianBlur stdDeviation="70"/>
+  </filter>
+  <filter id="filter2" x="-0.2" y="-0.2" width="1.4" height="1.4" color-interpolation-filters="sRGB">
+   <feGaussianBlur stdDeviation="50"/>
+  </filter>
+  <radialGradient id="radialGradient1" cx="500" cy="300" r="400" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#9c27b0" stop-opacity=".8" offset="0"/>
+   <stop stop-color="#9c27b0" stop-opacity="0" offset="1"/>
+  </radialGradient>
+  <radialGradient id="radialGradient2" cx="1400" cy="600" r="350" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#3f51b5" stop-opacity=".8" offset="0"/>
+   <stop stop-color="#3f51b5" stop-opacity="0" offset="1"/>
+  </radialGradient>
+  <radialGradient id="radialGradient3" cx="900" cy="800" r="500" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#e91e63" stop-opacity=".6" offset="0"/>
+   <stop stop-color="#e91e63" stop-opacity="0" offset="1"/>
+  </radialGradient>
+  <linearGradient id="linearGradient1" x1="0" x2="1920" y1="0" y2="1080" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#0d0221" offset="0"/>
+   <stop stop-color="#1a1030" offset=".5"/>
+   <stop stop-color="#130428" offset="1"/>
+  </linearGradient>
+ </defs>
+ <rect width="1920" height="1080" fill="url(#linearGradient1)"/>
+ <g>
+  <circle cx="500" cy="300" r="400" fill="url(#radialGradient1)" filter="url(#filter1)"/>
+  <circle cx="1400" cy="600" r="350" fill="url(#radialGradient2)" filter="url(#filter1)"/>
+  <circle cx="900" cy="800" r="500" fill="url(#radialGradient3)" filter="url(#filter2)"/>
+ </g>
+ <g fill="#fff">
+  <!-- Stars - small -->
+  <circle cx="102" cy="231" r="1"/>
+  <circle cx="354" cy="127" r="1"/>
+  <circle cx="768" cy="321" r="1"/>
+  <circle cx="1021" cy="436" r="1"/>
+  <circle cx="1345" cy="231" r="1"/>
+  <circle cx="1654" cy="567" r="1"/>
+  <circle cx="1789" cy="124" r="1"/>
+  <circle cx="345" cy="869" r="1"/>
+  <circle cx="674" cy="746" r="1"/>
+  <circle cx="1143" cy="812" r="1"/>
+  <circle cx="1432" cy="978" r="1"/>
+  <circle cx="1765" cy="786" r="1"/>
+  <!-- Stars - medium -->
+  <circle cx="243" cy="187" r="1.5"/>
+  <circle cx="456" cy="435" r="1.5"/>
+  <circle cx="821" cy="124" r="1.5"/>
+  <circle cx="1124" cy="387" r="1.5"/>
+  <circle cx="1465" cy="167" r="1.5"/>
+  <circle cx="1731" cy="432" r="1.5"/>
+  <circle cx="267" cy="756" r="1.5"/>
+  <circle cx="586" cy="921" r="1.5"/>
+  <circle cx="932" cy="867" r="1.5"/>
+  <circle cx="1321" cy="732" r="1.5"/>
+  <circle cx="1689" cy="954" r="1.5"/>
+  <!-- Stars - large -->
+  <circle cx="378" cy="319" r="2"/>
+  <circle cx="654" cy="167" r="2"/>
+  <circle cx="932" cy="265" r="2"/>
+  <circle cx="1234" cy="134" r="2"/>
+  <circle cx="1476" cy="356" r="2"/>
+  <circle cx="1823" cy="267" r="2"/>
+  <circle cx="174" cy="643" r="2"/>
+  <circle cx="487" cy="823" r="2"/>
+  <circle cx="843" cy="653" r="2"/>
+  <circle cx="1176" cy="954" r="2"/>
+  <circle cx="1587" cy="854" r="2"/>
+  <circle cx="1812" cy="723" r="2"/>
+ </g>
+</svg>

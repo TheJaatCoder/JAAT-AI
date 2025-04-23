@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - JAAT-AI</title>
+    <meta name="description" content="Your payment has been successfully processed. Enjoy your premium JAAT-AI experience.">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/payment.css">
+    <link rel="stylesheet" href="css/animations/fade.css">
+    <link rel="stylesheet" href="css/themes/dark.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <style>
+        .success-page {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            color: #10b981;
+            margin-bottom: 1.5rem;
+            animation: pulseGlow 2s infinite;
+        }
+        
+        .success-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .success-message {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .subscription-details {
+            background-color: var(--card-bg-alt);
+            border-radius: 12px;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.5s ease 0.3s both;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        
+        .detail-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            animation: fadeInUp 0.5s ease 0.6s both;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #6366f1;
+            border-radius: 50%;
+            top: -10px;
+            z-index: 10;
+            animation: confetti 5s ease-in-out forwards;
+        }
+        
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes pulseGlow {
+            0% {
+                text-shadow: 0 0 5px rgba(16, 185, 129, 0.1);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 5px rgba(16, 185, 129, 0.1);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="theme-dark">
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/images/logo.png" alt="JAAT-AI Logo">
+                        <span>JAAT-AI</span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">AI Assistant</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li class="active"><a href="premium.html">Premium</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="theme-switch" checked>
+                            <label for="theme-switch"></label>
+                        </div>
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    
+                    <a href="dashboard.html" class="profile-btn">
+                        <img src="assets/images/user-avatar.jpg" alt="User Avatar" class="user-avatar-small">
+                        <span>Dashboard</span>
+                    </a>
+                    
+                    <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="success-page">
+            <!-- Container for confetti animation -->
+            <div id="confetti-container"></div>
+            
+            <i class="fas fa-check-circle success-icon"></i>
+            <h1 class="success-title">Payment Successful!</h1>
+            <p class="success-message">
+                Thank you for your payment. Your premium subscription is now active and ready to use.
+                You now have access to all premium features and AI modes.
+            </p>
+            
+            <div class="subscription-details">
+                <div class="detail-row">
+                    <span class="detail-label">Plan</span>
+                    <span class="detail-value" id="plan-name">Premium</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Duration</span>
+                    <span class="detail-value" id="plan-duration">Monthly</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount Paid</span>
+                    <span class="detail-value" id="amount-paid">₹116.82</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status</span>
+                    <span class="detail-value" style="color: #10b981;">Active</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Transaction ID</span>
+                    <span class="detail-value" id="transaction-id">JAAT-TXN-25042512</span>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="dashboard.html" class="btn-primary">
+                    <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+                </a>
+                <a href="index.html" class="btn-secondary">
+                    <i class="fas fa-robot"></i> Start Using JAAT-AI
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="assets/images/logo.png" alt="JAAT-AI Logo">
+                        <span>JAAT-AI</span>
+                    </div>
+                    <p>Experience the next generation of AI assistance</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="features.html">Features</a></li>
+                            <li><a href="ai-modes.html">AI Modes</a></li>
+                            <li><a href="premium.html">Premium</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="tutorials.html">Tutorials</a></li>
+                            <li><a href="support.html">Support</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="privacy.html">Privacy</a></li>
+                            <li><a href="terms.html">Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 JAAT-AI. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Look for FastSpring order parameters in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            let subscriptionFound = false;
+            
+            // Check for FastSpring order reference
+            if (urlParams.has('reference')) {
+                const orderReference = urlParams.get('reference');
+                
+                // Create subscription data from FastSpring order
+                const subscription = {
+                    id: orderReference,
+                    reference: orderReference,
+                    paymentId: orderReference,
+                    active: true,
+                    createdAt: new Date().toISOString()
+                };
+                
+                // Get plan type from URL params
+                if (urlParams.has('product')) {
+                    const product = urlParams.get('product');
+                    
+                    if (product.includes('premium')) {
+                        subscription.planId = 'premium';
+                        subscription.planName = 'Premium';
+                    } else if (product.includes('enterprise')) {
+                        subscription.planId = 'enterprise';
+                        subscription.planName = 'Enterprise';
+                    }
+                    
+                    if (product.includes('annual')) {
+                        subscription.billingCycle = 'annual';
+                        
+                        // Set expiry to 1 year from now
+                        const expiryDate = new Date();
+                        expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+                        subscription.expiryDate = expiryDate.toISOString();
+                    } else {
+                        subscription.billingCycle = 'monthly';
+                        
+                        // Set expiry to 1 month from now
+                        const expiryDate = new Date();
+                        expiryDate.setMonth(expiryDate.getMonth() + 1);
+                        subscription.expiryDate = expiryDate.toISOString();
+                    }
+                }
+                
+                // Get price from URL params
+                if (urlParams.has('total')) {
+                    const total = urlParams.get('total');
+                    subscription.price = parseFloat(total);
+                    subscription.currency = 'INR'; // Default to INR
+                }
+                
+                // Add features based on plan
+                subscription.features = getFeaturesByPlan(subscription.planId);
+                
+                // Save to localStorage for future reference
+                localStorage.setItem('jaat_subscription', JSON.stringify(subscription));
+                
+                // Add to payment history
+                const paymentHistory = JSON.parse(localStorage.getItem('jaat_payment_history') || '[]');
+                paymentHistory.push({
+                    id: subscription.paymentId,
+                    planId: subscription.planId,
+                    planName: subscription.planName,
+                    amount: subscription.price,
+                    currency: subscription.currency,
+                    date: new Date().toISOString(),
+                    status: 'success'
+                });
+                localStorage.setItem('jaat_payment_history', JSON.stringify(paymentHistory));
+                
+                subscriptionFound = true;
+                
+                // Verify subscription with our server
+                verifySubscription(orderReference);
+            }
+            
+            // If no FastSpring order in URL, check localStorage
+            if (!subscriptionFound) {
+                const subscription = JSON.parse(localStorage.getItem('jaat_subscription') || '{}');
+                
+                if (Object.keys(subscription).length === 0) {
+                    console.warn('No subscription data found. This may be a direct access to the success page.');
+                }
+                
+                subscriptionFound = Object.keys(subscription).length > 0;
+            }
+            
+            // Get subscription data from storage (either just saved or previously saved)
+            const subscription = JSON.parse(localStorage.getItem('jaat_subscription') || '{}');
+            
+            // Populate subscription details if available
+            if (subscription.planName) {
+                document.getElementById('plan-name').textContent = subscription.planName;
+            }
+            
+            if (subscription.billingCycle) {
+                document.getElementById('plan-duration').textContent = 
+                    subscription.billingCycle === 'annual' ? 'Annual' : 'Monthly';
+            }
+            
+            if (subscription.price) {
+                const currencySymbol = subscription.currency === 'USD' ? '$' : '₹';
+                document.getElementById('amount-paid').textContent = `${currencySymbol}${subscription.price}`;
+            }
+            
+            if (subscription.paymentId) {
+                document.getElementById('transaction-id').textContent = subscription.paymentId;
+            }
+            
+            // Create confetti effect
+            createConfetti();
+            
+            // Theme toggle
+            const themeSwitch = document.getElementById('theme-switch');
+            const themeStylesheet = document.getElementById('theme-stylesheet');
+            
+            if (themeSwitch) {
+                themeSwitch.addEventListener('change', function() {
+                    if (this.checked) {
+                        themeStylesheet.href = 'css/themes/dark.css';
+                        document.body.className = 'theme-dark';
+                    } else {
+                        themeStylesheet.href = 'css/themes/light.css';
+                        document.body.className = 'theme-light';
+                    }
+                });
+            }
+        });
+        
+        /**
+         * Verify subscription with our server
+         * @param {string} orderId - FastSpring order ID
+         */
+        function verifySubscription(orderId) {
+            fetch('/api/verify-subscription', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    orderId,
+                    email: localStorage.getItem('jaat_email') || ''
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Subscription verified:', data);
+            })
+            .catch(error => {
+                console.error('Error verifying subscription:', error);
+            });
+        }
+        
+        /**
+         * Get features by plan ID
+         * @param {string} planId - Plan ID
+         * @returns {Array} Array of features
+         */
+        function getFeaturesByPlan(planId) {
+            switch (planId) {
+                case 'premium':
+                    return [
+                        'All 45+ AI Modes',
+                        'Premium Animations',
+                        'Unlimited Messages',
+                        'Voice Capabilities',
+                        'Custom AI Avatars',
+                        'Priority Support',
+                        'No Advertisements',
+                        'Advanced Creative Tools'
+                    ];
+                case 'enterprise':
+                    return [
+                        'Everything in Premium',
+                        'Team Collaboration',
+                        'Custom AI Modes',
+                        'API Access',
+                        'Dedicated Support',
+                        'Usage Analytics',
+                        'Advanced Security',
+                        'Integration Support'
+                    ];
+                default:
+                    return [
+                        'Basic AI Mode',
+                        'Limited Messages',
+                        'Standard UI'
+                    ];
+            }
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#6366f1', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation completes
+                setTimeout(() => {
+                    confetti.remove();
+                }, 7000);
+            }
+        }
+    </script>
+</body>
+</html>

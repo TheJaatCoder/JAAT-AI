@@ -1,0 +1,23 @@
+{
+  "payments": [
+    {
+      "referenceCode": "JAAT-123456-0001",
+      "userId": "demo_user",
+      "planId": "premium_monthly",
+      "amount": 99,
+      "currency": "USD",
+      "status": "completed",
+      "createdAt": "2023-10-15T12:00:00Z",
+      "completedAt": "2023-10-15T12:10:00Z",
+      "paymentMethod": "upi",
+      "verificationData": {
+        "verifiedAt": "2023-10-15T12:10:00Z",
+        "verifiedBy": "admin"
+      },
+      "metadata": {
+        "notes": "Demo payment for testing"
+      }
+    }
+  ],
+  "lastUpdated": "2023-10-15T12:10:00Z"
+}

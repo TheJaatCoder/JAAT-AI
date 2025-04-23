@@ -1,0 +1,315 @@
+/**
+ * JAAT-AI Dark Theme
+ * Dark mode theme styles with a deep blue-black background and vibrant accent colors
+ */
+
+:root {
+    /* Override dark mode variables as default for this theme */
+    --background: var(--dm-background);
+    --background-soft: var(--dm-background-soft);
+    --background-muted: var(--dm-background-muted);
+    --foreground: var(--dm-foreground);
+    --foreground-soft: var(--dm-foreground-soft);
+    --foreground-muted: var(--dm-foreground-muted);
+    --border: var(--dm-border);
+    --border-light: var(--dm-border-light);
+    --border-dark: var(--dm-border-dark);
+    
+    /* Override shadow variables */
+    --shadow-sm: var(--dm-shadow-sm);
+    --shadow: var(--dm-shadow);
+    --shadow-md: var(--dm-shadow-md);
+    --shadow-lg: var(--dm-shadow-lg);
+    --shadow-xl: var(--dm-shadow-xl);
+    
+    /* Dark theme specific variables */
+    --dark-gradient: linear-gradient(135deg, var(--dm-background), var(--dm-background-soft));
+    --dark-card-bg: rgba(30, 41, 59, 0.7);
+    --dark-input-bg: rgba(15, 23, 42, 0.7);
+    --dark-overlay: rgba(0, 0, 0, 0.5);
+    --dark-highlight: rgba(99, 102, 241, 0.15);
+}
+
+/* General styling for dark theme */
+body.theme-dark {
+    color: var(--dm-foreground);
+    background-color: var(--dm-background);
+    background-image: radial-gradient(circle at 10% 20%, #1a237e05 0%, transparent 20%),
+                      radial-gradient(circle at 90% 80%, #4a148c05 0%, transparent 20%);
+}
+
+/* Scrollbar styling for dark theme */
+body.theme-dark::-webkit-scrollbar {
+    width: 12px;
+}
+
+body.theme-dark::-webkit-scrollbar-track {
+    background: var(--dm-background);
+}
+
+body.theme-dark::-webkit-scrollbar-thumb {
+    background-color: var(--dm-background-muted);
+    border-radius: 20px;
+    border: 3px solid var(--dm-background);
+}
+
+body.theme-dark::-webkit-scrollbar-thumb:hover {
+    background-color: var(--dm-foreground-muted);
+}
+
+/* Button styling for dark theme */
+body.theme-dark .btn-ghost {
+    color: var(--dm-foreground);
+}
+
+body.theme-dark .btn-ghost:hover {
+    background-color: var(--dm-background-muted);
+}
+
+body.theme-dark .btn-outline {
+    color: var(--primary-light);
+    border-color: var(--primary-light);
+}
+
+body.theme-dark .btn-outline:hover {
+    background-color: var(--dark-highlight);
+}
+
+/* Form styling for dark theme */
+body.theme-dark .input,
+body.theme-dark .select,
+body.theme-dark .textarea {
+    background-color: var(--dark-input-bg);
+    border-color: var(--dm-border);
+    color: var(--dm-foreground);
+}
+
+body.theme-dark .input:focus,
+body.theme-dark .select:focus,
+body.theme-dark .textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+body.theme-dark .input:disabled,
+body.theme-dark .select:disabled,
+body.theme-dark .textarea:disabled {
+    background-color: var(--dm-background-muted);
+    color: var(--dm-foreground-muted);
+}
+
+/* Card styling for dark theme */
+body.theme-dark .card {
+    background-color: var(--dark-card-bg);
+    box-shadow: var(--dm-shadow-md);
+    border: 1px solid var(--dm-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+body.theme-dark .card:hover {
+    box-shadow: var(--dm-shadow-lg);
+    border-color: var(--dm-border-dark);
+}
+
+/* Modal styling for dark theme */
+body.theme-dark .modal-backdrop {
+    background-color: var(--dark-overlay);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+body.theme-dark .modal-content {
+    background-color: var(--dm-background-soft);
+    border: 1px solid var(--dm-border);
+    box-shadow: var(--dm-shadow-xl);
+}
+
+/* Table styling for dark theme */
+body.theme-dark table {
+    color: var(--dm-foreground);
+}
+
+body.theme-dark thead th {
+    background-color: var(--dm-background-soft);
+    border-color: var(--dm-border);
+}
+
+body.theme-dark tbody tr {
+    border-color: var(--dm-border);
+}
+
+body.theme-dark tbody tr:hover {
+    background-color: var(--dm-background-muted);
+}
+
+/* Code blocks for dark theme */
+body.theme-dark pre,
+body.theme-dark code {
+    background-color: var(--dm-background-soft);
+    border-color: var(--dm-border);
+    color: var(--dm-foreground);
+}
+
+/* Alert styling for dark theme */
+body.theme-dark .alert {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Tooltip styling for dark theme */
+body.theme-dark .tooltip {
+    background-color: var(--dm-background-soft);
+    color: var(--dm-foreground);
+    border: 1px solid var(--dm-border);
+    box-shadow: var(--dm-shadow-lg);
+}
+
+/* Dropdown menu styling for dark theme */
+body.theme-dark .dropdown-menu {
+    background-color: var(--dm-background-soft);
+    border: 1px solid var(--dm-border);
+    box-shadow: var(--dm-shadow-lg);
+}
+
+body.theme-dark .dropdown-item:hover {
+    background-color: var(--dm-background-muted);
+}
+
+/* Sidebar styling for dark theme */
+body.theme-dark .sidebar {
+    background-color: var(--dm-background-soft);
+    border-color: var(--dm-border);
+}
+
+/* Navigation bar styling for dark theme */
+body.theme-dark .navbar {
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--dm-border);
+}
+
+/* Toast/notification styling for dark theme */
+body.theme-dark .toast {
+    background-color: var(--dm-background-soft);
+    border: 1px solid var(--dm-border);
+    box-shadow: var(--dm-shadow-lg);
+}
+
+/* Form validation styling for dark theme */
+body.theme-dark .is-invalid {
+    border-color: var(--danger) !important;
+}
+
+body.theme-dark .invalid-feedback {
+    color: var(--danger-light);
+}
+
+/* Progress bar styling for dark theme */
+body.theme-dark .progress {
+    background-color: var(--dm-background-muted);
+}
+
+body.theme-dark .progress-bar {
+    background-color: var(--primary);
+}
+
+/* Badge styling for dark theme */
+body.theme-dark .badge-secondary {
+    background-color: var(--dm-background-muted);
+    color: var(--dm-foreground);
+}
+
+/* Pagination styling for dark theme */
+body.theme-dark .pagination .page-link {
+    background-color: var(--dm-background);
+    border-color: var(--dm-border);
+    color: var(--dm-foreground);
+}
+
+body.theme-dark .pagination .page-link:hover {
+    background-color: var(--dm-background-muted);
+}
+
+body.theme-dark .pagination .active .page-link {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+/* Button group styling for dark theme */
+body.theme-dark .btn-group .btn {
+    border-color: var(--dm-border-dark);
+}
+
+/* List group styling for dark theme */
+body.theme-dark .list-group-item {
+    background-color: var(--dm-background-soft);
+    border-color: var(--dm-border);
+    color: var(--dm-foreground);
+}
+
+body.theme-dark .list-group-item:hover {
+    background-color: var(--dm-background-muted);
+}
+
+body.theme-dark .list-group-item.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+/* Avatar styling for dark theme */
+body.theme-dark .avatar-placeholder {
+    background-color: var(--dm-background-muted);
+    color: var(--dm-foreground);
+}
+
+/* Card overlay styling for dark theme */
+body.theme-dark .card-img-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Link styling */
+body.theme-dark a:not([class]) {
+    color: var(--primary-light);
+}
+
+body.theme-dark a:not([class]):hover {
+    color: var(--primary);
+}
+
+/* Custom component styling */
+body.theme-dark .feature-card {
+    background-color: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.theme-dark .feature-card:hover {
+    background-color: rgba(30, 41, 59, 0.8);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+body.theme-dark .chat-container {
+    background-color: var(--dm-background-soft);
+    border: 1px solid var(--dm-border);
+}
+
+body.theme-dark .chat-message-user {
+    background-color: var(--primary-soft);
+    color: var(--dm-foreground);
+}
+
+body.theme-dark .chat-message-ai {
+    background-color: var(--dm-background-muted);
+    color: var(--dm-foreground);
+}
+
+/* Additional dark mode specific elements */
+body.theme-dark .glow-effect {
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+}
+
+body.theme-dark .gradient-border::before {
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+}

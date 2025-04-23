@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI - The Most Animated & Intelligent AI Assistant</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../js/vendor/particles.min.js" defer></script>
+    <script src="../../js/vendor/marked.min.js" defer></script>
+    <script src="../../js/vendor/highlight.min.js" defer></script>
+</head>
+<body class="theme-dark">
+    <div id="background-particles"></div>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../../assets/logo.svg" alt="JAAT-AI Logo">
+                <h1>JAAT-AI</h1>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="dashboard.html"><i class="fas fa-columns"></i> Dashboard</a></li>
+                    <li><a href="ai-modes.html"><i class="fas fa-brain"></i> AI Modes</a></li>
+                    <li><a href="../features/index.html"><i class="fas fa-puzzle-piece"></i> Features</a></li>
+                    <li><a href="../premium/index.html"><i class="fas fa-crown"></i> Premium</a></li>
+                </ul>
+            </nav>
+            <div class="user-controls">
+                <div class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="theme-switch" checked>
+                        <label for="theme-switch"></label>
+                    </div>
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="user-menu">
+                    <img src="../../assets/default-avatar.png" class="user-avatar" alt="User">
+                    <span class="username">Guest</span>
+                    <i class="fas fa-angle-down"></i>
+                    <div class="dropdown-menu">
+                        <a href="../user/user-profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="../user/user-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="login.html" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="chat-container">
+            <div class="chat-sidebar">
+                <div class="sidebar-header">
+                    <h2>Conversations</h2>
+                    <button class="btn-icon" id="new-chat-btn" title="New Chat">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div class="conversations-list">
+                    <div class="conversation-item active">
+                        <div class="conversation-icon">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                        <div class="conversation-info">
+                            <h3>New Conversation</h3>
+                            <p>Just now</p>
+                        </div>
+                        <div class="conversation-actions">
+                            <button class="btn-icon" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="conversation-item">
+                        <div class="conversation-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="conversation-info">
+                            <h3>React Component Help</h3>
+                            <p>2 hours ago</p>
+                        </div>
+                        <div class="conversation-actions">
+                            <button class="btn-icon" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="conversation-item">
+                        <div class="conversation-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="conversation-info">
+                            <h3>Book Recommendations</h3>
+                            <p>Yesterday</p>
+                        </div>
+                        <div class="conversation-actions">
+                            <button class="btn-icon" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="conversation-item">
+                        <div class="conversation-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="conversation-info">
+                            <h3>Recipe Planning</h3>
+                            <p>3 days ago</p>
+                        </div>
+                        <div class="conversation-actions">
+                            <button class="btn-icon" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Current Mode</h3>
+                    <div class="current-mode">
+                        <div class="mode-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h4>Standard Mode</h4>
+                            <p>General purpose AI assistant</p>
+                        </div>
+                        <button class="btn-icon" id="change-mode-btn" title="Change Mode">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Quick Settings</h3>
+                    <div class="quick-settings">
+                        <div class="setting-item">
+                            <label for="auto-read">Auto-read responses</label>
+                            <div class="toggle-switch setting-toggle">
+                                <input type="checkbox" id="auto-read">
+                                <label for="auto-read"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="markdown-render">Render markdown</label>
+                            <div class="toggle-switch setting-toggle">
+                                <input type="checkbox" id="markdown-render" checked>
+                                <label for="markdown-render"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="code-highlight">Syntax highlighting</label>
+                            <div class="toggle-switch setting-toggle">
+                                <input type="checkbox" id="code-highlight" checked>
+                                <label for="code-highlight"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-footer">
+                    <div class="mode-shortcuts">
+                        <button class="shortcut-btn" title="Go to Multi-Chat">
+                            <i class="fas fa-comments"></i>
+                            <span>Multi-Chat</span>
+                        </button>
+                        <button class="shortcut-btn" title="Open Voice Assistant">
+                            <i class="fas fa-microphone"></i>
+                            <span>Voice</span>
+                        </button>
+                        <button class="shortcut-btn" title="View All Modes">
+                            <i class="fas fa-th-large"></i>
+                            <span>All Modes</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-main">
+                <div class="chat-header">
+                    <div class="chat-info">
+                        <h2>New Conversation</h2>
+                        <div class="chat-options">
+                            <button class="btn-icon" title="Rename">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon" title="Export">
+                                <i class="fas fa-file-export"></i>
+                            </button>
+                            <button class="btn-icon" title="Share">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-mode-indicator">
+                        <div class="mode-badge standard">
+                            <i class="fas fa-robot"></i>
+                            <span>Standard Mode</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-messages">
+                    <div class="welcome-message">
+                        <div class="welcome-header">
+                            <div class="welcome-avatar">
+                                <div class="avatar-container">
+                                    <img src="../../assets/animated-avatar.gif" alt="JAAT-AI Avatar">
+                                </div>
+                            </div>
+                            <h2>Welcome to JAAT-AI</h2>
+                            <p class="subtitle">The most animated & intelligent AI assistant</p>
+                        </div>
+                        
+                        <div class="welcome-suggestions">
+                            <h3>I can help with various tasks. Try asking me about:</h3>
+                            <div class="suggestion-chips">
+                                <button class="suggestion-chip">Write a short story about time travel</button>
+                                <button class="suggestion-chip">Explain quantum computing to a 10-year-old</button>
+                                <button class="suggestion-chip">Help me plan a week-long vacation in Japan</button>
+                                <button class="suggestion-chip">Create a workout routine for beginners</button>
+                                <button class="suggestion-chip">Suggest healthy meal ideas for the week</button>
+                                <button class="suggestion-chip">Help with JavaScript debugging techniques</button>
+                            </div>
+                        </div>
+                        
+                        <div class="welcome-features">
+                            <h3>Featured Capabilities:</h3>
+                            <div class="feature-grid">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="feature-text">
+                                        <h4>45+ Specialized AI Modes</h4>
+                                        <p>Try different AI personalities optimized for specific tasks</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-microphone"></i>
+                                    </div>
+                                    <div class="feature-text">
+                                        <h4>Voice Assistant</h4>
+                                        <p>Speak with your AI using natural voice conversations</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <div class="feature-text">
+                                        <h4>Code Assistance</h4>
+                                        <p>Get help with programming in multiple languages</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-image"></i>
+                                    </div>
+                                    <div class="feature-text">
+                                        <h4>Image Generation</h4>
+                                        <p>Create images from text descriptions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Messages will be dynamically added here -->
+                </div>
+                
+                <div class="chat-input">
+                    <div class="input-features">
+                        <button class="feature-btn" title="Attach File">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <button class="feature-btn" title="Voice Input">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="feature-btn" title="Draw">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="input-main">
+                        <textarea placeholder="Type your message..." rows="1"></textarea>
+                        <button class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="input-options">
+                        <div class="options-buttons">
+                            <button class="option-btn" title="Use Templates">
+                                <i class="fas fa-clipboard-list"></i>
+                            </button>
+                            <button class="option-btn" title="Language Options">
+                                <i class="fas fa-language"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-context-panel">
+                <div class="panel-header">
+                    <h2>Context & Memory</h2>
+                    <button class="btn-icon" id="toggle-panel" title="Toggle Panel">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="memory-context">
+                    <div class="context-section">
+                        <h3>Active Memory</h3>
+                        <div class="memory-items">
+                            <div class="memory-item">
+                                <div class="memory-content">
+                                    <h4>Your Preferences</h4>
+                                    <p>You prefer detailed explanations with examples</p>
+                                </div>
+                                <button class="btn-icon" title="Remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="memory-item">
+                                <div class="memory-content">
+                                    <h4>Topic: Programming</h4>
+                                    <p>Interest in JavaScript and React development</p>
+                                </div>
+                                <button class="btn-icon" title="Remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="context-section">
+                        <h3>Uploaded Files</h3>
+                        <div class="uploaded-files">
+                            <p class="no-files">No files uploaded for this conversation</p>
+                        </div>
+                    </div>
+                    
+                    <div class="context-section">
+                        <h3>Web References</h3>
+                        <div class="web-references">
+                            <p class="no-references">No web references used yet</p>
+                        </div>
+                    </div>
+                    
+                    <div class="context-controls">
+                        <button class="btn-secondary" id="clear-context">
+                            <i class="fas fa-trash"></i> Clear All Context
+                        </button>
+                        <button class="btn-secondary" id="manage-memory">
+                            <i class="fas fa-cog"></i> Manage Memory
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div class="modal" id="ai-modes-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Select AI Mode</h2>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="search-modes">
+                    <input type="text" placeholder="Search AI modes...">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="mode-categories">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="creative">Creative</button>
+                    <button class="category-btn" data-category="professional">Professional</button>
+                    <button class="category-btn" data-category="educational">Educational</button>
+                    <button class="category-btn" data-category="fun">Fun</button>
+                </div>
+                
+                <div class="mode-grid">
+                    <!-- Standard Mode -->
+                    <div class="mode-card active" data-category="all">
+                        <div class="mode-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h3>Standard Mode</h3>
+                            <p>General purpose AI assistant</p>
+                        </div>
+                        <button class="btn-primary active">Selected</button>
+                    </div>
+                    
+                    <!-- Creative Modes -->
+                    <div class="mode-card" data-category="creative">
+                        <div class="mode-icon">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h3>Creative Writer</h3>
+                            <p>Expert in creative writing and storytelling</p>
+                        </div>
+                        <button class="btn-primary">Select</button>
+                    </div>
+                    
+                    <div class="mode-card" data-category="creative">
+                        <div class="mode-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h3>Visual Artist</h3>
+                            <p>Creates and discusses visual art</p>
+                        </div>
+                        <button class="btn-primary">Select</button>
+                    </div>
+                    
+                    <!-- Professional Modes -->
+                    <div class="mode-card" data-category="professional">
+                        <div class="mode-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h3>Code Assistant</h3>
+                            <p>Expert in programming and development</p>
+                        </div>
+                        <button class="btn-primary">Select</button>
+                    </div>
+                    
+                    <div class="mode-card" data-category="professional">
+                        <div class="mode-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h3>Business Analyst</h3>
+                            <p>Focuses on business strategy and data</p>
+                        </div>
+                        <button class="btn-primary">Select</button>
+                    </div>
+                    
+                    <!-- Educational Modes -->
+                    <div class="mode-card" data-category="educational">
+                        <div class="mode-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h3>Study Tutor</h3>
+                            <p>Educational tutor for various subjects</p>
+                        </div>
+                        <button class="btn-primary">Select</button>
+                    </div>
+                    
+                    <div class="mode-card" data-category="educational">
+                        <div class="mode-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h3>Science Expert</h3>
+                            <p>Specialized in scientific explanations</p>
+                        </div>
+                        <button class="btn-primary">Select</button>
+                    </div>
+                    
+                    <!-- Fun Modes -->
+                    <div class="mode-card" data-category="fun">
+                        <div class="mode-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h3>Game Master</h3>
+                            <p>Creates and runs interactive games</p>
+                        </div>
+                        <button class="btn-primary">Select</button>
+                    </div>
+                    
+                    <div class="mode-card premium" data-category="fun">
+                        <div class="mode-icon">
+                            <i class="fas fa-theater-masks"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h3>Character Actor</h3>
+                            <p>Roleplays as various characters</p>
+                            <span class="premium-tag">Premium</span>
+                        </div>
+                        <button class="btn-primary btn-premium">Upgrade</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-mode">Cancel</button>
+                <button class="btn-primary" id="view-all-modes">View All 45+ Modes</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../../js/app.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/chat.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

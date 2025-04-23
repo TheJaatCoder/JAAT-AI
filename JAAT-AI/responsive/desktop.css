@@ -1,0 +1,162 @@
+/* JAAT-AI Desktop Styles
+   Styles specifically for desktop devices */
+
+/* Applied automatically when screen width is >= 992px */
+.desktop-only {
+    display: block;
+}
+
+.mobile-only, .tablet-only {
+    display: none;
+}
+
+/* Desktop header optimizations */
+.home-header {
+    padding: 0 2rem;
+}
+
+.home-header .container {
+    max-width: 1400px;
+}
+
+/* Desktop navigation enhancements */
+.main-nav ul {
+    gap: 2.5rem;
+}
+
+.nav-link {
+    position: relative;
+    font-size: 1rem;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Enhanced hover states for desktop */
+.feature-card {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.theme-dark .feature-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Desktop-specific animation settings */
+.animated-title {
+    font-size: 4.5rem;
+    line-height: 1.1;
+}
+
+.animated-brain {
+    width: 350px;
+    height: 350px;
+}
+
+/* Enhanced content layouts */
+.hero-section {
+    padding-bottom: 8rem;
+}
+
+.hero-content {
+    max-width: 1000px;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-header {
+    margin-bottom: 5rem;
+}
+
+.section-header h2 {
+    font-size: 2.75rem;
+}
+
+/* 3D Background enhancement */
+.animated-bg-3d {
+    opacity: 0.7;
+}
+
+/* Enhanced floating elements */
+.floating-element {
+    transform-origin: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-element:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+    z-index: 5;
+}
+
+/* Enhanced desktop grid layouts */
+.features-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.about-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+/* Footer enhancements for desktop */
+.footer-container {
+    padding: 5rem 0 3rem;
+}
+
+/* Advanced hover effects only suitable for desktop */
+.cta-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+}
+
+.cta-button:hover::after {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Desktop-specific parallax effects */
+[data-parallax] {
+    will-change: transform;
+}
+
+.parallax-bg {
+    background-attachment: fixed;
+}

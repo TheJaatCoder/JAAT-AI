@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | JAAT-AI</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Particle Background -->
+        <div id="particles-js" class="particles-container"></div>
+        
+        <!-- Star Background -->
+        <div class="star-background">
+            <div class="stars-container"></div>
+        </div>
+        
+        <!-- Cosmic Glows -->
+        <div class="cosmic-glow top-left"></div>
+        <div class="cosmic-glow bottom-right"></div>
+        
+        <!-- Main Content -->
+        <header class="main-header">
+            <div class="header-container">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <div class="logo-hologram"></div>
+                    </div>
+                    <a href="index.php" class="logo-text">JAAT-AI</a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul class="nav-links">
+                        <li><a href="index.php" class="nav-link">Home</a></li>
+                        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="auth-buttons">
+                    <button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+                    <button class="btn-signup active">Sign Up</button>
+                </div>
+                
+                <button class="mobile-menu-toggle">
+                    <span class="material-symbols-rounded">menu</span>
+                </button>
+            </div>
+        </header>
+        
+        <main class="auth-main">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <div class="auth-form-container">
+                        <h1 class="auth-title">Create your account</h1>
+                        <p class="auth-subtitle">Join JAAT-AI and experience the future of AI interaction</p>
+                        
+                        <div class="auth-options">
+                            <button class="auth-option google-login" id="google-login-btn">
+                                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                                    <g transform="matrix(1, 0, 0, 1, 0, 0)">
+                                        <path d="M21.35,11.1H12v3.2h5.59c-0.27,1.4-1.1,2.57-2.32,3.37v2.79h3.76C20.7,18.57,22,15.9,22,12.66C22,12.12,21.9,11.6,21.76,11.1H21.35z" fill="#4285F4"></path>
+                                        <path d="M12,21.35c3.14,0,5.76-1.04,7.69-2.79l-3.76-2.79C14.96,16.52,13.59,17,12,17c-2.98,0-5.5-2.01-6.4-4.71H1.65v2.88C3.49,18.58,7.38,21.35,12,21.35z" fill="#34A853"></path>
+                                        <path d="M5.6,12.29C5.38,11.56,5.26,10.79,5.26,10c0-0.79,0.12-1.56,0.34-2.29V4.83H1.65C0.93,6.4,0.52,8.15,0.52,10c0,1.85,0.41,3.6,1.13,5.17L5.6,12.29z" fill="#FBBC05"></path>
+                                        <path d="M12,4.65c1.68,0,3.19,0.58,4.38,1.71l3.3-3.3C17.72,1.37,15.1,0.23,12,0.23C7.38,0.23,3.49,3,1.65,6.42l3.95,2.88C6.5,6.67,9.02,4.65,12,4.65z" fill="#EA4335"></path>
+                                    </g>
+                                </svg>
+                                <span>Sign up with Google</span>
+                            </button>
+                        </div>
+                        
+                        <div class="auth-divider">
+                            <span>or</span>
+                        </div>
+                        
+                        <form id="register-form" class="auth-form" action="register_process.php" method="post">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first_name">First Name</label>
+                                    <div class="input-with-icon">
+                                        <span class="material-symbols-rounded">person</span>
+                                        <input type="text" id="first_name" name="first_name" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <div class="input-with-icon">
+                                        <span class="material-symbols-rounded">person</span>
+                                        <input type="text" id="last_name" name="last_name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <div class="input-with-icon">
+                                    <span class="material-symbols-rounded">email</span>
+                                    <input type="email" id="email" name="email" required autocomplete="email">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <div class="input-with-icon">
+                                    <span class="material-symbols-rounded">account_circle</span>
+                                    <input type="text" id="username" name="username" required autocomplete="username">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <div class="input-with-icon">
+                                    <span class="material-symbols-rounded">lock</span>
+                                    <input type="password" id="password" name="password" required autocomplete="new-password">
+                                    <button type="button" class="toggle-password">
+                                        <span class="material-symbols-rounded">visibility</span>
+                                    </button>
+                                </div>
+                                <div class="password-strength">
+                                    <div class="strength-meter">
+                                        <div class="strength-segment"></div>
+                                        <div class="strength-segment"></div>
+                                        <div class="strength-segment"></div>
+                                        <div class="strength-segment"></div>
+                                    </div>
+                                    <div class="strength-text">Password strength</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm Password</label>
+                                <div class="input-with-icon">
+                                    <span class="material-symbols-rounded">lock</span>
+                                    <input type="password" id="confirm_password" name="confirm_password" required autocomplete="new-password">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <div class="checkbox-with-label">
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a></label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <div class="checkbox-with-label">
+                                    <input type="checkbox" id="marketing" name="marketing">
+                                    <label for="marketing">I'd like to receive updates about new features and special offers</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-error" id="register-error"></div>
+                            
+                            <button type="submit" class="holographic-button primary-button auth-submit">
+                                <span class="material-symbols-rounded">person_add</span>
+                                Create Account
+                            </button>
+                        </form>
+                        
+                        <div class="auth-footer">
+                            <p>Already have an account? <a href="login.html">Sign in</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="auth-hero">
+                        <div class="auth-hero-content">
+                            <h2>Join the Future of AI Interaction</h2>
+                            <p>Create your JAAT-AI account and unlock a world of advanced AI capabilities.</p>
+                            
+                            <div class="auth-hero-features">
+                                <div class="auth-hero-feature">
+                                    <span class="material-symbols-rounded">auto_awesome</span>
+                                    <div>
+                                        <h3>Powerful Conversations</h3>
+                                        <p>Natural, context-aware AI interactions</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="auth-hero-feature">
+                                    <span class="material-symbols-rounded">shield</span>
+                                    <div>
+                                        <h3>Secure & Private</h3>
+                                        <p>Your data is always protected</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="auth-hero-feature">
+                                    <span class="material-symbols-rounded">devices</span>
+                                    <div>
+                                        <h3>Available Everywhere</h3>
+                                        <p>Access from any device, anytime</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="auth-hologram">
+                            <div class="hologram-container register-hologram">
+                                <div class="hologram-interface"></div>
+                                <div class="hologram-pulses"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="auth-footer">
+            <p>&copy; 2023-<?php echo date('Y'); ?> JAAT-AI. All rights reserved. Created by Rohit Sangwan.</p>
+        </footer>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/particles.min.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Toggle password visibility
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', function() {
+                const input = this.parentElement.querySelector('input');
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                
+                const icon = this.querySelector('span');
+                icon.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+            });
+        });
+        
+        // Password strength checker
+        const passwordInput = document.getElementById('password');
+        const strengthMeter = document.querySelector('.strength-meter');
+        const strengthText = document.querySelector('.strength-text');
+        
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+            
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/)) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+            
+            const segments = strengthMeter.querySelectorAll('.strength-segment');
+            
+            // Reset all segments
+            segments.forEach(segment => {
+                segment.className = 'strength-segment';
+            });
+            
+            // Color segments based on strength
+            for (let i = 0; i < strength; i++) {
+                if (segments[i]) {
+                    if (strength === 1) {
+                        segments[i].classList.add('very-weak');
+                    } else if (strength === 2) {
+                        segments[i].classList.add('weak');
+                    } else if (strength === 3) {
+                        segments[i].classList.add('medium');
+                    } else if (strength === 4) {
+                        segments[i].classList.add('strong');
+                    } else {
+                        segments[i].classList.add('very-strong');
+                    }
+                }
+            }
+            
+            // Update strength text
+            if (password.length === 0) {
+                strengthText.textContent = 'Password strength';
+            } else if (strength < 2) {
+                strengthText.textContent = 'Very weak';
+            } else if (strength < 3) {
+                strengthText.textContent = 'Weak';
+            } else if (strength < 4) {
+                strengthText.textContent = 'Medium';
+            } else if (strength < 5) {
+                strengthText.textContent = 'Strong';
+            } else {
+                strengthText.textContent = 'Very strong';
+            }
+        });
+        
+        // Handle form submission
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const errorEl = document.getElementById('register-error');
+            
+            if (password !== confirmPassword) {
+                errorEl.textContent = 'Passwords do not match';
+                return;
+            }
+            
+            if (password.length < 8) {
+                errorEl.textContent = 'Password must be at least 8 characters';
+                return;
+            }
+            
+            // Submit the form if validation passes
+            this.submit();
+        });
+        
+        // Google login button
+        document.getElementById('google-login-btn').addEventListener('click', function() {
+            window.location.href = 'google_login.php';
+        });
+    </script>
+</body>
+</html>

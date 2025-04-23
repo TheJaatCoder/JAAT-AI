@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI Enterprise Plan - Checkout</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="theme-dark">
+    <div id="payment-particles"></div>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../assets/logo.svg" alt="JAAT-AI Logo">
+                <h1>JAAT-AI</h1>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="../premium.html"><i class="fas fa-crown"></i> Plans</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="checkout-container enterprise-checkout">
+            <div class="checkout-header">
+                <div class="enterprise-badge">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h1>Complete Your Enterprise Order</h1>
+                <p>You're just one step away from unlocking the full power of JAAT-AI for your team</p>
+            </div>
+            
+            <div class="checkout-content">
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="plan-details enterprise">
+                        <div class="plan-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="plan-info">
+                            <h3>Enterprise Plan</h3>
+                            <p>Monthly Subscription</p>
+                        </div>
+                        <div class="plan-price">
+                            <span class="price">$199</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <h4>Enterprise Features:</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Everything in Premium</li>
+                            <li><i class="fas fa-check"></i> Team accounts (5 users)</li>
+                            <li><i class="fas fa-check"></i> API access</li>
+                            <li><i class="fas fa-check"></i> Custom AI mode creation</li>
+                            <li><i class="fas fa-check"></i> Dedicated support</li>
+                            <li><i class="fas fa-check"></i> Advanced analytics</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="order-total">
+                        <div class="total-line">
+                            <span>Subtotal:</span>
+                            <span>$199.00</span>
+                        </div>
+                        <div class="total-line">
+                            <span>Discount:</span>
+                            <span>$0.00</span>
+                        </div>
+                        <div class="total-line total">
+                            <span>Total:</span>
+                            <span>$199.00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-section">
+                    <h2>Payment Method</h2>
+                    
+                    <div class="payment-tabs">
+                        <div class="tab-header">
+                            <button class="tab-btn" data-tab="card">Credit Card</button>
+                            <button class="tab-btn" data-tab="paypal">PayPal</button>
+                            <button class="tab-btn" data-tab="google-pay">Google Pay</button>
+                            <button class="tab-btn active" data-tab="upi">UPI</button>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <!-- Credit Card Tab -->
+                            <div class="tab-pane" id="card-tab">
+                                <div class="card-payment">
+                                    <div class="form-group">
+                                        <label>Card Number</label>
+                                        <input type="text" placeholder="1234 5678 9012 3456" maxlength="19">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Expiry Date</label>
+                                            <input type="text" placeholder="MM/YY" maxlength="5">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>CVV</label>
+                                            <input type="text" placeholder="123" maxlength="3">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Name on Card</label>
+                                        <input type="text" placeholder="John Doe">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- PayPal Tab -->
+                            <div class="tab-pane" id="paypal-tab">
+                                <div class="paypal-payment">
+                                    <div class="payment-method-logo">
+                                        <img src="../assets/payment/paypal.svg" alt="PayPal">
+                                    </div>
+                                    <p>Click the button below to pay with PayPal. You will be redirected to PayPal's secure payment page.</p>
+                                    <button class="btn-paypal">
+                                        <span>Pay with</span>
+                                        <img src="../assets/payment/paypal-btn.svg" alt="PayPal">
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Google Pay Tab -->
+                            <div class="tab-pane" id="google-pay-tab">
+                                <div class="google-pay-payment">
+                                    <div class="payment-method-logo">
+                                        <img src="../assets/payment/google-pay.svg" alt="Google Pay">
+                                    </div>
+                                    <p>Click the button below to pay with Google Pay. A payment popup will appear.</p>
+                                    <button class="btn-google-pay">
+                                        <img src="../assets/payment/google-pay-btn.svg" alt="Pay with Google Pay">
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- UPI Tab -->
+                            <div class="tab-pane active" id="upi-tab">
+                                <div class="upi-payment">
+                                    <div class="payment-method-logo">
+                                        <img src="../assets/payment/upi.svg" alt="UPI">
+                                    </div>
+                                    <div class="upi-steps">
+                                        <div class="step">
+                                            <span class="step-number">1</span>
+                                            <p>Click "Generate Payment Request" to get your payment details</p>
+                                        </div>
+                                        <div class="step">
+                                            <span class="step-number">2</span>
+                                            <p>Open your UPI app (Google Pay, PhonePe, Paytm, etc.)</p>
+                                        </div>
+                                        <div class="step">
+                                            <span class="step-number">3</span>
+                                            <p>Make the payment to the provided UPI ID</p>
+                                        </div>
+                                        <div class="step">
+                                            <span class="step-number">4</span>
+                                            <p>Enter your UPI Transaction ID below to verify payment</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Payment request section -->
+                                    <div class="upi-request" id="upi-request-section">
+                                        <button class="btn-primary" id="generate-payment-btn">Generate Payment Request</button>
+                                    </div>
+                                    
+                                    <!-- Payment details section (hidden initially) -->
+                                    <div class="upi-details" id="upi-details-section" style="display: none;">
+                                        <div class="payment-reference">
+                                            <span class="reference-label">Reference Code:</span>
+                                            <span class="reference-value" id="reference-code">JAAT-123456-7890</span>
+                                            <button class="btn-copy" id="copy-reference-btn">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        <div class="payment-amount">
+                                            <span class="amount-label">Amount:</span>
+                                            <span class="amount-value">$199.00</span>
+                                        </div>
+                                        <p class="important-note">Important: Use this reference code in the payment description</p>
+                                        
+                                        <div class="payment-verification">
+                                            <h4>Verify Payment</h4>
+                                            <div class="form-group">
+                                                <label>UPI Transaction ID</label>
+                                                <input type="text" placeholder="e.g. 123456789012" id="transaction-id">
+                                            </div>
+                                            <button class="btn-verify" id="verify-payment-btn">Verify Payment</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Payment success message (hidden initially) -->
+                                    <div class="payment-success" id="payment-success-section" style="display: none;">
+                                        <div class="success-icon">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                        <h3>Payment Successful!</h3>
+                                        <p>Your Enterprise Plan has been activated. You now have access to all Enterprise features.</p>
+                                        <a href="../dashboard.html" class="btn-primary">Go to Dashboard</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-setup">
+                        <h3>Team Setup</h3>
+                        <p>After completing payment, you'll be able to invite team members to your Enterprise account.</p>
+                        <div class="team-members">
+                            <div class="team-member primary">
+                                <div class="member-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="member-details">
+                                    <h4>Primary Account</h4>
+                                    <p>Your account (Admin)</p>
+                                </div>
+                            </div>
+                            <div class="team-member placeholder">
+                                <div class="member-avatar">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="member-details">
+                                    <h4>Team Member</h4>
+                                    <p>Invite after activation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-actions">
+                        <a href="../premium.html" class="btn-secondary">Back to Plans</a>
+                        <button class="btn-primary" id="complete-payment-btn">Complete Payment</button>
+                    </div>
+                    
+                    <div class="payment-security">
+                        <div class="security-badges">
+                            <div class="badge">
+                                <i class="fas fa-lock"></i>
+                                <span>Secure Payment</span>
+                            </div>
+                            <div class="badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>256-bit Encryption</span>
+                            </div>
+                        </div>
+                        <p class="security-note">Your payment information is secure. We never store your payment details on our servers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>JAAT-AI</h3>
+                <p>The most animated & intelligent AI assistant.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="../pages/legal/terms.html">Terms of Service</a></li>
+                    <li><a href="../pages/legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="../pages/legal/refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="../pages/faq.html">FAQ</a></li>
+                    <li><a href="../pages/contact.html">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 JAAT-AI. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/payment.js"></script>
+    <script>
+        // Enterprise Plan Details
+        const planDetails = {
+            id: 'enterprise_monthly',
+            name: 'Enterprise Plan',
+            price: 199,
+            currency: 'USD'
+        };
+        
+        // Initialize payment processor with plan details
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.JaatPayment) {
+                JaatPayment.init(planDetails);
+            }
+        });
+    </script>
+</body>
+</html>

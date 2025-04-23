@@ -1,0 +1,26 @@
+/**
+ * JAAT-AI Dark Theme
+ * Dark theme with purple accent colors for the JAAT-AI application
+ * 
+ * Made with ❤️ by Rohit Sangwan
+ * support@jaat-ai.com
+ */
+
+.theme-dark {
+    /* Base colors */
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-tertiary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-tertiary: #a0a0a0;
+    --accent-primary: #7c3aed;
+    --accent-secondary: #5b21b6;
+    --accent-tertiary: #4c1d95;
+    --card-bg: #1e1e1e;
+    --card-border: #2d2d2d;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+}

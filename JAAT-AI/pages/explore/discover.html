@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI Discover - Random Mode Discovery</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/discover.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../js/vendor/particles.min.js" defer></script>
+</head>
+<body class="theme-dark">
+    <div id="background-particles"></div>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../../assets/logo.svg" alt="JAAT-AI Logo">
+                <h1>JAAT-AI</h1>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="../core/index.html"><i class="fas fa-robot"></i> Chat</a></li>
+                    <li><a href="../core/dashboard.html"><i class="fas fa-columns"></i> Dashboard</a></li>
+                    <li><a href="../features/index.html"><i class="fas fa-puzzle-piece"></i> Features</a></li>
+                    <li><a href="../premium/premium.html"><i class="fas fa-crown"></i> Premium</a></li>
+                </ul>
+            </nav>
+            <div class="user-controls">
+                <div class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="theme-switch" checked>
+                        <label for="theme-switch"></label>
+                    </div>
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="user-menu">
+                    <img src="../../assets/default-avatar.png" class="user-avatar" alt="User">
+                    <span class="username">Guest</span>
+                    <i class="fas fa-angle-down"></i>
+                    <div class="dropdown-menu">
+                        <a href="../user/user-profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="../user/user-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="../core/login.html" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="discover-container">
+            <div class="discover-header">
+                <div class="discover-logo">
+                    <i class="fas fa-compass"></i>
+                </div>
+                <h1>Discover AI Modes</h1>
+                <p class="subtitle">Explore and try random AI experiences for inspiration</p>
+            </div>
+            
+            <div class="discover-content">
+                <div class="explore-sidebar">
+                    <ul class="explore-nav">
+                        <li><a href="discover.html" class="active"><i class="fas fa-compass"></i> Discover</a></li>
+                        <li><a href="trending.html"><i class="fas fa-chart-line"></i> Trending</a></li>
+                        <li><a href="updates.html"><i class="fas fa-sparkles"></i> New Features</a></li>
+                        <li><a href="ai-experiments.html"><i class="fas fa-flask"></i> AI Experiments</a></li>
+                        <li><a href="futuristic-themes.html"><i class="fas fa-paint-brush"></i> Themes</a></li>
+                        <li><a href="wallpaper-ai.html"><i class="fas fa-image"></i> Wallpaper AI</a></li>
+                        <li><a href="startup-ai.html"><i class="fas fa-rocket"></i> Startup Tools</a></li>
+                    </ul>
+                    
+                    <div class="discover-filters">
+                        <h3>Filter Discovery</h3>
+                        
+                        <div class="filter-group">
+                            <h4>Categories</h4>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="filter-creative" checked>
+                                    <label for="filter-creative">Creative</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="filter-productive" checked>
+                                    <label for="filter-productive">Productivity</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="filter-educational" checked>
+                                    <label for="filter-educational">Educational</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="filter-entertaining" checked>
+                                    <label for="filter-entertaining">Entertainment</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="filter-professional" checked>
+                                    <label for="filter-professional">Professional</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h4>Experience Level</h4>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="filter-beginner" checked>
+                                    <label for="filter-beginner">Beginner-friendly</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="filter-intermediate" checked>
+                                    <label for="filter-intermediate">Intermediate</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="filter-advanced" checked>
+                                    <label for="filter-advanced">Advanced</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h4>Accessibility</h4>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" name="accessibility" id="filter-all" checked>
+                                    <label for="filter-all">All Modes</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="accessibility" id="filter-free">
+                                    <label for="filter-free">Free Only</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="accessibility" id="filter-premium">
+                                    <label for="filter-premium">Premium Only</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-secondary" id="reset-filters">
+                            <i class="fas fa-undo"></i> Reset Filters
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="discover-main">
+                    <div class="discover-hero">
+                        <div class="random-mode-showcase">
+                            <div class="showcase-animation">
+                                <div class="showcase-spotlight"></div>
+                                <div class="animation-container">
+                                    <img src="../../assets/modes/random-animation.gif" alt="Mode Animation">
+                                </div>
+                            </div>
+                            
+                            <div class="showcase-content">
+                                <div class="showcase-badge">
+                                    <i class="fas fa-random"></i>
+                                    <span>Random Discovery</span>
+                                </div>
+                                <h2>Music Composer AI</h2>
+                                <p class="showcase-description">Create original music compositions with AI assistance. Generate melodies, harmonies, and full arrangements in various genres and styles.</p>
+                                <div class="showcase-tags">
+                                    <span class="tag">Creative</span>
+                                    <span class="tag">Music</span>
+                                    <span class="tag">Composition</span>
+                                </div>
+                                <div class="showcase-actions">
+                                    <button class="btn-primary">Try This Mode</button>
+                                    <button class="btn-secondary" id="discover-another">
+                                        <i class="fas fa-random"></i> Discover Another
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="featured-discoveries">
+                        <h2>Featured Discoveries</h2>
+                        <p>Unique AI experiences curated by our team</p>
+                        
+                        <div class="discoveries-grid">
+                            <div class="discovery-card">
+                                <div class="discovery-image">
+                                    <img src="../../assets/modes/recipe-chef.jpg" alt="Recipe Chef AI">
+                                    <div class="discovery-badge">
+                                        <i class="fas fa-utensils"></i>
+                                    </div>
+                                </div>
+                                <div class="discovery-content">
+                                    <h3>Recipe Chef AI</h3>
+                                    <p>Create personalized recipes based on ingredients you have, dietary preferences, and cooking skill level.</p>
+                                    <div class="discovery-meta">
+                                        <div class="discovery-tags">
+                                            <span class="tag">Food</span>
+                                            <span class="tag">Lifestyle</span>
+                                        </div>
+                                        <button class="btn-primary btn-sm">Try It</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="discovery-card premium">
+                                <div class="discovery-image">
+                                    <img src="../../assets/modes/language-tutor.jpg" alt="Language Tutor">
+                                    <div class="discovery-badge">
+                                        <i class="fas fa-language"></i>
+                                    </div>
+                                    <div class="premium-marker">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                </div>
+                                <div class="discovery-content">
+                                    <h3>Language Tutor Plus</h3>
+                                    <p>Interactive language learning with pronunciation feedback, conversation practice, and personalized lessons.</p>
+                                    <div class="discovery-meta">
+                                        <div class="discovery-tags">
+                                            <span class="tag">Learning</span>
+                                            <span class="tag">Languages</span>
+                                        </div>
+                                        <button class="btn-premium btn-sm">Upgrade</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="discovery-card">
+                                <div class="discovery-image">
+                                    <img src="../../assets/modes/fitness-coach.jpg" alt="Fitness Coach">
+                                    <div class="discovery-badge">
+                                        <i class="fas fa-dumbbell"></i>
+                                    </div>
+                                </div>
+                                <div class="discovery-content">
+                                    <h3>Fitness Coach</h3>
+                                    <p>Custom workout plans, exercise demonstrations, and motivation to reach your fitness goals.</p>
+                                    <div class="discovery-meta">
+                                        <div class="discovery-tags">
+                                            <span class="tag">Health</span>
+                                            <span class="tag">Fitness</span>
+                                        </div>
+                                        <button class="btn-primary btn-sm">Try It</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="discovery-card">
+                                <div class="discovery-image">
+                                    <img src="../../assets/modes/story-builder.jpg" alt="Story Builder">
+                                    <div class="discovery-badge">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <div class="discovery-content">
+                                    <h3>Interactive Story Builder</h3>
+                                    <p>Collaborate with AI to create branching, interactive stories where choices matter.</p>
+                                    <div class="discovery-meta">
+                                        <div class="discovery-tags">
+                                            <span class="tag">Creativity</span>
+                                            <span class="tag">Writing</span>
+                                        </div>
+                                        <button class="btn-primary btn-sm">Try It</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-discoveries">
+                        <h2>Recently Added</h2>
+                        
+                        <div class="discoveries-table">
+                            <div class="table-header">
+                                <div class="header-cell">Mode</div>
+                                <div class="header-cell">Category</div>
+                                <div class="header-cell">Added</div>
+                                <div class="header-cell">Popularity</div>
+                                <div class="header-cell">Action</div>
+                            </div>
+                            
+                            <div class="table-row">
+                                <div class="cell mode-cell">
+                                    <div class="mode-icon">
+                                        <i class="fas fa-landmark"></i>
+                                    </div>
+                                    <div class="mode-info">
+                                        <h4>History Explorer</h4>
+                                        <p>Interactive history lessons through conversation</p>
+                                    </div>
+                                </div>
+                                <div class="cell">Educational</div>
+                                <div class="cell">2 days ago</div>
+                                <div class="cell">
+                                    <div class="popularity">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span>4.5</span>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <button class="btn-primary btn-sm">Try It</button>
+                                </div>
+                            </div>
+                            
+                            <div class="table-row">
+                                <div class="cell mode-cell">
+                                    <div class="mode-icon">
+                                        <i class="fas fa-vr-cardboard"></i>
+                                    </div>
+                                    <div class="mode-info">
+                                        <h4>VR Experience Designer</h4>
+                                        <p>Design conceptual VR experiences and environments</p>
+                                    </div>
+                                </div>
+                                <div class="cell">Creative</div>
+                                <div class="cell">3 days ago</div>
+                                <div class="cell">
+                                    <div class="popularity">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span>4.0</span>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <button class="btn-primary btn-sm">Try It</button>
+                                </div>
+                            </div>
+                            
+                            <div class="table-row premium-row">
+                                <div class="cell mode-cell">
+                                    <div class="mode-icon">
+                                        <i class="fas fa-chart-pie"></i>
+                                    </div>
+                                    <div class="mode-info">
+                                        <h4>Advanced Data Analyst</h4>
+                                        <p>Deep data analysis with visualization generation</p>
+                                        <span class="premium-tag-small">Premium</span>
+                                    </div>
+                                </div>
+                                <div class="cell">Professional</div>
+                                <div class="cell">5 days ago</div>
+                                <div class="cell">
+                                    <div class="popularity">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span>4.9</span>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <button class="btn-premium btn-sm">Upgrade</button>
+                                </div>
+                            </div>
+                            
+                            <div class="table-row">
+                                <div class="cell mode-cell">
+                                    <div class="mode-icon">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <div class="mode-info">
+                                        <h4>Budget Planner</h4>
+                                        <p>Personal finance advisor and budget creation</p>
+                                    </div>
+                                </div>
+                                <div class="cell">Productivity</div>
+                                <div class="cell">1 week ago</div>
+                                <div class="cell">
+                                    <div class="popularity">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span>4.7</span>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <button class="btn-primary btn-sm">Try It</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="view-more">
+                            <button class="btn-text" id="view-all-new">
+                                View All New Modes <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="discovery-suggestion">
+                        <div class="suggestion-content">
+                            <h2>Have a Mode Idea?</h2>
+                            <p>Suggest a new AI mode you'd like to see added to JAAT-AI</p>
+                            <button class="btn-secondary">Submit Suggestion</button>
+                        </div>
+                        <div class="suggestion-graphic">
+                            <img src="../../assets/illustrations/idea-lightbulb.svg" alt="Submit idea">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div class="modal" id="random-mode-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Discover New Mode</h2>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="discovery-animation">
+                    <div class="spinner-container">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="discovery-text">Finding your next AI experience...</div>
+                </div>
+                
+                <div class="preferences-options">
+                    <h3>Discovery Preferences</h3>
+                    <p>Customize what types of modes you'd like to discover</p>
+                    
+                    <div class="pref-grid">
+                        <div class="pref-item">
+                            <label for="pref-creative">Creative Modes</label>
+                            <div class="toggle-switch pref-toggle">
+                                <input type="checkbox" id="pref-creative" checked>
+                                <label for="pref-creative"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="pref-item">
+                            <label for="pref-productive">Productivity Modes</label>
+                            <div class="toggle-switch pref-toggle">
+                                <input type="checkbox" id="pref-productive" checked>
+                                <label for="pref-productive"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="pref-item">
+                            <label for="pref-educational">Educational Modes</label>
+                            <div class="toggle-switch pref-toggle">
+                                <input type="checkbox" id="pref-educational" checked>
+                                <label for="pref-educational"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="pref-item">
+                            <label for="pref-entertaining">Entertainment Modes</label>
+                            <div class="toggle-switch pref-toggle">
+                                <input type="checkbox" id="pref-entertaining" checked>
+                                <label for="pref-entertaining"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="pref-item">
+                            <label for="pref-professional">Professional Modes</label>
+                            <div class="toggle-switch pref-toggle">
+                                <input type="checkbox" id="pref-professional" checked>
+                                <label for="pref-professional"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="pref-item">
+                            <label for="pref-premium">Include Premium Modes</label>
+                            <div class="toggle-switch pref-toggle">
+                                <input type="checkbox" id="pref-premium" checked>
+                                <label for="pref-premium"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-discovery">Cancel</button>
+                <button class="btn-primary" id="start-discovery">Discover Random Mode</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>JAAT-AI</h3>
+                <p>The most animated & intelligent AI assistant.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="../core/index.html">Home</a></li>
+                    <li><a href="../features/index.html">Features</a></li>
+                    <li><a href="../premium/premium.html">Premium</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="../legal/terms.html">Terms of Service</a></li>
+                    <li><a href="../legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="../legal/cookies.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../support/contact.html">Contact Us</a></li>
+                    <li><a href="../support/faq.html">FAQ</a></li>
+                    <li><a href="../support/help.html">Help Center</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 JAAT-AI. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="../../js/app.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/discover.js"></script>
+</body>
+</html>

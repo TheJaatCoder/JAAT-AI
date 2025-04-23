@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI Chat - Your Animated AI Assistant</title>
+    <meta name="description" content="Chat with JAAT-AI - The most animated and intelligent AI assistant with 45+ specialized modes.">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/chat.css">
+    <link rel="stylesheet" href="/css/animations/fade.css">
+    <link rel="stylesheet" href="/css/animations/bounce.css">
+    <link rel="stylesheet" href="/css/animations/typing.css">
+    <link rel="stylesheet" href="/css/themes/dark.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="/css/advanced-background.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body class="theme-dark">
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="/assets/images/logo.png" alt="JAAT-AI Logo">
+                        <span>JAAT-AI</span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="premium.html">Premium</a></li>
+                        <li class="active"><a href="chat.html">AI Assistant</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="theme-switch" checked>
+                            <label for="theme-switch"></label>
+                        </div>
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    
+                    <a href="dashboard.html" class="profile-btn">
+                        <img src="/assets/images/user-avatar.jpg" alt="User Avatar" class="user-avatar-small">
+                        <span>Dashboard</span>
+                    </a>
+                    
+                    <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- AI Mode Selector -->
+            <div class="mode-selector">
+                <h2>Choose an AI Mode</h2>
+                <div class="modes-grid">
+                    <div class="mode-card active" data-mode="assistant">
+                        <div class="mode-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Smart Assistant</h3>
+                        <p>General-purpose AI helper</p>
+                    </div>
+                    
+                    <div class="mode-card" data-mode="creative">
+                        <div class="mode-icon">
+                            <i class="fas fa-paintbrush"></i>
+                        </div>
+                        <h3>Creative Partner</h3>
+                        <p>Ideas, stories, and content</p>
+                    </div>
+                    
+                    <div class="mode-card" data-mode="developer">
+                        <div class="mode-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Developer Assistant</h3>
+                        <p>Code, debug, and tech help</p>
+                    </div>
+                    
+                    <div class="mode-card" data-mode="teacher">
+                        <div class="mode-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Educational Tutor</h3>
+                        <p>Learn concepts with guidance</p>
+                    </div>
+                    
+                    <div class="mode-card premium-mode" data-mode="meme">
+                        <div class="mode-icon">
+                            <i class="fas fa-laugh-squint"></i>
+                        </div>
+                        <h3>Meme Generator</h3>
+                        <p>Create humorous memes</p>
+                        <div class="premium-badge">Premium</div>
+                    </div>
+                    
+                    <div class="mode-card premium-mode" data-mode="voice">
+                        <div class="mode-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <h3>Voice Assistant</h3>
+                        <p>Voice-based interactions</p>
+                        <div class="premium-badge">Premium</div>
+                    </div>
+                    
+                    <div class="view-all-modes">
+                        <div class="view-icon">
+                            <i class="fas fa-th-large"></i>
+                        </div>
+                        <span>View All 45+ Modes</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Container -->
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2><i class="fas fa-robot"></i> Smart Assistant</h2>
+                    <div class="chat-actions">
+                        <button class="btn-icon" title="Mode Settings" id="mode-settings-btn">
+                            <i class="fas fa-sliders"></i>
+                        </button>
+                        <button class="btn-icon" title="Clear Chat" id="clear-chat-btn">
+                            <i class="fas fa-broom"></i>
+                        </button>
+                        <button class="btn-icon" title="Export Chat" id="export-chat-btn">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="chat-body" id="chat-messages">
+                    <!-- Welcome Message -->
+                    <div class="message ai-message fade-in">
+                        <div class="message-avatar animated">
+                            <img src="/assets/images/logo.png" alt="AI Avatar">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="sender-name">JAAT-AI</span>
+                                <span class="message-time">Just now</span>
+                            </div>
+                            <div class="message-text typing">
+                                <p>Hello! I'm your JAAT-AI assistant in Smart Assistant mode. I'm here to help answer your questions, provide information, and assist with various tasks. How can I help you today?</p>
+                            </div>
+                            <div class="message-actions">
+                                <button class="btn-icon" title="Read Aloud"><i class="fas fa-volume-up"></i></button>
+                                <button class="btn-icon" title="Copy to Clipboard"><i class="fas fa-copy"></i></button>
+                                <button class="btn-icon" title="Like"><i class="far fa-thumbs-up"></i></button>
+                                <button class="btn-icon" title="Dislike"><i class="far fa-thumbs-down"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- System Message -->
+                    <div class="system-message fade-in delay-300">
+                        <div class="system-content">
+                            <i class="fas fa-info-circle"></i>
+                            <span>To use all 45+ AI modes and unlock premium features, <a href="premium.html">upgrade to Premium</a>.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-footer">
+                    <div class="chat-input-container">
+                        <div class="input-wrapper">
+                            <textarea 
+                                class="chat-input" 
+                                id="chat-input" 
+                                placeholder="Type your message here..."
+                                rows="1"
+                                autofocus
+                            ></textarea>
+                        </div>
+                        
+                        <div class="input-actions">
+                            <button class="btn-icon" title="Attach File" id="attach-btn">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <button class="btn-icon premium-feature" title="Voice Input (Premium)" id="voice-btn">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button class="send-button" id="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="suggestions">
+                        <div class="suggestion-chip">Tell me about JAAT-AI</div>
+                        <div class="suggestion-chip">What can you do?</div>
+                        <div class="suggestion-chip">How do I upgrade to Premium?</div>
+                        <div class="suggestion-chip">Tell me a joke</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mode Settings Modal -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Assistant Settings</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3>Response Settings</h3>
+                    
+                    <div class="setting-item">
+                        <label for="response-length">Response Length</label>
+                        <select id="response-length" class="form-control">
+                            <option value="concise">Concise</option>
+                            <option value="balanced" selected>Balanced</option>
+                            <option value="detailed">Detailed</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label for="creativity-level">Creativity Level</label>
+                        <div class="range-slider">
+                            <input type="range" id="creativity-level" min="0" max="100" value="70" class="form-control">
+                            <div class="range-value">70%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label for="formality">Formality</label>
+                        <div class="setting-options">
+                            <button class="setting-option" data-value="casual">Casual</button>
+                            <button class="setting-option active" data-value="balanced">Balanced</button>
+                            <button class="setting-option" data-value="formal">Formal</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>AI Character</h3>
+                    
+                    <div class="setting-item">
+                        <label for="avatar">AI Avatar</label>
+                        <div class="avatar-grid">
+                            <div class="avatar-option active">
+                                <img src="/assets/images/logo.png" alt="Default Avatar">
+                            </div>
+                            <div class="avatar-option premium-locked">
+                                <img src="/assets/images/logo.png" alt="Premium Avatar">
+                                <div class="premium-overlay">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                            </div>
+                            <div class="avatar-option premium-locked">
+                                <img src="/assets/images/logo.png" alt="Premium Avatar">
+                                <div class="premium-overlay">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                            </div>
+                            <div class="avatar-option premium-locked">
+                                <img src="/assets/images/logo.png" alt="Premium Avatar">
+                                <div class="premium-overlay">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                            </div>
+                            <button class="upload-avatar premium-locked">
+                                <i class="fas fa-upload"></i>
+                                <span>Upload Custom</span>
+                                <div class="premium-badge">Premium</div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label for="animations">Avatar Animations</label>
+                        <div class="switch-control">
+                            <input type="checkbox" id="animations" checked>
+                            <label for="animations"></label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Advanced Settings</h3>
+                    
+                    <!-- API Key is now managed server-side through environment variables -->
+                    <div class="setting-item">
+                        <label>OpenAI API Configuration</label>
+                        <div class="form-control disabled-input">Using server's API configuration</div>
+                        <p class="setting-note">API key is securely managed on the server</p>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label for="conversation-memory">Conversation Memory</label>
+                        <select id="conversation-memory" class="form-control">
+                            <option value="short">Short (10 messages)</option>
+                            <option value="medium" selected>Medium (25 messages)</option>
+                            <option value="long">Long (50 messages)</option>
+                            <option value="unlimited" disabled>Unlimited (Premium)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secondary" id="reset-settings-btn">Reset to Default</button>
+                <button class="btn-primary" id="save-settings-btn">Save Settings</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Premium Upgrade Modal -->
+    <div class="modal" id="premium-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Unlock Premium Features</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="premium-banner">
+                    <div class="premium-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Upgrade to Premium</h3>
+                    <p>Unlock all 45+ AI modes, voice capabilities, custom avatars, and much more!</p>
+                </div>
+                
+                <div class="premium-features">
+                    <div class="premium-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Access to all 45+ specialized AI modes</span>
+                    </div>
+                    <div class="premium-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Voice input and text-to-speech capabilities</span>
+                    </div>
+                    <div class="premium-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Unlimited messages with no daily limits</span>
+                    </div>
+                    <div class="premium-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Advanced animations and custom AI avatars</span>
+                    </div>
+                    <div class="premium-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Priority support and exclusive updates</span>
+                    </div>
+                </div>
+                
+                <div class="premium-pricing">
+                    <div class="pricing-option">
+                        <h4>Monthly</h4>
+                        <div class="price">₹99<span>/month</span></div>
+                        <p>Billed monthly. Cancel anytime.</p>
+                    </div>
+                    <div class="pricing-option best-value">
+                        <div class="best-value-badge">Best Value</div>
+                        <h4>Annual</h4>
+                        <div class="price">₹79<span>/month</span></div>
+                        <p>₹948 billed annually. Save 20%!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-outline" id="learn-more-btn">Learn More</button>
+                <button class="btn-primary" id="upgrade-btn">Upgrade Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
+    <script src="/js/chat.js"></script>
+    <script src="/js/advanced-background.js"></script>
+    <script src="/js/feature-loader.js"></script>
+</body>
+</html>

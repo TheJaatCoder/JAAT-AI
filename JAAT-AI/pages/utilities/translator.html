@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI Translator - AI-Powered Translation</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/translator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../js/vendor/particles.min.js" defer></script>
+</head>
+<body class="theme-dark">
+    <div id="background-particles"></div>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../../assets/logo.svg" alt="JAAT-AI Logo">
+                <h1>JAAT-AI</h1>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="../core/index.html"><i class="fas fa-robot"></i> Chat</a></li>
+                    <li><a href="../core/dashboard.html"><i class="fas fa-columns"></i> Dashboard</a></li>
+                    <li><a href="../features/index.html"><i class="fas fa-puzzle-piece"></i> Features</a></li>
+                    <li><a href="../premium/premium.html"><i class="fas fa-crown"></i> Premium</a></li>
+                </ul>
+            </nav>
+            <div class="user-controls">
+                <div class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="theme-switch" checked>
+                        <label for="theme-switch"></label>
+                    </div>
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="user-menu">
+                    <img src="../../assets/default-avatar.png" class="user-avatar" alt="User">
+                    <span class="username">Guest</span>
+                    <i class="fas fa-angle-down"></i>
+                    <div class="dropdown-menu">
+                        <a href="../user/user-profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="../user/user-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="../core/login.html" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="translator-container">
+            <div class="translator-header">
+                <div class="translator-logo">
+                    <i class="fas fa-language"></i>
+                </div>
+                <h1>AI-Powered Translator</h1>
+                <p class="subtitle">Advanced translation with neural machine learning for 50+ languages</p>
+            </div>
+            
+            <div class="translator-content">
+                <div class="translator-sidebar">
+                    <div class="sidebar-section">
+                        <h2>Recently Used</h2>
+                        <div class="language-pairs">
+                            <div class="language-pair">
+                                <div class="pair-flags">
+                                    <img src="../../assets/flags/us.svg" alt="English">
+                                    <i class="fas fa-arrow-right"></i>
+                                    <img src="../../assets/flags/es.svg" alt="Spanish">
+                                </div>
+                                <div class="pair-names">
+                                    <span>English → Spanish</span>
+                                </div>
+                            </div>
+                            
+                            <div class="language-pair">
+                                <div class="pair-flags">
+                                    <img src="../../assets/flags/fr.svg" alt="French">
+                                    <i class="fas fa-arrow-right"></i>
+                                    <img src="../../assets/flags/us.svg" alt="English">
+                                </div>
+                                <div class="pair-names">
+                                    <span>French → English</span>
+                                </div>
+                            </div>
+                            
+                            <div class="language-pair">
+                                <div class="pair-flags">
+                                    <img src="../../assets/flags/us.svg" alt="English">
+                                    <i class="fas fa-arrow-right"></i>
+                                    <img src="../../assets/flags/jp.svg" alt="Japanese">
+                                </div>
+                                <div class="pair-names">
+                                    <span>English → Japanese</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h2>Translation History</h2>
+                        <div class="history-items">
+                            <div class="history-item">
+                                <div class="history-content">
+                                    <p class="source-text">"Hello, how are you today?"</p>
+                                    <div class="history-languages">
+                                        <span>English → Spanish</span>
+                                        <span class="history-time">Today, 11:23 AM</span>
+                                    </div>
+                                </div>
+                                <button class="btn-icon" title="Load">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="history-item">
+                                <div class="history-content">
+                                    <p class="source-text">"Thank you for your help."</p>
+                                    <div class="history-languages">
+                                        <span>English → Japanese</span>
+                                        <span class="history-time">Yesterday, 4:15 PM</span>
+                                    </div>
+                                </div>
+                                <button class="btn-icon" title="Load">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="history-item">
+                                <div class="history-content">
+                                    <p class="source-text">"Bonjour, comment allez-vous?"</p>
+                                    <div class="history-languages">
+                                        <span>French → English</span>
+                                        <span class="history-time">Apr 7, 2023</span>
+                                    </div>
+                                </div>
+                                <button class="btn-icon" title="Load">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="history-actions">
+                            <button class="btn-text" id="view-all-history">
+                                <i class="fas fa-history"></i> View All History
+                            </button>
+                            <button class="btn-text" id="clear-history">
+                                <i class="fas fa-trash"></i> Clear History
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h2>Translation Settings</h2>
+                        
+                        <div class="setting-item">
+                            <label for="formality">Formality</label>
+                            <select id="formality">
+                                <option value="auto">Auto</option>
+                                <option value="formal">Formal</option>
+                                <option value="informal">Informal</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="dialect">Dialect</label>
+                            <select id="dialect">
+                                <option value="auto">Auto</option>
+                                <option value="us">American</option>
+                                <option value="uk">British</option>
+                                <option value="au">Australian</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="preserve-formatting">Preserve Formatting</label>
+                            <div class="toggle-switch setting-toggle">
+                                <input type="checkbox" id="preserve-formatting" checked>
+                                <label for="preserve-formatting"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="auto-detect">Auto-detect Language</label>
+                            <div class="toggle-switch setting-toggle">
+                                <input type="checkbox" id="auto-detect" checked>
+                                <label for="auto-detect"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="translator-main">
+                    <div class="language-selector">
+                        <div class="language-dropdowns">
+                            <div class="source-language">
+                                <div class="dropdown">
+                                    <button class="dropdown-button" id="source-language-btn">
+                                        <img src="../../assets/flags/us.svg" alt="English" class="language-flag">
+                                        <span>English</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="dropdown-menu" id="source-language-menu">
+                                        <div class="dropdown-search">
+                                            <input type="text" placeholder="Search languages...">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <div class="language-list">
+                                            <div class="language-option selected" data-lang="en">
+                                                <img src="../../assets/flags/us.svg" alt="English">
+                                                <span>English</span>
+                                            </div>
+                                            <div class="language-option" data-lang="es">
+                                                <img src="../../assets/flags/es.svg" alt="Spanish">
+                                                <span>Spanish</span>
+                                            </div>
+                                            <div class="language-option" data-lang="fr">
+                                                <img src="../../assets/flags/fr.svg" alt="French">
+                                                <span>French</span>
+                                            </div>
+                                            <div class="language-option" data-lang="de">
+                                                <img src="../../assets/flags/de.svg" alt="German">
+                                                <span>German</span>
+                                            </div>
+                                            <div class="language-option" data-lang="it">
+                                                <img src="../../assets/flags/it.svg" alt="Italian">
+                                                <span>Italian</span>
+                                            </div>
+                                            <div class="language-option" data-lang="pt">
+                                                <img src="../../assets/flags/pt.svg" alt="Portuguese">
+                                                <span>Portuguese</span>
+                                            </div>
+                                            <div class="language-option" data-lang="ru">
+                                                <img src="../../assets/flags/ru.svg" alt="Russian">
+                                                <span>Russian</span>
+                                            </div>
+                                            <div class="language-option" data-lang="zh">
+                                                <img src="../../assets/flags/cn.svg" alt="Chinese">
+                                                <span>Chinese</span>
+                                            </div>
+                                            <div class="language-option" data-lang="ja">
+                                                <img src="../../assets/flags/jp.svg" alt="Japanese">
+                                                <span>Japanese</span>
+                                            </div>
+                                            <div class="language-option" data-lang="ko">
+                                                <img src="../../assets/flags/kr.svg" alt="Korean">
+                                                <span>Korean</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="swap-btn" title="Swap Languages">
+                                <i class="fas fa-exchange-alt"></i>
+                            </button>
+                            
+                            <div class="target-language">
+                                <div class="dropdown">
+                                    <button class="dropdown-button" id="target-language-btn">
+                                        <img src="../../assets/flags/es.svg" alt="Spanish" class="language-flag">
+                                        <span>Spanish</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="dropdown-menu" id="target-language-menu">
+                                        <div class="dropdown-search">
+                                            <input type="text" placeholder="Search languages...">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <div class="language-list">
+                                            <div class="language-option" data-lang="en">
+                                                <img src="../../assets/flags/us.svg" alt="English">
+                                                <span>English</span>
+                                            </div>
+                                            <div class="language-option selected" data-lang="es">
+                                                <img src="../../assets/flags/es.svg" alt="Spanish">
+                                                <span>Spanish</span>
+                                            </div>
+                                            <div class="language-option" data-lang="fr">
+                                                <img src="../../assets/flags/fr.svg" alt="French">
+                                                <span>French</span>
+                                            </div>
+                                            <div class="language-option" data-lang="de">
+                                                <img src="../../assets/flags/de.svg" alt="German">
+                                                <span>German</span>
+                                            </div>
+                                            <div class="language-option" data-lang="it">
+                                                <img src="../../assets/flags/it.svg" alt="Italian">
+                                                <span>Italian</span>
+                                            </div>
+                                            <div class="language-option" data-lang="pt">
+                                                <img src="../../assets/flags/pt.svg" alt="Portuguese">
+                                                <span>Portuguese</span>
+                                            </div>
+                                            <div class="language-option" data-lang="ru">
+                                                <img src="../../assets/flags/ru.svg" alt="Russian">
+                                                <span>Russian</span>
+                                            </div>
+                                            <div class="language-option" data-lang="zh">
+                                                <img src="../../assets/flags/cn.svg" alt="Chinese">
+                                                <span>Chinese</span>
+                                            </div>
+                                            <div class="language-option" data-lang="ja">
+                                                <img src="../../assets/flags/jp.svg" alt="Japanese">
+                                                <span>Japanese</span>
+                                            </div>
+                                            <div class="language-option" data-lang="ko">
+                                                <img src="../../assets/flags/kr.svg" alt="Korean">
+                                                <span>Korean</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="translation-panels">
+                        <div class="source-panel">
+                            <div class="panel-header">
+                                <h3>Source Text</h3>
+                                <div class="panel-controls">
+                                    <button class="btn-icon" title="Clear">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <button class="btn-icon" title="Paste">
+                                        <i class="fas fa-paste"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-container">
+                                <textarea placeholder="Enter text to translate..." id="source-text"></textarea>
+                                <div class="source-tools">
+                                    <div class="character-count">
+                                        <span id="source-char-count">0</span> / 5000 characters
+                                    </div>
+                                    <div class="input-tools">
+                                        <button class="tool-btn" title="Upload Document">
+                                            <i class="fas fa-file-upload"></i>
+                                        </button>
+                                        <button class="tool-btn" title="Voice Input">
+                                            <i class="fas fa-microphone"></i>
+                                        </button>
+                                        <button class="tool-btn" title="Camera Input">
+                                            <i class="fas fa-camera"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-panel">
+                            <div class="panel-header">
+                                <h3>Translation</h3>
+                                <div class="panel-controls">
+                                    <button class="btn-icon" title="Copy">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <button class="btn-icon" title="Listen">
+                                        <i class="fas fa-volume-up"></i>
+                                    </button>
+                                    <button class="btn-icon" title="Expand">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-container">
+                                <div class="translation-result" id="result-text">
+                                    <p class="placeholder">Your translation will appear here...</p>
+                                </div>
+                                <div class="translation-extras">
+                                    <div class="confidence-score">
+                                        <span>Confidence score: </span>
+                                        <div class="confidence-meter">
+                                            <div class="meter-fill high" style="width: 95%"></div>
+                                        </div>
+                                        <span class="confidence-value">95%</span>
+                                    </div>
+                                    <div class="translation-options">
+                                        <button class="btn-text" title="Alternative Translations">
+                                            <i class="fas fa-list-ul"></i> Alternatives
+                                        </button>
+                                        <button class="btn-text" title="Save Translation">
+                                            <i class="fas fa-bookmark"></i> Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="translation-extras-panel">
+                        <div class="extras-tabs">
+                            <button class="tab-btn active" data-tab="dictionary">Dictionary</button>
+                            <button class="tab-btn" data-tab="examples">Examples</button>
+                            <button class="tab-btn" data-tab="alternatives">Alternatives</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="dictionary-tab">
+                            <div class="dictionary-content">
+                                <div class="dictionary-header">
+                                    <h3>Dictionary</h3>
+                                    <p class="empty-state">Translate text to see dictionary entries and definitions</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="examples-tab">
+                            <div class="examples-content">
+                                <div class="examples-header">
+                                    <h3>Examples</h3>
+                                    <p class="empty-state">Translate text to see example sentences and usage</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="alternatives-tab">
+                            <div class="alternatives-content">
+                                <div class="alternatives-header">
+                                    <h3>Alternative Translations</h3>
+                                    <p class="empty-state">Translate text to see alternative translation options</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="translator-features">
+                <h2>Advanced Translation Features</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Contextual Understanding</h3>
+                            <p>Our AI understands the nuances of language and translates based on full context, not just word-by-word.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Document Translation</h3>
+                            <p>Upload full documents in various formats and get complete translations with preserved formatting.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Cultural Adaptation</h3>
+                            <p>Translates with cultural awareness, adapting idioms and expressions appropriately for the target language.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card premium">
+                        <div class="feature-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Real-time Voice Translation</h3>
+                            <p>Speak in one language and get instant spoken translations in another language.</p>
+                            <span class="premium-tag">Premium</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Image Translation</h3>
+                            <p>Capture images of text and translate the content instantly with our OCR technology.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card premium">
+                        <div class="feature-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>API Access</h3>
+                            <p>Integrate our powerful translation technology directly into your applications.</p>
+                            <span class="premium-tag">Premium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div class="modal" id="document-upload-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Upload Document for Translation</h2>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-area">
+                    <div class="upload-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h3>Drag and drop your file here</h3>
+                    <p>Or click to browse your computer</p>
+                    <p class="file-types">Supported formats: .txt, .doc, .docx, .pdf, .ppt, .pptx</p>
+                    <input type="file" id="file-upload" hidden>
+                    <button class="btn-secondary" id="browse-files">Browse Files</button>
+                </div>
+                
+                <div class="document-settings">
+                    <div class="setting-item">
+                        <label for="maintain-layout">Maintain Original Layout</label>
+                        <div class="toggle-switch setting-toggle">
+                            <input type="checkbox" id="maintain-layout" checked>
+                            <label for="maintain-layout"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label for="process-images">Process Images in Document</label>
+                        <div class="toggle-switch setting-toggle">
+                            <input type="checkbox" id="process-images" checked>
+                            <label for="process-images"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label for="output-format">Output Format</label>
+                        <select id="output-format">
+                            <option value="same">Same as Input</option>
+                            <option value="docx">Microsoft Word (.docx)</option>
+                            <option value="pdf">PDF Document (.pdf)</option>
+                            <option value="txt">Plain Text (.txt)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-upload">Cancel</button>
+                <button class="btn-primary" id="start-translation">Translate Document</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>JAAT-AI</h3>
+                <p>The most animated & intelligent AI assistant.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="../core/index.html">Home</a></li>
+                    <li><a href="../features/index.html">Features</a></li>
+                    <li><a href="../premium/premium.html">Premium</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="../legal/terms.html">Terms of Service</a></li>
+                    <li><a href="../legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="../legal/cookies.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../support/contact.html">Contact Us</a></li>
+                    <li><a href="../support/faq.html">FAQ</a></li>
+                    <li><a href="../support/help.html">Help Center</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 JAAT-AI. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="../../js/app.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/translator.js"></script>
+</body>
+</html>

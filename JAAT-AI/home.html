@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>JAAT-AI - The Most Animated & Intelligent AI Web App</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+    
+    <!-- Remix Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Animation Stylesheet -->
+    <link rel="stylesheet" href="css/animations/animations.css">
+    <link rel="stylesheet" href="css/advanced-background.css">
+    
+    <!-- Theme Stylesheets -->
+    <link rel="stylesheet" href="css/themes/dark-theme.css" id="theme-stylesheet">
+    
+    <!-- Responsive Stylesheets -->
+    <link rel="stylesheet" href="responsive/screen.css">
+    <link rel="stylesheet" href="responsive/mobile.css" media="(max-width: 767.98px)">
+    <link rel="stylesheet" href="responsive/tablet.css" media="(min-width: 768px) and (max-width: 991.98px)">
+    <link rel="stylesheet" href="responsive/desktop.css" media="(min-width: 992px)">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Audiowide&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-soft: rgba(99, 102, 241, 0.2);
+            --secondary: #a855f7;
+            --secondary-dark: #9333ea;
+            --secondary-light: #c084fc;
+            --secondary-soft: rgba(168, 85, 247, 0.2);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            
+            --dm-background: #0f172a;
+            --dm-background-soft: #1e293b;
+            --dm-foreground: #f8fafc;
+            --dm-foreground-muted: #94a3b8;
+            --dm-border: #334155;
+            --dm-border-dark: #475569;
+            --dm-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --dm-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2);
+            --dm-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.3);
+            
+            --radius: 0.5rem;
+            --radius-sm: 0.25rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-full: 9999px;
+            
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --font-display: 'Audiowide', 'Inter', sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+        
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--dm-background);
+            color: var(--dm-foreground);
+            line-height: 1.5;
+        }
+        
+        /* Animation Container */
+        #bg-animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        /* Page Layout */
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .content-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(15, 23, 42, 0.8);
+            z-index: 50;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-normal);
+        }
+        
+        .header.scrolled {
+            padding: 0.75rem 0;
+            background-color: rgba(15, 23, 42, 0.95);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--dm-foreground);
+        }
+        
+        .logo-image {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+        
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-item a {
+            color: var(--dm-foreground);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-fast);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-item a:hover {
+            color: var(--primary-light);
+        }
+        
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition-fast);
+        }
+        
+        .nav-item a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            margin-left: 2rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius);
+            font-weight: 500;
+            transition: var(--transition-fast);
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.5);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--dm-foreground);
+            border: 1px solid var(--dm-border);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--dm-foreground);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dm-foreground);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 6rem 0 4rem;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--dm-foreground-muted);
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .hero-btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--dm-foreground-muted);
+        }
+        
+        .hero-feature i {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+        
+        /* Animated Logo */
+        .hero-logo-container {
+            position: absolute;
+            right: 5%;
+            bottom: 15%;
+            width: 400px;
+            height: 400px;
+            animation: floatAnimation 6s ease-in-out infinite;
+        }
+        
+        .animated-logo {
+            width: 100%;
+            height: 100%;
+            fill: url(#logo-gradient);
+            filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.5));
+        }
+        
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes rotateAnimation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulseAnimation {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--dm-foreground-muted);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: rgba(30, 41, 59, 0.5);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--dm-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-normal);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--dm-shadow-lg);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+        
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: var(--radius);
+            background: linear-gradient(45deg, var(--primary-soft), var(--secondary-soft));
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-description {
+            color: var(--dm-foreground-muted);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0), rgba(99, 102, 241, 0.1));
+            position: relative;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem;
+            background-color: rgba(30, 41, 59, 0.5);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--dm-shadow-lg);
+        }
+        
+        .cta-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-description {
+            font-size: 1.125rem;
+            color: var(--dm-foreground-muted);
+            margin-bottom: 2rem;
+        }
+        
+        .cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 4rem 0;
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-logo-image {
+            width: 2rem;
+            height: 2rem;
+        }
+        
+        .footer-logo-text {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .footer-description {
+            color: var(--dm-foreground-muted);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .footer-social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: var(--radius-full);
+            background-color: var(--dm-background-soft);
+            color: var(--dm-foreground);
+            transition: var(--transition-fast);
+        }
+        
+        .footer-social-link:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .footer-links-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .footer-link a {
+            color: var(--dm-foreground-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: var(--transition-fast);
+        }
+        
+        .footer-link a:hover {
+            color: var(--primary-light);
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            color: var(--dm-foreground-muted);
+            font-size: 0.875rem;
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-legal a {
+            color: var(--dm-foreground-muted);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        .footer-legal a:hover {
+            color: var(--primary-light);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 991.98px) {
+            .hero-title {
+                font-size: 2.75rem;
+            }
+            
+            .hero-logo-container {
+                width: 320px;
+                height: 320px;
+                bottom: 10%;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 767.98px) {
+            .nav-list {
+                display: none;
+            }
+            
+            .nav-actions {
+                margin-left: 0;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .hero {
+                padding: 8rem 0 4rem;
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            
+            .hero-actions {
+                justify-content: center;
+            }
+            
+            .hero-features {
+                justify-content: center;
+            }
+            
+            .hero-logo-container {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                margin: 3rem auto 0;
+                width: 250px;
+                height: 250px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-title {
+                font-size: 1.75rem;
+            }
+            
+            .cta-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 575.98px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .btn-text {
+                display: none;
+            }
+            
+            .nav-actions .btn {
+                width: 2.5rem;
+                height: 2.5rem;
+                padding: 0;
+                justify-content: center;
+                border-radius: var(--radius-full);
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-legal {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="theme-dark">
+    <!-- Background Animation Container -->
+    <div id="bg-animation-container"></div>
+    
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <a href="index.html" class="logo">
+                    <svg class="logo-image" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Logo Path - Replace with actual logo or customize -->
+                        <path d="M20 0C8.954 0 0 8.954 0 20s8.954 20 20 20 20-8.954 20-20S31.046 0 20 0zm0 7c7.18 0 13 5.82 13 13s-5.82 13-13 13S7 27.18 7 20 12.82 7 20 7zm0 5c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8z" fill="url(#header-logo-gradient)"/>
+                        <defs>
+                            <linearGradient id="header-logo-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#6366f1"/>
+                                <stop offset="100%" stop-color="#a855f7"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">JAAT-AI</span>
+                </a>
+                
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html">Home</a></li>
+                        <li class="nav-item"><a href="#features">Features</a></li>
+                        <li class="nav-item"><a href="#pricing">Pricing</a></li>
+                        <li class="nav-item"><a href="#about">About</a></li>
+                    </ul>
+                    
+                    <div class="nav-actions">
+                        <a href="pages/login.html" class="btn btn-outline">
+                            <i class="ri-login-box-line"></i>
+                            <span class="btn-text">Sign In</span>
+                        </a>
+                        <a href="dashboard.html" class="btn btn-primary">
+                            <i class="ri-rocket-line"></i>
+                            <span class="btn-text">Get Started</span>
+                        </a>
+                    </div>
+                    
+                    <button class="mobile-menu-toggle">
+                        <i class="ri-menu-line"></i>
+                    </button>
+                </nav>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="content-wrapper">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">Experience AI Like Never Before</h1>
+                    <p class="hero-subtitle">The most animated and intelligent AI assistant with 45+ AI personalities, powerful features, and stunning animations.</p>
+                    
+                    <div class="hero-actions">
+                        <a href="dashboard.html" class="btn btn-primary hero-btn">
+                            <i class="ri-rocket-line"></i>
+                            <span>Start Exploring</span>
+                        </a>
+                        <a href="#features" class="btn btn-outline hero-btn">
+                            <i class="ri-information-line"></i>
+                            <span>Learn More</span>
+                        </a>
+                    </div>
+                    
+                    <div class="hero-features">
+                        <div class="hero-feature">
+                            <i class="ri-brain-line"></i>
+                            <span>45+ Specialized AI Modes</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="ri-voice-recognition-line"></i>
+                            <span>Voice Interaction</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="ri-file-upload-line"></i>
+                            <span>File Analysis</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="ri-code-box-line"></i>
+                            <span>Code Debugging</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="ri-device-line"></i>
+                            <span>Multi-device Support</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="ri-palette-line"></i>
+                            <span>Customizable Themes</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Animated Logo -->
+                <div class="hero-logo-container">
+                    <svg id="animated-logo" class="animated-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Central Circle -->
+                        <circle cx="100" cy="100" r="40" fill="url(#logo-gradient)" class="pulse-animation">
+                            <animate attributeName="r" values="38;42;38" dur="3s" repeatCount="indefinite" />
+                        </circle>
+                        
+                        <!-- Orbit Rings -->
+                        <circle cx="100" cy="100" r="70" fill="none" stroke="url(#logo-gradient)" stroke-width="2" stroke-dasharray="10 5" class="rotate-animation">
+                            <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="20s" repeatCount="indefinite" />
+                        </circle>
+                        
+                        <circle cx="100" cy="100" r="90" fill="none" stroke="url(#logo-gradient)" stroke-width="2" stroke-dasharray="15 10" opacity="0.7" class="rotate-animation-reverse">
+                            <animateTransform attributeName="transform" type="rotate" from="360 100 100" to="0 100 100" dur="25s" repeatCount="indefinite" />
+                        </circle>
+                        
+                        <!-- Orbiting Particles -->
+                        <circle cx="170" cy="100" r="8" fill="url(#logo-gradient)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="8s" repeatCount="indefinite" />
+                        </circle>
+                        
+                        <circle cx="100" cy="30" r="6" fill="url(#logo-gradient)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="6s" repeatCount="indefinite" />
+                        </circle>
+                        
+                        <circle cx="40" cy="100" r="10" fill="url(#logo-gradient)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="10s" repeatCount="indefinite" />
+                        </circle>
+                        
+                        <circle cx="100" cy="160" r="7" fill="url(#logo-gradient)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="7s" repeatCount="indefinite" />
+                        </circle>
+                        
+                        <!-- Neural Network Lines -->
+                        <path d="M100,60 L100,140" stroke="url(#logo-gradient)" stroke-width="2" opacity="0.6">
+                            <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2s" repeatCount="indefinite" />
+                        </path>
+                        
+                        <path d="M60,100 L140,100" stroke="url(#logo-gradient)" stroke-width="2" opacity="0.6">
+                            <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2.5s" repeatCount="indefinite" />
+                        </path>
+                        
+                        <path d="M70,70 L130,130" stroke="url(#logo-gradient)" stroke-width="2" opacity="0.6">
+                            <animate attributeName="opacity" values="0.6;0.9;0.6" dur="3s" repeatCount="indefinite" />
+                        </path>
+                        
+                        <path d="M70,130 L130,70" stroke="url(#logo-gradient)" stroke-width="2" opacity="0.6">
+                            <animate attributeName="opacity" values="0.6;0.9;0.6" dur="3.5s" repeatCount="indefinite" />
+                        </path>
+                        
+                        <!-- Gradient Definitions -->
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#6366f1">
+                                    <animate attributeName="stop-color" values="#6366f1;#a855f7;#6366f1" dur="10s" repeatCount="indefinite" />
+                                </stop>
+                                <stop offset="100%" stop-color="#a855f7">
+                                    <animate attributeName="stop-color" values="#a855f7;#6366f1;#a855f7" dur="10s" repeatCount="indefinite" />
+                                </stop>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </section>
+            
+            <!-- Features Section -->
+            <section class="features" id="features">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">JAAT-AI comes with a comprehensive set of features to enhance your AI experience.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="ri-brain-line"></i>
+                        </div>
+                        <h3 class="feature-title">45+ AI Modes</h3>
+                        <p class="feature-description">Access specialized AI personalities for different tasks, from creative writing to code debugging, each with unique capabilities.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="ri-voice-recognition-line"></i>
+                        </div>
+                        <h3 class="feature-title">Voice Interaction</h3>
+                        <p class="feature-description">Talk to JAAT-AI naturally with advanced voice recognition and lifelike text-to-speech responses.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="ri-file-upload-line"></i>
+                        </div>
+                        <h3 class="feature-title">Document Analysis</h3>
+                        <p class="feature-description">Upload and analyze documents, get summaries, extract key information, and generate insights from your files.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="ri-code-box-line"></i>
+                        </div>
+                        <h3 class="feature-title">Code Assistant</h3>
+                        <p class="feature-description">Get help with programming in multiple languages, debug issues, and receive optimization suggestions.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="ri-device-line"></i>
+                        </div>
+                        <h3 class="feature-title">Multi-device Support</h3>
+                        <p class="feature-description">Use JAAT-AI seamlessly across desktop, tablet, and mobile with adaptive layouts and synchronized data.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="ri-palette-line"></i>
+                        </div>
+                        <h3 class="feature-title">Customizable UI</h3>
+                        <p class="feature-description">Personalize your experience with multiple themes, animation settings, and interface layouts.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CTA Section -->
+            <section class="cta" id="cta">
+                <div class="cta-container">
+                    <h2 class="cta-title">Ready to Experience the Future of AI?</h2>
+                    <p class="cta-description">Start using JAAT-AI today and discover a new level of intelligent assistance.</p>
+                    
+                    <div class="cta-actions">
+                        <a href="dashboard.html" class="btn btn-primary hero-btn">
+                            <i class="ri-rocket-line"></i>
+                            <span>Get Started Free</span>
+                        </a>
+                        <a href="pages/pricing.html" class="btn btn-outline hero-btn">
+                            <i class="ri-price-tag-3-line"></i>
+                            <span>View Plans</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-image" width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Logo Path - Same as header logo -->
+                            <path d="M20 0C8.954 0 0 8.954 0 20s8.954 20 20 20 20-8.954 20-20S31.046 0 20 0zm0 7c7.18 0 13 5.82 13 13s-5.82 13-13 13S7 27.18 7 20 12.82 7 20 7zm0 5c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8z" fill="url(#footer-logo-gradient)"/>
+                            <defs>
+                                <linearGradient id="footer-logo-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#6366f1"/>
+                                    <stop offset="100%" stop-color="#a855f7"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span class="footer-logo-text">JAAT-AI</span>
+                    </div>
+                    
+                    <p class="footer-description">Experience AI like never before with JAAT-AI, the most animated and intelligent AI assistant with 45+ AI personalities.</p>
+                    
+                    <div class="footer-social">
+                        <a href="#" class="footer-social-link"><i class="ri-twitter-x-line"></i></a>
+                        <a href="#" class="footer-social-link"><i class="ri-github-fill"></i></a>
+                        <a href="#" class="footer-social-link"><i class="ri-linkedin-fill"></i></a>
+                        <a href="#" class="footer-social-link"><i class="ri-instagram-line"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-group">
+                    <h4 class="footer-links-title">Product</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Features</a></li>
+                        <li class="footer-link"><a href="#">Pricing</a></li>
+                        <li class="footer-link"><a href="#">FAQ</a></li>
+                        <li class="footer-link"><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-group">
+                    <h4 class="footer-links-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Documentation</a></li>
+                        <li class="footer-link"><a href="#">Tutorials</a></li>
+                        <li class="footer-link"><a href="#">Blog</a></li>
+                        <li class="footer-link"><a href="#">API</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-group">
+                    <h4 class="footer-links-title">Company</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">About</a></li>
+                        <li class="footer-link"><a href="#">Careers</a></li>
+                        <li class="footer-link"><a href="#">Contact</a></li>
+                        <li class="footer-link"><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    &copy; 2025 JAAT-AI. All rights reserved.
+                </div>
+                
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/bg-animation-3d.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/themes.js"></script>
+    <script src="js/advanced-background.js"></script>
+    <script src="responsive/viewport-helper.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize background animation
+            const bgAnimation = new BackgroundAnimation3D('bg-animation-container');
+            bgAnimation.init({
+                particleCount: window.innerWidth < 768 ? 1000 : 2000,
+                highPerformance: window.innerWidth >= 768
+            });
+            
+            // Header scroll effect
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            if (menuToggle) {
+                // Mobile menu implementation would go here
+                // For this demo, we're just showing the toggle button
+            }
+            
+            // Animate elements on scroll (using animation manager if available)
+            if (window.animationManager) {
+                // Observe feature cards for scroll animations
+                document.querySelectorAll('.feature-card').forEach((card, index) => {
+                    card.setAttribute('data-animate', 'fade-in-up');
+                    card.setAttribute('data-animate-delay', (index * 100).toString());
+                });
+                
+                // Observe CTA container
+                const ctaContainer = document.querySelector('.cta-container');
+                if (ctaContainer) {
+                    ctaContainer.setAttribute('data-animate', 'scale-in');
+                }
+                
+                // Initialize animations
+                animationManager.observeElements(document.querySelectorAll('[data-animate]'));
+            }
+        });
+    </script>
+</body>
+</html>

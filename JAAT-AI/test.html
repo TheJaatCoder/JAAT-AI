@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI Feature Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #333;
+        }
+        .feature-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .feature-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .feature-title i {
+            margin-right: 10px;
+            font-size: 24px;
+            color: #0d6efd;
+        }
+        button {
+            background: #0d6efd;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        button:hover {
+            background: #0b5ed7;
+        }
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .result-area {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            min-height: 100px;
+        }
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+        .controls {
+            margin-bottom: 15px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JAAT-AI Feature Test</h1>
+            <p>This page demonstrates the implemented AI features</p>
+        </header>
+
+        <!-- Neural Machine Translation -->
+        <div class="feature-section" id="translation-section">
+            <div class="feature-title">
+                <i class="fas fa-language"></i>
+                <h2>Neural Machine Translation</h2>
+            </div>
+            <div class="controls">
+                <select id="source-lang">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="ja">Japanese</option>
+                    <option value="zh">Chinese</option>
+                </select>
+                <i class="fas fa-arrow-right"></i>
+                <select id="target-lang">
+                    <option value="en">English</option>
+                    <option value="es" selected>Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="ja">Japanese</option>
+                    <option value="zh">Chinese</option>
+                </select>
+            </div>
+            <textarea id="source-text" rows="4" placeholder="Enter text to translate..."></textarea>
+            <button id="translate-btn"><i class="fas fa-language"></i> Translate</button>
+            <button id="clear-translation-btn"><i class="fas fa-trash"></i> Clear</button>
+            <div class="result-area" id="translation-result">
+                <p class="placeholder">Translation will appear here...</p>
+            </div>
+        </div>
+
+        <!-- Mental Health Chatbot -->
+        <div class="feature-section" id="mental-health-section">
+            <div class="feature-title">
+                <i class="fas fa-heart"></i>
+                <h2>Mental Health Support</h2>
+            </div>
+            <textarea id="mental-health-input" rows="4" placeholder="Type your question about mental health..."></textarea>
+            <button id="mental-health-btn"><i class="fas fa-comment"></i> Ask for Support</button>
+            <button id="show-resources-btn"><i class="fas fa-list"></i> Show Resources</button>
+            <div class="result-area" id="mental-health-result">
+                <p class="placeholder">Support response will appear here...</p>
+            </div>
+            <div id="resources-panel" style="display: none; margin-top: 15px; border: 1px solid #ddd; padding: 15px; border-radius: 4px;">
+                <h3>Mental Health Resources</h3>
+                <ul id="resources-list">
+                    <!-- Resources will be populated here -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Social Media Content Creation -->
+        <div class="feature-section" id="social-media-section">
+            <div class="feature-title">
+                <i class="fas fa-share-alt"></i>
+                <h2>Social Media Content Creation</h2>
+            </div>
+            <div class="controls">
+                <select id="platform-select">
+                    <option value="" disabled selected>Select platform</option>
+                    <option value="twitter">Twitter</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="linkedin">LinkedIn</option>
+                </select>
+                <select id="content-type">
+                    <option value="" disabled selected>Select content type</option>
+                    <option value="promotional">Promotional</option>
+                    <option value="educational">Educational</option>
+                    <option value="entertaining">Entertaining</option>
+                    <option value="inspirational">Inspirational</option>
+                </select>
+                <select id="tone-select">
+                    <option value="" disabled selected>Select tone</option>
+                    <option value="professional">Professional</option>
+                    <option value="friendly">Friendly</option>
+                    <option value="humorous">Humorous</option>
+                    <option value="inspirational">Inspirational</option>
+                </select>
+            </div>
+            <input type="text" id="business-type" placeholder="What's your business/content about?">
+            <input type="text" id="keywords" placeholder="Keywords (comma separated)">
+            
+            <div class="controls" style="margin-top: 10px;">
+                <label for="test-password">Test Password Input:</label>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="password" id="test-password" placeholder="Enter a test password" style="flex: 1;" maxlength="20">
+                    <button id="test-password-btn" class="btn-secondary" type="button" style="white-space: nowrap;">
+                        Test Password
+                    </button>
+                </div>
+                <div id="password-result" style="display: none; margin-top: 5px; padding: 10px; background-color: #f0f0f0; border-radius: 4px;">
+                    Password validation result will appear here.
+                </div>
+            </div>
+            <button id="generate-content-btn"><i class="fas fa-magic"></i> Generate Content</button>
+            <button id="clear-content-btn"><i class="fas fa-trash"></i> Clear</button>
+            <div class="result-area" id="social-media-result">
+                <p class="placeholder">Generated content will appear here...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Helper function to simulate content generation
+        function generateSocialMediaContent(businessType, platform, contentType, tone, keywords) {
+            if (!businessType || !platform || !contentType || !tone) {
+                return "Please fill in all required fields";
+            }
+            
+            // Simple templates
+            const templates = {
+                promotional: [
+                    `🔥 Special offer for our ${businessType} community! Get 20% off this week. #${keywords} #discount`,
+                    `Introducing our newest ${businessType} service! Check out how it can help you achieve your goals. #${keywords}`,
+                    `Limited time offer! Try our premium ${businessType} package for free for 30 days. #${keywords} #free`
+                ],
+                educational: [
+                    `Did you know? 🤔 Studies show that consistent ${businessType} practices lead to 30% better results. #${keywords} #tips`,
+                    `3 tips for better ${businessType} results: 1️⃣ Start early 2️⃣ Be consistent 3️⃣ Measure results. #${keywords} #learn`,
+                    `The ultimate guide to ${businessType} is now available! Learn everything you need to know. #${keywords} #guide`
+                ],
+                entertaining: [
+                    `That moment when your ${businessType} plan works perfectly! 😂 #${keywords} #relatable`,
+                    `Behind the scenes at our ${businessType} studio today! 🎬 #${keywords} #behindthescenes`,
+                    `Friday mood at the ${businessType} office! 🕺💃 #${keywords} #weekendvibes`
+                ],
+                inspirational: [
+                    `"Success in ${businessType} is not final; failure is not fatal: It is the courage to continue that counts." #${keywords} #motivation`,
+                    `Transforming challenges into opportunities - how our ${businessType} client achieved their dreams. #${keywords} #inspiration`,
+                    `Your ${businessType} journey matters. Every step takes you closer to your goals. Keep going! ✨ #${keywords} #believe`
+                ]
+            };
+            
+            // Select a random template from the chosen content type
+            const contentTemplates = templates[contentType] || templates.promotional;
+            const template = contentTemplates[Math.floor(Math.random() * contentTemplates.length)];
+            
+            return template;
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Neural Machine Translation
+            const translateBtn = document.getElementById('translate-btn');
+            const clearTranslationBtn = document.getElementById('clear-translation-btn');
+            const sourceText = document.getElementById('source-text');
+            const translationResult = document.getElementById('translation-result');
+            const sourceLang = document.getElementById('source-lang');
+            const targetLang = document.getElementById('target-lang');
+            
+            translateBtn.addEventListener('click', function() {
+                const text = sourceText.value.trim();
+                if (!text) {
+                    alert('Please enter text to translate');
+                    return;
+                }
+                
+                // Show loading
+                translationResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Translating...</p>';
+                
+                // Simulate translation (in a real app, this would call the API)
+                setTimeout(() => {
+                    translationResult.textContent = `${text} (translated from ${sourceLang.value} to ${targetLang.value})`;
+                }, 1000);
+            });
+            
+            clearTranslationBtn.addEventListener('click', function() {
+                sourceText.value = '';
+                translationResult.innerHTML = '<p class="placeholder">Translation will appear here...</p>';
+            });
+            
+            // Mental Health Chatbot
+            const mentalHealthBtn = document.getElementById('mental-health-btn');
+            const showResourcesBtn = document.getElementById('show-resources-btn');
+            const mentalHealthInput = document.getElementById('mental-health-input');
+            const mentalHealthResult = document.getElementById('mental-health-result');
+            const resourcesPanel = document.getElementById('resources-panel');
+            const resourcesList = document.getElementById('resources-list');
+            
+            // Sample resources
+            const resources = [
+                {
+                    name: "Crisis Text Line",
+                    description: "Text HOME to 741741 for free 24/7 crisis counseling",
+                    url: "https://www.crisistextline.org/"
+                },
+                {
+                    name: "National Suicide Prevention Lifeline",
+                    description: "Call 988 or 1-800-273-8255 for 24/7 support",
+                    url: "https://suicidepreventionlifeline.org/"
+                },
+                {
+                    name: "SAMHSA's National Helpline",
+                    description: "1-800-662-4357 - Treatment referral and information",
+                    url: "https://www.samhsa.gov/find-help/national-helpline"
+                }
+            ];
+            
+            // Populate resources
+            resources.forEach(resource => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong><a href="${resource.url}" target="_blank">${resource.name}</a></strong>: ${resource.description}`;
+                resourcesList.appendChild(li);
+            });
+            
+            mentalHealthBtn.addEventListener('click', function() {
+                const input = mentalHealthInput.value.trim();
+                if (!input) {
+                    alert('Please enter your question');
+                    return;
+                }
+                
+                // Show loading
+                mentalHealthResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Processing your request...</p>';
+                
+                // Simulate response (in a real app, this would call the API)
+                setTimeout(() => {
+                    mentalHealthResult.innerHTML = `
+                        <p>Thank you for sharing. I understand that dealing with these feelings can be challenging. 
+                        Remember that it's okay to seek support, and there are resources available to help you.</p>
+                        <p>Would you like to explore some coping strategies or see a list of mental health resources?</p>
+                    `;
+                }, 1000);
+            });
+            
+            showResourcesBtn.addEventListener('click', function() {
+                resourcesPanel.style.display = resourcesPanel.style.display === 'none' ? 'block' : 'none';
+            });
+            
+            // Social Media Content Creation
+            const generateContentBtn = document.getElementById('generate-content-btn');
+            const clearContentBtn = document.getElementById('clear-content-btn');
+            const businessType = document.getElementById('business-type');
+            const keywords = document.getElementById('keywords');
+            const platformSelect = document.getElementById('platform-select');
+            const contentType = document.getElementById('content-type');
+            const toneSelect = document.getElementById('tone-select');
+            const socialMediaResult = document.getElementById('social-media-result');
+            
+            // Test password field
+            const testPassword = document.getElementById('test-password');
+            const testPasswordBtn = document.getElementById('test-password-btn');
+            const passwordResult = document.getElementById('password-result');
+            
+            // Add validation for password field to prevent errors
+            if (testPassword) {
+                testPassword.addEventListener('input', function() {
+                    // Limit password length to prevent overflow
+                    if (this.value.length > 20) {
+                        this.value = this.value.substring(0, 20);
+                    }
+                    
+                    // Prevent special HTML entities that could cause issues
+                    if (this.value.includes('<') || this.value.includes('>')) {
+                        this.value = this.value.replace(/[<>]/g, '');
+                    }
+                });
+                
+                // Add test password button functionality
+                if (testPasswordBtn && passwordResult) {
+                    testPasswordBtn.addEventListener('click', function() {
+                        const password = testPassword.value;
+                        
+                        // Show the result area
+                        passwordResult.style.display = 'block';
+                        
+                        // Simple password validation
+                        if (!password) {
+                            passwordResult.textContent = 'Please enter a password.';
+                            passwordResult.style.backgroundColor = '#ffdddd';
+                            return;
+                        }
+                        
+                        // Password strength validation
+                        let strength = 0;
+                        let feedback = [];
+                        
+                        // Length check
+                        if (password.length >= 8) {
+                            strength += 1;
+                        } else {
+                            feedback.push('Password should be at least 8 characters long.');
+                        }
+                        
+                        // Uppercase check
+                        if (/[A-Z]/.test(password)) {
+                            strength += 1;
+                        } else {
+                            feedback.push('Include at least one uppercase letter.');
+                        }
+                        
+                        // Lowercase check
+                        if (/[a-z]/.test(password)) {
+                            strength += 1;
+                        } else {
+                            feedback.push('Include at least one lowercase letter.');
+                        }
+                        
+                        // Number check
+                        if (/[0-9]/.test(password)) {
+                            strength += 1;
+                        } else {
+                            feedback.push('Include at least one number.');
+                        }
+                        
+                        // Special character check
+                        if (/[^A-Za-z0-9]/.test(password)) {
+                            strength += 1;
+                        } else {
+                            feedback.push('Include at least one special character.');
+                        }
+                        
+                        // Show result based on strength
+                        let resultText = '';
+                        let resultColor = '';
+                        
+                        if (strength === 5) {
+                            resultText = 'Excellent! Your password is very strong.';
+                            resultColor = '#d4edda';
+                        } else if (strength >= 3) {
+                            resultText = 'Good! Your password is moderately strong.';
+                            resultColor = '#fff3cd';
+                        } else {
+                            resultText = 'Weak password. Please improve by:';
+                            resultColor = '#f8d7da';
+                        }
+                        
+                        // Add feedback for weak passwords
+                        if (strength < 3) {
+                            resultText += '<ul>' + feedback.map(item => `<li>${item}</li>`).join('') + '</ul>';
+                        }
+                        
+                        passwordResult.innerHTML = resultText;
+                        passwordResult.style.backgroundColor = resultColor;
+                    });
+                }
+            }
+            
+            generateContentBtn.addEventListener('click', function() {
+                const business = businessType.value.trim();
+                const platform = platformSelect.value;
+                const content = contentType.value;
+                const tone = toneSelect.value;
+                const keywordsValue = keywords.value.trim();
+                
+                if (!business || !platform || !content || !tone) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+                
+                // Show loading
+                socialMediaResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Generating content...</p>';
+                
+                // Generate content
+                setTimeout(() => {
+                    const generatedContent = generateSocialMediaContent(
+                        business, 
+                        platform, 
+                        content, 
+                        tone, 
+                        keywordsValue || business
+                    );
+                    socialMediaResult.textContent = generatedContent;
+                }, 1000);
+            });
+            
+            clearContentBtn.addEventListener('click', function() {
+                businessType.value = '';
+                keywords.value = '';
+                platformSelect.selectedIndex = 0;
+                contentType.selectedIndex = 0;
+                toneSelect.selectedIndex = 0;
+                socialMediaResult.innerHTML = '<p class="placeholder">Generated content will appear here...</p>';
+            });
+        });
+    </script>
+
+    <!-- Load the feature loader script -->
+    <script src="/js/feature-loader.js"></script>
+</body>
+</html>

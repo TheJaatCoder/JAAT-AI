@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI FAQ - Frequently Asked Questions</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/support.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../js/vendor/particles.min.js" defer></script>
+</head>
+<body class="theme-dark">
+    <div id="background-particles"></div>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../../assets/logo.svg" alt="JAAT-AI Logo">
+                <h1>JAAT-AI</h1>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="../core/index.html"><i class="fas fa-robot"></i> Chat</a></li>
+                    <li><a href="../core/dashboard.html"><i class="fas fa-columns"></i> Dashboard</a></li>
+                    <li><a href="../features/index.html"><i class="fas fa-puzzle-piece"></i> Features</a></li>
+                    <li><a href="../premium/premium.html"><i class="fas fa-crown"></i> Premium</a></li>
+                </ul>
+            </nav>
+            <div class="user-controls">
+                <div class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="theme-switch" checked>
+                        <label for="theme-switch"></label>
+                    </div>
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="user-menu">
+                    <img src="../../assets/default-avatar.png" class="user-avatar" alt="User">
+                    <span class="username">Guest</span>
+                    <i class="fas fa-angle-down"></i>
+                    <div class="dropdown-menu">
+                        <a href="../user/user-profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="../user/user-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="../core/login.html" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="support-container">
+            <div class="support-sidebar">
+                <div class="sidebar-header">
+                    <h2>Support Center</h2>
+                </div>
+                
+                <ul class="support-nav">
+                    <li><a href="help.html"><i class="fas fa-info-circle"></i> Help Center</a></li>
+                    <li><a href="faq.html" class="active"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    <li><a href="walkthrough.html"><i class="fas fa-map-signs"></i> Walkthrough</a></li>
+                    <li><a href="chatbot-guide.html"><i class="fas fa-robot"></i> Chatbot Guide</a></li>
+                    <li><a href="troubleshooting.html"><i class="fas fa-wrench"></i> Troubleshooting</a></li>
+                    <li><a href="api-docs.html"><i class="fas fa-code"></i> API Documentation</a></li>
+                </ul>
+                
+                <div class="sidebar-cta">
+                    <div class="cta-content">
+                        <h3>Need Direct Help?</h3>
+                        <p>Our support team is available 24/7</p>
+                    </div>
+                    <a href="contact.html" class="btn-primary">Contact Support</a>
+                </div>
+            </div>
+            
+            <div class="support-content">
+                <div class="support-header">
+                    <h1>Frequently Asked Questions</h1>
+                    <p class="support-subtitle">Find quick answers to common questions about JAAT-AI</p>
+                    
+                    <div class="search-box">
+                        <input type="text" placeholder="Search FAQs...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                
+                <div class="faq-categories">
+                    <button class="category-btn active" data-category="all">All Questions</button>
+                    <button class="category-btn" data-category="account">Account & Billing</button>
+                    <button class="category-btn" data-category="features">Features & Usage</button>
+                    <button class="category-btn" data-category="technical">Technical Issues</button>
+                    <button class="category-btn" data-category="privacy">Privacy & Security</button>
+                    <button class="category-btn" data-category="premium">Premium Plans</button>
+                </div>
+                
+                <div class="faq-container">
+                    <!-- Account & Billing Questions -->
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question">
+                            <h3>How do I create an account?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Creating an account with JAAT-AI is simple:</p>
+                            <ol>
+                                <li>Click on the "Sign Up" or "Register" button on the homepage or login page</li>
+                                <li>Enter your email address, create a password, and provide a username</li>
+                                <li>Click "Create Account" to complete registration</li>
+                                <li>Verify your email by clicking the link sent to your inbox</li>
+                            </ol>
+                            <p>You can also sign up using your Google, Facebook, or Apple account for a faster registration process.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question">
+                            <h3>What payment methods do you accept?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>JAAT-AI accepts the following payment methods:</p>
+                            <ul>
+                                <li>All major credit and debit cards (Visa, Mastercard, American Express, Discover)</li>
+                                <li>PayPal</li>
+                                <li>Apple Pay</li>
+                                <li>Google Pay</li>
+                            </ul>
+                            <p>For annual business plans, we also accept bank transfers. Please contact our sales team for more information.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question">
+                            <h3>How do I cancel my subscription?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>To cancel your subscription:</p>
+                            <ol>
+                                <li>Log in to your JAAT-AI account</li>
+                                <li>Go to "User Profile" by clicking on your avatar in the top right</li>
+                                <li>Select the "Subscription" tab</li>
+                                <li>Click on "Manage Subscription"</li>
+                                <li>Select "Cancel Subscription" and follow the prompts</li>
+                            </ol>
+                            <p>Your subscription will remain active until the end of the current billing period. After cancellation, your account will revert to the free Basic plan.</p>
+                            <p>Note: If you subscribed through the App Store or Google Play, you'll need to cancel your subscription through those platforms.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question">
+                            <h3>Can I get a refund?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer a 7-day money-back guarantee for all new premium subscriptions. If you're not satisfied with your premium experience, you can request a full refund within the first 7 days of your subscription.</p>
+                            <p>To request a refund:</p>
+                            <ol>
+                                <li>Contact our support team through the Contact page</li>
+                                <li>Provide your account email and reason for the refund</li>
+                                <li>Our team will process your request within 2-3 business days</li>
+                            </ol>
+                            <p>For more details, please refer to our <a href="../legal/refund-policy.html">Refund Policy</a>.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Features & Usage Questions -->
+                    <div class="faq-item" data-category="features">
+                        <div class="faq-question">
+                            <h3>What are AI Modes and how do I use them?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>AI Modes are specialized personas and capabilities that optimize JAAT-AI for specific tasks and use cases. Each mode has unique expertise, knowledge, and interaction style.</p>
+                            <p>To use AI Modes:</p>
+                            <ol>
+                                <li>Click on the mode selector in the chat interface (look for the icon in the top right of the chat window)</li>
+                                <li>Browse available modes by category or search for specific ones</li>
+                                <li>Select the mode you wish to use</li>
+                                <li>Start a new conversation with that mode active</li>
+                            </ol>
+                            <p>You can also switch modes during an existing conversation by clicking the mode icon at any time.</p>
+                            <p>The number of available modes depends on your subscription plan. Basic users have access to 3 modes, while premium users can access up to 45+ specialized modes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="features">
+                        <div class="faq-question">
+                            <h3>How do I use the Voice Assistant?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>To use the Voice Assistant feature:</p>
+                            <ol>
+                                <li>Click on the microphone icon in the chat input area or navigate to the Voice Assistant page</li>
+                                <li>Allow microphone permissions when prompted</li>
+                                <li>Speak your query after the "Listening..." indicator appears</li>
+                                <li>The AI will process your speech and provide a spoken response</li>
+                            </ol>
+                            <p>For a hands-free experience, enable the "Wake Word" feature in Voice Assistant settings. When enabled, you can start a voice interaction by saying "Hey JAAT" followed by your question.</p>
+                            <p>Voice Assistant supports 25+ languages and can be customized with different voices, speaking rates, and interaction styles in the settings.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="features">
+                        <div class="faq-question">
+                            <h3>What is Multi-Chat and how does it work?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Multi-Chat is a feature that allows you to chat with multiple AI models simultaneously and compare their responses side-by-side. This is particularly useful for:</p>
+                            <ul>
+                                <li>Getting diverse perspectives on a question or topic</li>
+                                <li>Comparing different AI models' approaches to a problem</li>
+                                <li>Conducting research with multiple specialized assistants at once</li>
+                            </ul>
+                            <p>To use Multi-Chat:</p>
+                            <ol>
+                                <li>Navigate to the Multi-Chat page from the main menu or dashboard</li>
+                                <li>Select the AI models you want to include in your conversation</li>
+                                <li>Type your message once, and all selected models will respond</li>
+                                <li>View all responses in the unified view or switch to individual model tabs</li>
+                            </ol>
+                            <p>The number of simultaneous models you can chat with depends on your subscription plan. Bronze plan users can chat with up to 3 models, Silver users with 5 models, and Gold/Platinum users with all available models.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Technical Issues Questions -->
+                    <div class="faq-item" data-category="technical">
+                        <div class="faq-question">
+                            <h3>Why is the AI responding slowly?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Slow response times can be caused by several factors:</p>
+                            <ul>
+                                <li><strong>Internet Connection:</strong> A weak or unstable internet connection can affect response times. Try switching to a more stable connection.</li>
+                                <li><strong>High Traffic:</strong> During peak usage times, our servers may experience higher loads, which can occasionally cause delays.</li>
+                                <li><strong>Complex Queries:</strong> Very complex or lengthy questions may take longer to process as they require more computational resources.</li>
+                                <li><strong>Browser Issues:</strong> Having too many browser tabs open or outdated browsers can affect performance. Try closing unnecessary tabs or updating your browser.</li>
+                            </ul>
+                            <p>To improve response times:</p>
+                            <ul>
+                                <li>Clear your browser cache and cookies</li>
+                                <li>Try the desktop app instead of the web version</li>
+                                <li>Break very complex queries into smaller, more specific questions</li>
+                                <li>Upgrade to a premium plan for priority server access</li>
+                            </ul>
+                            <p>If you continue to experience slow responses, please contact our support team for assistance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="technical">
+                        <div class="faq-question">
+                            <h3>How do I fix microphone issues with Voice Assistant?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>If you're experiencing issues with the microphone in Voice Assistant:</p>
+                            <ol>
+                                <li><strong>Check Browser Permissions:</strong> Make sure you've allowed microphone access in your browser settings. Look for the microphone icon in your address bar.</li>
+                                <li><strong>Verify Device Settings:</strong> Check that your microphone is correctly selected in your device settings and not muted.</li>
+                                <li><strong>Test Your Microphone:</strong> Use your system's microphone test tool to verify it's working properly.</li>
+                                <li><strong>Close Other Apps:</strong> Close other applications that might be using the microphone.</li>
+                                <li><strong>Try Different Browser:</strong> If the issue persists, try using a different browser (Chrome, Firefox, Safari, etc.).</li>
+                                <li><strong>Restart Your Device:</strong> Sometimes a simple restart can resolve hardware access issues.</li>
+                            </ol>
+                            <p>For Windows-specific issues:</p>
+                            <ul>
+                                <li>Go to Settings > Privacy > Microphone and ensure microphone access is enabled for browsers</li>
+                            </ul>
+                            <p>For Mac-specific issues:</p>
+                            <ul>
+                                <li>Go to System Preferences > Security & Privacy > Privacy > Microphone and ensure your browser is checked</li>
+                            </ul>
+                            <p>If none of these solutions work, try the Desktop App which sometimes has better hardware access than browsers.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Privacy & Security Questions -->
+                    <div class="faq-item" data-category="privacy">
+                        <div class="faq-question">
+                            <h3>Is my conversation data private?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we take your privacy seriously. Here's how your conversation data is handled:</p>
+                            <ul>
+                                <li>All conversations are encrypted in transit and at rest using industry-standard encryption</li>
+                                <li>Your conversation history is stored securely in your account and is only accessible to you</li>
+                                <li>By default, we use anonymized conversation data to improve our AI models, but you can opt out of this in your privacy settings</li>
+                                <li>We do not sell your personal data or conversation history to third parties</li>
+                                <li>You can delete individual conversations or your entire chat history at any time through your account settings</li>
+                            </ul>
+                            <p>For enhanced privacy, premium users can enable "Private Mode" for specific conversations, which ensures that those conversations are not used for AI training and are automatically deleted after a set period.</p>
+                            <p>For full details on how we handle your data, please refer to our <a href="../legal/privacy.html">Privacy Policy</a>.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="privacy">
+                        <div class="faq-question">
+                            <h3>How secure is my payment information?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Your payment information is fully secure with JAAT-AI:</p>
+                            <ul>
+                                <li>We do not store your complete credit card details on our servers</li>
+                                <li>All payment processing is handled by industry-leading payment processors (Stripe and PayPal) that comply with PCI DSS Level 1 standards</li>
+                                <li>Payment data is encrypted using TLS 1.2+ during transmission</li>
+                                <li>For subscription management, we only store tokenized versions of your payment method, not the actual card details</li>
+                            </ul>
+                            <p>Our payment systems undergo regular security audits and penetration testing to ensure they remain secure against emerging threats.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Premium Plan Questions -->
+                    <div class="faq-item" data-category="premium">
+                        <div class="faq-question">
+                            <h3>What are the benefits of premium plans?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Premium plans offer a range of enhanced features and capabilities:</p>
+                            
+                            <h4>Bronze Plan Benefits:</h4>
+                            <ul>
+                                <li>Access to 15 specialized AI modes</li>
+                                <li>100 messages per day (vs. 10 in Basic)</li>
+                                <li>Enhanced animations and visual effects</li>
+                                <li>Basic image generation capabilities</li>
+                                <li>5 file uploads (10MB each) for analysis</li>
+                                <li>Priority response time</li>
+                                <li>Web search access for up-to-date information</li>
+                            </ul>
+                            
+                            <h4>Silver Plan Benefits:</h4>
+                            <ul>
+                                <li>Everything in Bronze, plus:</li>
+                                <li>Access to 30 specialized AI modes</li>
+                                <li>500 messages per day</li>
+                                <li>Advanced image generation</li>
+                                <li>20 file uploads (25MB each)</li>
+                                <li>Multi-Chat with up to 3 models</li>
+                                <li>Full Voice Assistant with custom voices</li>
+                            </ul>
+                            
+                            <h4>Gold Plan Benefits:</h4>
+                            <ul>
+                                <li>Everything in Silver, plus:</li>
+                                <li>Access to all 45+ AI modes</li>
+                                <li>Unlimited messages</li>
+                                <li>Premium animations and effects</li>
+                                <li>Premium image generation</li>
+                                <li>Unlimited file uploads (50MB each)</li>
+                                <li>Multi-Chat with 5 models</li>
+                                <li>Custom AI mode creation</li>
+                            </ul>
+                            
+                            <h4>Platinum Plan Benefits:</h4>
+                            <ul>
+                                <li>Everything in Gold, plus:</li>
+                                <li>Early access to new features</li>
+                                <li>Exclusive Platinum-only modes</li>
+                                <li>Team sharing (up to 5 users)</li>
+                                <li>Professional image generation</li>
+                                <li>Multi-Chat with all models</li>
+                                <li>API access</li>
+                                <li>Priority support</li>
+                            </ul>
+                            
+                            <p>For a detailed comparison, visit our <a href="../premium/premium.html">Premium Plans page</a>.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="premium">
+                        <div class="faq-question">
+                            <h3>Can I switch between premium plans?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can easily upgrade or downgrade your premium plan at any time through your account settings.</p>
+                            
+                            <h4>Upgrading Your Plan:</h4>
+                            <ul>
+                                <li>When you upgrade to a higher-tier plan, the change takes effect immediately</li>
+                                <li>You'll be charged the prorated difference between your current plan and the new plan for the remainder of your billing cycle</li>
+                                <li>Your next billing date remains the same</li>
+                            </ul>
+                            
+                            <h4>Downgrading Your Plan:</h4>
+                            <ul>
+                                <li>When you downgrade to a lower-tier plan, the change takes effect at the end of your current billing cycle</li>
+                                <li>You'll continue to have access to your current plan's features until the end of the billing period</li>
+                                <li>No refunds are provided for downgrading mid-cycle (except within the 7-day refund period for new subscriptions)</li>
+                            </ul>
+                            
+                            <p>To change your plan:</p>
+                            <ol>
+                                <li>Go to your User Profile</li>
+                                <li>Navigate to the Subscription tab</li>
+                                <li>Click "Change Plan"</li>
+                                <li>Select your desired plan and confirm the change</li>
+                            </ol>
+                            
+                            <p>If you have any questions about changing plans or need assistance, please contact our support team.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="still-need-help">
+                    <h2>Still Need Help?</h2>
+                    <p>If you couldn't find the answer you were looking for, our support team is here to help.</p>
+                    <div class="help-options">
+                        <a href="contact.html" class="help-option">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Contact Support</h3>
+                            <p>Get personalized help from our support team</p>
+                        </a>
+                        <a href="chatbot-guide.html" class="help-option">
+                            <i class="fas fa-book"></i>
+                            <h3>User Guide</h3>
+                            <p>Detailed documentation on using JAAT-AI</p>
+                        </a>
+                        <a href="../core/index.html" class="help-option">
+                            <i class="fas fa-robot"></i>
+                            <h3>Ask the AI</h3>
+                            <p>Get answers directly from JAAT-AI</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>JAAT-AI</h3>
+                <p>The most animated & intelligent AI assistant.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="../core/index.html">Home</a></li>
+                    <li><a href="../features/index.html">Features</a></li>
+                    <li><a href="../premium/premium.html">Premium</a></li>
+                    <li><a href="../about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="../legal/terms.html">Terms of Service</a></li>
+                    <li><a href="../legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="../legal/cookies.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 JAAT-AI. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="../../js/app.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/faq.js"></script>
+</body>
+</html>

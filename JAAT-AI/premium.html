@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Plans - JAAT-AI</title>
+    <meta name="description" content="Explore premium subscription plans for JAAT-AI. Unlock advanced AI modes, holographic interfaces, and more features.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/advanced-background.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FastSpring Library -->
+    <script id="fsc-api" src="https://d1f8f9xcsvx3ha.cloudfront.net/sbl/0.8.5/fastspring-builder.min.js" type="text/javascript" data-storefront="jaat-ai.test.onfastspring.com/popup-jaat-ai"></script>
+    
+    <style>
+        .page-header {
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .toggle-label {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin: 0 1rem;
+            cursor: pointer;
+        }
+        
+        .toggle-label.active {
+            color: var(--primary-color);
+        }
+        
+        .toggle-label:not(.active) {
+            color: var(--text-secondary);
+        }
+        
+        .toggle-switch {
+            width: 60px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 5px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-switch.annual::before {
+            left: 35px;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .price-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(99, 102, 241, 0.3);
+            border-color: var(--primary-color);
+        }
+        
+        .price-card.popular {
+            transform: scale(1.05);
+            z-index: 1;
+            border-color: var(--primary-color);
+        }
+        
+        .price-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .price-header {
+            padding: 2.5rem 2rem;
+            background: linear-gradient(to bottom, rgba(99, 102, 241, 0.1), transparent);
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .price-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .price-amount {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .price-amount .currency {
+            font-size: 1.75rem;
+            vertical-align: super;
+            font-weight: 600;
+            margin-right: 0.25rem;
+        }
+        
+        .price-period {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .price-features {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+        
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .features-list li {
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .features-list li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .features-list i {
+            color: var(--primary-color);
+            margin-right: 1rem;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+        
+        .features-list .not-included {
+            opacity: 0.5;
+        }
+        
+        .features-list .not-included i {
+            color: var(--text-secondary);
+        }
+        
+        .price-footer {
+            padding: 0 2rem 2rem;
+            text-align: center;
+        }
+        
+        .price-btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .free-features {
+            padding: 100px 0;
+            background-color: rgba(10, 15, 30, 0.4);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .free-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .free-features-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .free-features-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+        
+        .free-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .free-features-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .free-features-list i {
+            color: var(--primary-color);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .free-features-demo {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--card-border);
+            height: 400px;
+            position: relative;
+        }
+        
+        .free-demo-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .demo-icon {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .demo-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 400px;
+        }
+        
+        .faq-section {
+            padding: 100px 0;
+        }
+        
+        .faq-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+        }
+        
+        .faq-question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .faq-answer {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .testimonials-section {
+            padding: 100px 0;
+            background-color: rgba(10, 15, 30, 0.4);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .testimonials-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+        }
+        
+        .testimonial-content {
+            position: relative;
+            padding: 1.5rem 0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-content::before {
+            content: '\201C';
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--primary-color);
+            opacity: 0.3;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+        
+        .testimonial-author h4 {
+            margin: 0;
+            font-size: 1.125rem;
+        }
+        
+        .testimonial-author p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 992px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .price-card.popular {
+                grid-column: span 2;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .free-features-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-card.popular {
+                grid-column: span 1;
+            }
+            
+            .price-card.popular {
+                transform: scale(1);
+            }
+            
+            .price-card.popular:hover {
+                transform: translateY(-10px);
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logo.svg" alt="JAAT-AI Logo">
+                    <span>JAAT-AI</span>
+                </a>
+                
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="ai-modes.html">AI Modes</a></li>
+                        <li><a href="premium.html" class="active">Pricing</a></li>
+                        <li><a href="#" class="btn btn-primary">Subscribe</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                    <a href="signup.html" class="btn btn-primary">
+                        Sign Up
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Choose Your <span class="highlight">Premium Plan</span></h1>
+            <p class="page-subtitle">Select the perfect plan to unlock the full potential of JAAT-AI with our flexible subscription options.</p>
+            
+            <div class="pricing-toggle">
+                <span class="toggle-label active" id="monthly-label">Monthly</span>
+                <div class="toggle-switch" id="billing-toggle">
+                    <!-- Toggle will be controlled by JS -->
+                </div>
+                <span class="toggle-label" id="annual-label">Annual <span class="highlight">Save 20%</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-grid">
+                <!-- Basic Plan -->
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3 class="price-name">Basic</h3>
+                        <div class="price-amount"><span class="currency">$</span>29</div>
+                        <div class="price-period">per month</div>
+                        <p class="price-description">Perfect for individuals exploring advanced AI capabilities</p>
+                    </div>
+                    
+                    <div class="price-features">
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> 15 specialized AI modes</li>
+                            <li><i class="fas fa-check-circle"></i> Basic holographic interface</li>
+                            <li><i class="fas fa-check-circle"></i> 500 messages per day</li>
+                            <li><i class="fas fa-check-circle"></i> Standard response speed</li>
+                            <li><i class="fas fa-check-circle"></i> Image generation (10/day)</li>
+                            <li class="not-included"><i class="fas fa-times-circle"></i> Voice integration</li>
+                            <li class="not-included"><i class="fas fa-times-circle"></i> Priority support</li>
+                            <li class="not-included"><i class="fas fa-times-circle"></i> Custom AI training</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="price-footer">
+                        <button class="btn btn-outline price-btn" data-fsc-item-path="basic-monthly" data-fsc-action="Add,Checkout">Get Started</button>
+                    </div>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="price-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    
+                    <div class="price-header">
+                        <h3 class="price-name">Professional</h3>
+                        <div class="price-amount"><span class="currency">$</span>79</div>
+                        <div class="price-period">per month</div>
+                        <p class="price-description">Ideal for professionals and power users</p>
+                    </div>
+                    
+                    <div class="price-features">
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> All 45+ specialized AI modes</li>
+                            <li><i class="fas fa-check-circle"></i> Advanced holographic interface</li>
+                            <li><i class="fas fa-check-circle"></i> Unlimited messages</li>
+                            <li><i class="fas fa-check-circle"></i> Prioritized responses</li>
+                            <li><i class="fas fa-check-circle"></i> Image generation (50/day)</li>
+                            <li><i class="fas fa-check-circle"></i> Voice integration</li>
+                            <li><i class="fas fa-check-circle"></i> Priority support</li>
+                            <li class="not-included"><i class="fas fa-times-circle"></i> Custom AI training</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="price-footer">
+                        <button class="btn btn-primary price-btn" data-fsc-item-path="professional-monthly" data-fsc-action="Add,Checkout">Get Started</button>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3 class="price-name">Enterprise</h3>
+                        <div class="price-amount"><span class="currency">$</span>199</div>
+                        <div class="price-period">per month</div>
+                        <p class="price-description">Complete solution for businesses and teams</p>
+                    </div>
+                    
+                    <div class="price-features">
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> All features from Professional</li>
+                            <li><i class="fas fa-check-circle"></i> Premium holographic interface</li>
+                            <li><i class="fas fa-check-circle"></i> Dedicated resources</li>
+                            <li><i class="fas fa-check-circle"></i> Fastest response speeds</li>
+                            <li><i class="fas fa-check-circle"></i> Unlimited image generation</li>
+                            <li><i class="fas fa-check-circle"></i> Extended voice integration</li>
+                            <li><i class="fas fa-check-circle"></i> 24/7 VIP support</li>
+                            <li><i class="fas fa-check-circle"></i> Custom AI training & models</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="price-footer">
+                        <button class="btn btn-outline price-btn" data-fsc-item-path="enterprise-monthly" data-fsc-action="Add,Checkout">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Features -->
+    <section class="free-features">
+        <div class="container">
+            <div class="free-features-grid">
+                <div class="free-features-content">
+                    <h2>Try JAAT-AI <span class="highlight">Free</span> First</h2>
+                    <p>Not ready to commit? Start with our free plan to explore the basic capabilities of JAAT-AI before upgrading to a premium subscription.</p>
+                    
+                    <ul class="free-features-list">
+                        <li><i class="fas fa-check-circle"></i> Basic AI assistant mode</li>
+                        <li><i class="fas fa-check-circle"></i> 50 messages per day</li>
+                        <li><i class="fas fa-check-circle"></i> Text-based interaction</li>
+                        <li><i class="fas fa-check-circle"></i> Standard UI experience</li>
+                    </ul>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="signup.html" class="btn btn-primary">Create Free Account</a>
+                    </div>
+                </div>
+                
+                <div class="free-features-demo">
+                    <div class="free-demo-content">
+                        <div class="demo-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3 class="demo-title">Get Started with No Commitment</h3>
+                        <p class="demo-description">Experience the JAAT-AI platform with our free tier and upgrade whenever you're ready to unlock premium features.</p>
+                        <a href="signup.html" class="btn btn-outline">Try Free Version</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-title">
+                <h2>Frequently Asked <span class="highlight">Questions</span></h2>
+                <p>Find answers to common questions about our pricing and features</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">What payment methods do you accept?</h3>
+                    <p class="faq-answer">We accept all major credit cards including Visa, Mastercard, American Express, and Discover. We also support payment through PayPal and various regional payment methods.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I upgrade or downgrade my plan?</h3>
+                    <p class="faq-answer">Yes, you can upgrade or downgrade your subscription plan at any time. Changes to your subscription will take effect at the start of your next billing cycle.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you offer refunds?</h3>
+                    <p class="faq-answer">We offer a 7-day money-back guarantee for all new subscriptions. If you're not satisfied with your premium plan, contact our support team within 7 days of purchase for a full refund.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Is there a contract or commitment?</h3>
+                    <p class="faq-answer">No long-term contracts or commitments. All plans are subscription-based and can be canceled at any time. Annual plans are billed for the full year but still come with our 7-day refund policy.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you offer team or enterprise discounts?</h3>
+                    <p class="faq-answer">Yes, we offer volume discounts for teams and enterprise customers. Contact our sales team at sales@jaat-ai.com for a custom quote based on your specific requirements.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">What happens when I reach my usage limits?</h3>
+                    <p class="faq-answer">When you reach your plan's limits, you can continue using the platform with basic functionality. Premium features will become available again when your limits reset or when you upgrade your plan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="testimonials-title">
+                <h2>What Our Users <span class="highlight">Say</span></h2>
+                <p>Real experiences from our premium subscribers</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>The Professional plan has been a game-changer for my content agency. The specialized AI modes help us create consistent, high-quality content across different niches.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/images/user-1.svg" alt="Sarah Johnson" loading="lazy">
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <p>Creative Director</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>As a developer, I was skeptical about AI tools, but JAAT-AI's holographic interface and technical modes have become essential for my workflow. Worth every penny.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/images/user-2.svg" alt="David Chen" loading="lazy">
+                        <div>
+                            <h4>David Chen</h4>
+                            <p>Software Engineer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Our marketing team upgraded to the Enterprise plan six months ago, and we've seen a 40% increase in productivity. The custom AI training perfectly adapts to our brand voice.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/images/user-3.svg" alt="Jennifer Patel" loading="lazy">
+                        <div>
+                            <h4>Jennifer Patel</h4>
+                            <p>Marketing Director</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.svg" alt="JAAT-AI Logo">
+                        <span>JAAT-AI</span>
+                    </a>
+                    <p>The most advanced AI platform with revolutionary holographic interface and specialized AI modes.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="links-group">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="features.html">Features</a></li>
+                            <li><a href="ai-modes.html">AI Modes</a></li>
+                            <li><a href="premium.html">Pricing</a></li>
+                            <li><a href="roadmap.html">Roadmap</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="links-group">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="links-group">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="help.html">Help Center</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="community.html">Community</a></li>
+                            <li><a href="status.html">System Status</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="links-group">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="cookies.html">Cookie Policy</a></li>
+                            <li><a href="security.html">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 JAAT-AI. All rights reserved.</p>
+                <div class="language-selector">
+                    <select>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="hi">हिन्दी</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/advanced-background.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const monthlyLabel = document.getElementById('monthly-label');
+            const annualLabel = document.getElementById('annual-label');
+            const billingToggle = document.getElementById('billing-toggle');
+            
+            // Set up FastSpring storefront
+            if (window.ENV && window.ENV.FASTSPRING_STOREFRONT_ID) {
+                const fscApi = document.getElementById('fsc-api');
+                fscApi.setAttribute('data-storefront', window.ENV.FASTSPRING_STOREFRONT_ID);
+            }
+            
+            // Initialize pricing display (default: monthly)
+            let isAnnual = false;
+            updatePricingDisplay();
+            
+            // Toggle between monthly and annual billing
+            billingToggle.addEventListener('click', function() {
+                isAnnual = !isAnnual;
+                
+                if (isAnnual) {
+                    billingToggle.classList.add('annual');
+                    monthlyLabel.classList.remove('active');
+                    annualLabel.classList.add('active');
+                } else {
+                    billingToggle.classList.remove('annual');
+                    monthlyLabel.classList.add('active');
+                    annualLabel.classList.remove('active');
+                }
+                
+                updatePricingDisplay();
+            });
+            
+            monthlyLabel.addEventListener('click', function() {
+                if (isAnnual) {
+                    isAnnual = false;
+                    billingToggle.classList.remove('annual');
+                    monthlyLabel.classList.add('active');
+                    annualLabel.classList.remove('active');
+                    updatePricingDisplay();
+                }
+            });
+            
+            annualLabel.addEventListener('click', function() {
+                if (!isAnnual) {
+                    isAnnual = true;
+                    billingToggle.classList.add('annual');
+                    monthlyLabel.classList.remove('active');
+                    annualLabel.classList.add('active');
+                    updatePricingDisplay();
+                }
+            });
+            
+            function updatePricingDisplay() {
+                // Update price display
+                const basicPriceEl = document.querySelector('.price-card:nth-child(1) .price-amount');
+                const proPriceEl = document.querySelector('.price-card:nth-child(2) .price-amount');
+                const enterprisePriceEl = document.querySelector('.price-card:nth-child(3) .price-amount');
+                
+                const basicPeriodEl = document.querySelector('.price-card:nth-child(1) .price-period');
+                const proPeriodEl = document.querySelector('.price-card:nth-child(2) .price-period');
+                const enterprisePeriodEl = document.querySelector('.price-card:nth-child(3) .price-period');
+                
+                // Update FastSpring product paths
+                const basicButton = document.querySelector('.price-card:nth-child(1) .price-btn');
+                const proButton = document.querySelector('.price-card:nth-child(2) .price-btn');
+                const enterpriseButton = document.querySelector('.price-card:nth-child(3) .price-btn');
+                
+                if (isAnnual) {
+                    // Annual prices (with 20% discount)
+                    basicPriceEl.innerHTML = '<span class="currency">$</span>279';
+                    proPriceEl.innerHTML = '<span class="currency">$</span>759';
+                    enterprisePriceEl.innerHTML = '<span class="currency">$</span>1,899';
+                    
+                    basicPeriodEl.textContent = 'per year';
+                    proPeriodEl.textContent = 'per year';
+                    enterprisePeriodEl.textContent = 'per year';
+                    
+                    // Update FastSpring product paths
+                    basicButton.setAttribute('data-fsc-item-path', 'basic-annual');
+                    proButton.setAttribute('data-fsc-item-path', 'professional-annual');
+                    enterpriseButton.setAttribute('data-fsc-item-path', 'enterprise-annual');
+                } else {
+                    // Monthly prices
+                    basicPriceEl.innerHTML = '<span class="currency">$</span>29';
+                    proPriceEl.innerHTML = '<span class="currency">$</span>79';
+                    enterprisePriceEl.innerHTML = '<span class="currency">$</span>199';
+                    
+                    basicPeriodEl.textContent = 'per month';
+                    proPeriodEl.textContent = 'per month';
+                    enterprisePeriodEl.textContent = 'per month';
+                    
+                    // Update FastSpring product paths
+                    basicButton.setAttribute('data-fsc-item-path', 'basic-monthly');
+                    proButton.setAttribute('data-fsc-item-path', 'professional-monthly');
+                    enterpriseButton.setAttribute('data-fsc-item-path', 'enterprise-monthly');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Modes - JAAT-AI</title>
+    <meta name="description" content="Explore all 45+ specialized AI modes available on JAAT-AI platform, from creative writing to technical analysis.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/advanced-background.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        .page-header {
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .ai-modes-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+        
+        .mode-category-btn {
+            padding: 0.75rem 1.5rem;
+            margin: 0 0.5rem 1rem;
+            border-radius: 30px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .mode-category-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .mode-category-btn.active {
+            background: var(--button-primary);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 14px 0 var(--primary-glow);
+        }
+        
+        .ai-modes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .mode-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .mode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+            border-color: var(--primary-color);
+        }
+        
+        .mode-card-header {
+            padding: 1.5rem;
+            background: linear-gradient(to bottom, rgba(99, 102, 241, 0.1), transparent);
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .mode-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .mode-icon i {
+            font-size: 20px;
+            color: white;
+        }
+        
+        .mode-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .mode-details {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mode-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .mode-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+        }
+        
+        .mode-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .mode-features li i {
+            color: var(--primary-color);
+            margin-right: 0.75rem;
+            font-size: 0.9rem;
+        }
+        
+        .mode-label {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mode-label.free {
+            background-color: rgba(52, 211, 153, 0.2);
+            color: #34D399;
+        }
+        
+        .mode-label.premium {
+            background-color: rgba(99, 102, 241, 0.2);
+            color: #818CF8;
+        }
+        
+        .mode-label.enterprise {
+            background-color: rgba(236, 72, 153, 0.2);
+            color: #EC4899;
+        }
+        
+        .mode-labels {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+        
+        .load-more-container {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .compare-section {
+            padding: 100px 0;
+            background-color: rgba(10, 15, 30, 0.4);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .compare-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .compare-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .compare-table th,
+        .compare-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        
+        .compare-table th {
+            background-color: var(--dark-surface);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .compare-table tbody tr {
+            background-color: var(--card-bg);
+        }
+        
+        .compare-table tbody tr:nth-child(even) {
+            background-color: rgba(16, 23, 42, 0.95);
+        }
+        
+        .compare-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .compare-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .compare-table i.fas.fa-check {
+            color: #10B981;
+        }
+        
+        .compare-table i.fas.fa-times {
+            color: #EF4444;
+        }
+        
+        .compare-table .limited {
+            color: #F59E0B;
+        }
+        
+        .getting-started {
+            padding: 100px 0;
+        }
+        
+        .getting-started-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .step-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-right: 2rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .step-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 25px;
+            width: 2px;
+            height: calc(100% - 25px);
+            background: linear-gradient(to bottom, var(--primary-color), rgba(99, 102, 241, 0.1));
+        }
+        
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(rgba(8, 12, 27, 0.8), rgba(16, 23, 42, 0.8));
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-size: 1.125rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        @media (max-width: 992px) {
+            .ai-modes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .compare-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .ai-modes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-item {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .step-item:not(:last-child)::after {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cta-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logo.svg" alt="JAAT-AI Logo">
+                    <span>JAAT-AI</span>
+                </a>
+                
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="ai-modes.html" class="active">AI Modes</a></li>
+                        <li><a href="premium.html">Pricing</a></li>
+                        <li><a href="#" class="btn btn-primary">Subscribe</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                    <a href="signup.html" class="btn btn-primary">
+                        Sign Up
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Explore <span class="highlight">AI Modes</span></h1>
+            <p class="page-subtitle">Discover our 45+ specialized AI assistants, each designed for specific tasks and domains to enhance your productivity and creativity.</p>
+            
+            <!-- Category Navigation -->
+            <div class="ai-modes-nav">
+                <button class="mode-category-btn active" data-category="all">All Categories</button>
+                <button class="mode-category-btn" data-category="creative">Creative</button>
+                <button class="mode-category-btn" data-category="business">Business</button>
+                <button class="mode-category-btn" data-category="technical">Technical</button>
+                <button class="mode-category-btn" data-category="educational">Educational</button>
+                <button class="mode-category-btn" data-category="science">Science</button>
+                <button class="mode-category-btn" data-category="personal">Personal</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Modes Grid -->
+    <section class="ai-modes-section">
+        <div class="container">
+            <div class="ai-modes-grid">
+                <!-- Creative Writing Mode -->
+                <div class="mode-card" data-category="creative">
+                    <div class="mode-card-header">
+                        <div class="mode-icon">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <h3 class="mode-name">Creative Writer</h3>
+                    </div>
+                    
+                    <div class="mode-details">
+                        <p class="mode-description">An AI assistant specialized in creative writing, helping you craft compelling stories, poems, scripts and more with imaginative flair.</p>
+                        
+                        <ul class="mode-features">
+                            <li><i class="fas fa-check-circle"></i> Story development assistance</li>
+                            <li><i class="fas fa-check-circle"></i> Character creation tools</li>
+                            <li><i class="fas fa-check-circle"></i> Plot structure templates</li>
+                        </ul>
+                        
+                        <div class="mode-labels">
+                            <span class="mode-label free">Free Tier</span>
+                            <span class="mode-label premium">Premium</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Code Assistant Mode -->
+                <div class="mode-card" data-category="technical">
+                    <div class="mode-card-header">
+                        <div class="mode-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="mode-name">Code Assistant</h3>
+                    </div>
+                    
+                    <div class="mode-details">
+                        <p class="mode-description">Expert coding assistance for developers, helping with code generation, debugging, optimization and understanding complex algorithms.</p>
+                        
+                        <ul class="mode-features">
+                            <li><i class="fas fa-check-circle"></i> Multi-language support</li>
+                            <li><i class="fas fa-check-circle"></i> Code refactoring suggestions</li>
+                            <li><i class="fas fa-check-circle"></i> Algorithm optimization</li>
+                        </ul>
+                        
+                        <div class="mode-labels">
+                            <span class="mode-label premium">Premium</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Marketing Expert Mode -->
+                <div class="mode-card" data-category="business">
+                    <div class="mode-card-header">
+                        <div class="mode-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="mode-name">Marketing Expert</h3>
+                    </div>
+                    
+                    <div class="mode-details">
+                        <p class="mode-description">Strategic marketing assistant to help develop compelling campaigns, content strategies, and audience engagement tactics for your brand.</p>
+                        
+                        <ul class="mode-features">
+                            <li><i class="fas fa-check-circle"></i> Campaign planning</li>
+                            <li><i class="fas fa-check-circle"></i> Content strategy development</li>
+                            <li><i class="fas fa-check-circle"></i> Market analysis tools</li>
+                        </ul>
+                        
+                        <div class="mode-labels">
+                            <span class="mode-label premium">Premium</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Math Tutor Mode -->
+                <div class="mode-card" data-category="educational">
+                    <div class="mode-card-header">
+                        <div class="mode-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="mode-name">Math Tutor</h3>
+                    </div>
+                    
+                    <div class="mode-details">
+                        <p class="mode-description">Your personal mathematics tutor providing step-by-step explanations, problem-solving techniques and conceptual understanding across all levels.</p>
+                        
+                        <ul class="mode-features">
+                            <li><i class="fas fa-check-circle"></i> Step-by-step solutions</li>
+                            <li><i class="fas fa-check-circle"></i> Visual math explanations</li>
+                            <li><i class="fas fa-check-circle"></i> Practice problem generation</li>
+                        </ul>
+                        
+                        <div class="mode-labels">
+                            <span class="mode-label free">Free Tier</span>
+                            <span class="mode-label premium">Premium</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Assistant Mode -->
+                <div class="mode-card" data-category="science">
+                    <div class="mode-card-header">
+                        <div class="mode-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h3 class="mode-name">Research Assistant</h3>
+                    </div>
+                    
+                    <div class="mode-details">
+                        <p class="mode-description">Specialized in academic and scientific research assistance, helping with literature reviews, methodology design, and data interpretation.</p>
+                        
+                        <ul class="mode-features">
+                            <li><i class="fas fa-check-circle"></i> Literature search assistance</li>
+                            <li><i class="fas fa-check-circle"></i> Research methodology advice</li>
+                            <li><i class="fas fa-check-circle"></i> Citation formatting</li>
+                        </ul>
+                        
+                        <div class="mode-labels">
+                            <span class="mode-label premium">Premium</span>
+                            <span class="mode-label enterprise">Enterprise</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Personal Coach Mode -->
+                <div class="mode-card" data-category="personal">
+                    <div class="mode-card-header">
+                        <div class="mode-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h3 class="mode-name">Personal Coach</h3>
+                    </div>
+                    
+                    <div class="mode-details">
+                        <p class="mode-description">Your AI life coach focused on personal development, habit formation, goal setting, and providing motivational support and accountability.</p>
+                        
+                        <ul class="mode-features">
+                            <li><i class="fas fa-check-circle"></i> Habit tracking systems</li>
+                            <li><i class="fas fa-check-circle"></i> Goal setting frameworks</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized motivation</li>
+                        </ul>
+                        
+                        <div class="mode-labels">
+                            <span class="mode-label premium">Premium</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Analyst Mode -->
+                <div class="mode-card" data-category="technical">
+                    <div class="mode-card-header">
+                        <div class="mode-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3 class="mode-name">Data Analyst</h3>
+                    </div>
+                    
+                    <div class="mode-details">
+                        <p class="mode-description">Specialized in data analysis, visualization, and interpretation, helping you derive insights and make data-driven decisions from complex datasets.</p>
+                        
+                        <ul class="mode-features">
+                            <li><i class="fas fa-check-circle"></i> Data cleaning techniques</li>
+                            <li><i class="fas fa-check-circle"></i> Statistical analysis methods</li>
+                            <li><i class="fas fa-check-circle"></i> Visualization recommendations</li>
+                        </ul>
+                        
+                        <div class="mode-labels">
+                            <span class="mode-label premium">Premium</span>
+                            <span class="mode-label enterprise">Enterprise</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Creator Mode -->
+                <div class="mode-card" data-category="creative">
+                    <div class="mode-card-header">
+                        <div class="mode-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3 class="mode-name">Content Creator</h3>
+                    </div>
+                    
+                    <div class="mode-details">
+                        <p class="mode-description">The ultimate assistant for social media content creators, helping with content planning, caption writing, trend analysis and engagement strategies.</p>
+                        
+                        <ul class="mode-features">
+                            <li><i class="fas fa-check-circle"></i> Content calendar planning</li>
+                            <li><i class="fas fa-check-circle"></i> Trending topics analysis</li>
+                            <li><i class="fas fa-check-circle"></i> Engagement optimization</li>
+                        </ul>
+                        
+                        <div class="mode-labels">
+                            <span class="mode-label free">Free Tier</span>
+                            <span class="mode-label premium">Premium</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Financial Advisor Mode -->
+                <div class="mode-card" data-category="business">
+                    <div class="mode-card-header">
+                        <div class="mode-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3 class="mode-name">Financial Advisor</h3>
+                    </div>
+                    
+                    <div class="mode-details">
+                        <p class="mode-description">Financial planning assistant providing guidance on budgeting, investing, retirement planning, and personal finance management strategies.</p>
+                        
+                        <ul class="mode-features">
+                            <li><i class="fas fa-check-circle"></i> Budget optimization tools</li>
+                            <li><i class="fas fa-check-circle"></i> Investment portfolio analysis</li>
+                            <li><i class="fas fa-check-circle"></i> Retirement planning models</li>
+                        </ul>
+                        
+                        <div class="mode-labels">
+                            <span class="mode-label premium">Premium</span>
+                            <span class="mode-label enterprise">Enterprise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="load-more-container">
+                <button class="btn btn-outline">Load More AI Modes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compare Plans -->
+    <section class="compare-section">
+        <div class="container">
+            <div class="compare-title">
+                <h2>Compare AI Mode <span class="highlight">Availability</span></h2>
+                <p>Check which AI modes are available in each subscription tier</p>
+            </div>
+            
+            <div class="table-container">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>AI Mode Category</th>
+                            <th>Free Tier</th>
+                            <th>Premium</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Creative Writing Modes</td>
+                            <td class="limited">Limited (2)</td>
+                            <td><i class="fas fa-check"></i> All (7)</td>
+                            <td><i class="fas fa-check"></i> All (7) + Custom</td>
+                        </tr>
+                        <tr>
+                            <td>Business & Marketing Modes</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i> All (8)</td>
+                            <td><i class="fas fa-check"></i> All (8) + Custom</td>
+                        </tr>
+                        <tr>
+                            <td>Technical & Development Modes</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i> All (9)</td>
+                            <td><i class="fas fa-check"></i> All (9) + Custom</td>
+                        </tr>
+                        <tr>
+                            <td>Educational Modes</td>
+                            <td class="limited">Limited (3)</td>
+                            <td><i class="fas fa-check"></i> All (10)</td>
+                            <td><i class="fas fa-check"></i> All (10) + Custom</td>
+                        </tr>
+                        <tr>
+                            <td>Science & Research Modes</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i> All (6)</td>
+                            <td><i class="fas fa-check"></i> All (6) + Custom</td>
+                        </tr>
+                        <tr>
+                            <td>Personal Development Modes</td>
+                            <td class="limited">Limited (1)</td>
+                            <td><i class="fas fa-check"></i> All (5)</td>
+                            <td><i class="fas fa-check"></i> All (5) + Custom</td>
+                        </tr>
+                        <tr>
+                            <td>Custom AI Mode Training</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section class="getting-started">
+        <div class="container">
+            <div class="getting-started-title">
+                <h2>Getting Started with <span class="highlight">AI Modes</span></h2>
+                <p>Follow these simple steps to make the most of our specialized AI modes</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Choose the Right Mode</h3>
+                        <p class="step-description">Select the AI mode that best matches your current task or project requirements. Each mode is optimized for specific use cases and workflows.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Configure Your Settings</h3>
+                        <p class="step-description">Customize the AI mode parameters to fine-tune its behavior according to your preferences. Adjust creativity levels, response length, style, and other mode-specific settings.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Provide Clear Context</h3>
+                        <p class="step-description">For optimal results, give the AI clear instructions and sufficient context about your project or query. The more specific your input, the more tailored the response will be.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Iterate and Refine</h3>
+                        <p class="step-description">Use the AI's output as a starting point and iterate with follow-up queries to refine the results. The holographic interface makes this collaborative process intuitive and efficient.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to explore all <span class="highlight">45+ AI modes</span>?</h2>
+                <p>Upgrade to Premium to unlock the full potential of JAAT-AI's specialized assistants and revolutionize your productivity.</p>
+                
+                <div class="cta-buttons">
+                    <a href="premium.html" class="btn btn-primary">View Premium Plans</a>
+                    <a href="signup.html" class="btn btn-outline">Try Free Modes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.svg" alt="JAAT-AI Logo">
+                        <span>JAAT-AI</span>
+                    </a>
+                    <p>The most advanced AI platform with revolutionary holographic interface and specialized AI modes.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="links-group">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="features.html">Features</a></li>
+                            <li><a href="ai-modes.html">AI Modes</a></li>
+                            <li><a href="premium.html">Pricing</a></li>
+                            <li><a href="roadmap.html">Roadmap</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="links-group">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="links-group">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="help.html">Help Center</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="community.html">Community</a></li>
+                            <li><a href="status.html">System Status</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="links-group">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="cookies.html">Cookie Policy</a></li>
+                            <li><a href="security.html">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 JAAT-AI. All rights reserved.</p>
+                <div class="language-selector">
+                    <select>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="hi">हिन्दी</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/advanced-background.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category Filtering
+            const categoryButtons = document.querySelectorAll('.mode-category-btn');
+            const modeCards = document.querySelectorAll('.mode-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const selectedCategory = this.dataset.category;
+                    
+                    // Filter cards
+                    modeCards.forEach(card => {
+                        if (selectedCategory === 'all' || card.dataset.category === selectedCategory) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Load More button (simulated)
+            const loadMoreBtn = document.querySelector('.load-more-container .btn');
+            let isExpanded = false;
+            
+            loadMoreBtn.addEventListener('click', function() {
+                if (!isExpanded) {
+                    this.textContent = 'All AI Modes Loaded';
+                    this.classList.add('btn-secondary');
+                    this.classList.remove('btn-outline');
+                    isExpanded = true;
+                    
+                    // In a real implementation, you would load more cards here
+                    // For this demo, we'll just show a notification
+                    setTimeout(() => {
+                        this.textContent = 'No More AI Modes to Load';
+                        this.disabled = true;
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

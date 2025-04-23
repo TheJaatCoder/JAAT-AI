@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAT-AI Dialog Component</title>
+    <link rel="stylesheet" href="dialog.css">
+    <link rel="stylesheet" href="button.css">
+</head>
+<body>
+    <div class="component-demo">
+        <h2>Dialog Component</h2>
+        
+        <div class="component-section">
+            <h3>Basic Dialog</h3>
+            <button class="jaat-button" id="openBasicDialog">Open Basic Dialog</button>
+            
+            <div class="jaat-dialog" id="basicDialog" aria-labelledby="basicDialogTitle" aria-modal="true">
+                <div class="jaat-dialog-overlay"></div>
+                <div class="jaat-dialog-content">
+                    <div class="jaat-dialog-header">
+                        <h3 class="jaat-dialog-title" id="basicDialogTitle">Dialog Title</h3>
+                        <button class="jaat-dialog-close" aria-label="Close Dialog">
+                            <span class="jaat-dialog-close-icon">&times;</span>
+                        </button>
+                    </div>
+                    <div class="jaat-dialog-body">
+                        <p>This is a basic dialog that can be used to show content or gather information from the user.</p>
+                    </div>
+                    <div class="jaat-dialog-footer">
+                        <button class="jaat-button jaat-button-ghost jaat-dialog-cancel">Cancel</button>
+                        <button class="jaat-button jaat-dialog-confirm">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-section">
+            <h3>Alert Dialog</h3>
+            <button class="jaat-button jaat-button-secondary" id="openAlertDialog">Open Alert Dialog</button>
+            
+            <div class="jaat-dialog jaat-alert-dialog" id="alertDialog" aria-labelledby="alertDialogTitle" aria-modal="true">
+                <div class="jaat-dialog-overlay"></div>
+                <div class="jaat-dialog-content">
+                    <div class="jaat-dialog-header">
+                        <h3 class="jaat-dialog-title" id="alertDialogTitle">Are you sure?</h3>
+                        <button class="jaat-dialog-close" aria-label="Close Dialog">
+                            <span class="jaat-dialog-close-icon">&times;</span>
+                        </button>
+                    </div>
+                    <div class="jaat-dialog-body">
+                        <p>This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p>
+                    </div>
+                    <div class="jaat-dialog-footer">
+                        <button class="jaat-button jaat-button-ghost jaat-dialog-cancel">Cancel</button>
+                        <button class="jaat-button jaat-button-danger jaat-dialog-confirm">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-section">
+            <h3>Form Dialog</h3>
+            <button class="jaat-button jaat-button-outline" id="openFormDialog">Open Form Dialog</button>
+            
+            <div class="jaat-dialog" id="formDialog" aria-labelledby="formDialogTitle" aria-modal="true">
+                <div class="jaat-dialog-overlay"></div>
+                <div class="jaat-dialog-content">
+                    <div class="jaat-dialog-header">
+                        <h3 class="jaat-dialog-title" id="formDialogTitle">Edit Profile</h3>
+                        <button class="jaat-dialog-close" aria-label="Close Dialog">
+                            <span class="jaat-dialog-close-icon">&times;</span>
+                        </button>
+                    </div>
+                    <div class="jaat-dialog-body">
+                        <form class="jaat-form">
+                            <div class="jaat-form-group">
+                                <label for="nameInput" class="jaat-form-label">Name</label>
+                                <input type="text" id="nameInput" class="jaat-form-input" placeholder="Enter your name">
+                            </div>
+                            <div class="jaat-form-group">
+                                <label for="emailInput" class="jaat-form-label">Email</label>
+                                <input type="email" id="emailInput" class="jaat-form-input" placeholder="Enter your email">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="jaat-dialog-footer">
+                        <button class="jaat-button jaat-button-ghost jaat-dialog-cancel">Cancel</button>
+                        <button class="jaat-button jaat-dialog-confirm">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dialog.js"></script>
+</body>
+</html>
