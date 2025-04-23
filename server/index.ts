@@ -1,44 +1,20 @@
-import express from 'express';
-import session from 'express-session';
-import { setupRoutes } from './routes';
-import { storage } from './storage';
-import path from 'path';
+import express from "express";
+import { setupRoutes } from "./routes";
+import { storage } from "./storage";
 
+// Create the Express app
 const app = express();
-const PORT = process.env.PORT || 5000;
+const port = parseInt(process.env.PORT || "5000", 10);
 
-// Setup session middleware
-app.use(
-  session({
-    secret: 'jaat-ai-session-secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: process.env.NODE_ENV === 'production' }
-  })
-);
-
-// JSON body parser
+// Add middleware
 app.use(express.json());
-
-// Static files from client/public
-app.use(express.static(path.join(process.cwd(), 'client', 'public')));
+app.use(express.urlencoded({ extended: true }));
 
 // Setup API routes
 setupRoutes(app, storage);
 
-// For all other routes, serve the index.html
-app.get('*', (req, res) => {
-  // Skip API routes
-  if (req.path.startsWith('/api')) {
-    return res.status(404).json({ error: 'API endpoint not found' });
-  }
-  
-  // Serve the index.html for client-side routing
-  res.sendFile(path.resolve(process.cwd(), 'client', 'index.html'));
-});
-
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server started. Serving on port ${PORT}`);
-  console.log(`Access the application at http://localhost:${PORT}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server started. Serving API on port ${port}`);
+  console.log(`Access the API at http://localhost:${port}/api`);
 });

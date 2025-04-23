@@ -420,12 +420,16 @@
     
     <!-- Scripts -->
     <script src="./js/enhanced-holographic-ui.js"></script>
+    <script src="./js/api-service.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize holographic UI
             if (typeof initEnhancedHolographicUI === 'function') {
                 initEnhancedHolographicUI();
             }
+            
+            // Load data from API
+            loadDataFromAPI();
             
             // Auto-resize message input
             const messageInput = document.getElementById('message-input');
@@ -459,16 +463,45 @@
                         messageInput.style.height = '';
                         messageInput.focus();
                         
-                        // Simulate AI response (replace with actual API call)
-                        setTimeout(() => {
-                            const responses = [
-                                "I understand you're asking about " + message + ". Let me think about that...",
-                                "That's an interesting question about " + message + ". Here's what I know...",
-                                "Thanks for asking about " + message + ". I've analyzed this and can provide some insights...",
-                            ];
-                            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                            addMessage(randomResponse, 'ai');
-                        }, 1000);
+                        // Get the active mode ID (if any)
+                        const activeModeElement = document.querySelector('.active-mode .mode-name');
+                        let activeMode = null;
+                        if (activeModeElement) {
+                            const modeName = activeModeElement.textContent.trim();
+                            // Find the mode ID based on the name
+                            const modeCard = Array.from(document.querySelectorAll('.mode-card')).find(
+                                card => card.querySelector('.mode-info h3').textContent.trim() === modeName
+                            );
+                            if (modeCard) {
+                                activeMode = modeCard.dataset.modeId || null;
+                            }
+                        }
+                        
+                        // Show a loading indicator
+                        const loadingMessage = "Processing your request...";
+                        const loadingElement = addMessage(loadingMessage, 'ai');
+                        
+                        // Call the API service
+                        ApiService.sendMessage(message, activeMode)
+                            .then(response => {
+                                // Remove the loading message
+                                if (loadingElement && loadingElement.parentNode) {
+                                    loadingElement.parentNode.removeChild(loadingElement);
+                                }
+                                
+                                // Add the AI response
+                                addMessage(response.message, 'ai');
+                            })
+                            .catch(error => {
+                                // Remove the loading message
+                                if (loadingElement && loadingElement.parentNode) {
+                                    loadingElement.parentNode.removeChild(loadingElement);
+                                }
+                                
+                                // Show error message
+                                addMessage("Sorry, there was an error processing your request. Please try again.", 'ai');
+                                console.error('Error:', error);
+                            });
                     }
                 });
             }
@@ -522,6 +555,9 @@
                 if (typeof applyHolographicEffect === 'function') {
                     applyHolographicEffect(messageElement);
                 }
+                
+                // Return the message element for later manipulation
+                return messageElement;
             }
             
             // Mode selection logic
@@ -679,6 +715,169 @@
                         }
                     });
                 });
+            }
+            
+            // Function to load data from API
+            async function loadDataFromAPI() {
+                try {
+                    // Load AI modes
+                    const modes = await ApiService.getModes();
+                    if (modes && modes.length > 0) {
+                        updateModeCards(modes);
+                    }
+                    
+                    // Load stats
+                    const stats = await ApiService.getStats();
+                    if (stats) {
+                        updateStats(stats);
+                    }
+                    
+                    // Load user profile
+                    const profile = await ApiService.getUserProfile();
+                    if (profile) {
+                        updateUserProfile(profile);
+                    }
+                } catch (error) {
+                    console.error('Error loading data from API:', error);
+                }
+            }
+            
+            // Function to update mode cards
+            function updateModeCards(modes) {
+                const modesContainer = document.querySelector('.modes-container');
+                if (!modesContainer) return;
+                
+                // Clear existing mode cards
+                modesContainer.innerHTML = '';
+                
+                // Add mode cards from API
+                modes.forEach(mode => {
+                    const card = document.createElement('div');
+                    card.className = 'mode-card';
+                    card.dataset.category = mode.category;
+                    card.dataset.modeId = mode.id;
+                    
+                    card.innerHTML = `
+                        <div class="mode-icon">
+                            <i class="fas fa-${mode.icon}"></i>
+                        </div>
+                        <div class="mode-info">
+                            <h3>${mode.name}</h3>
+                            <p>${mode.description}</p>
+                        </div>
+                        <div class="mode-footer">
+                            <span class="mode-tier free">Free</span>
+                            <button class="select-mode-btn">Select</button>
+                        </div>
+                    `;
+                    
+                    modesContainer.appendChild(card);
+                    
+                    // Add holographic effect
+                    if (typeof applyHolographicEffect === 'function') {
+                        applyHolographicEffect(card);
+                    }
+                    
+                    // Add event listener
+                    const selectBtn = card.querySelector('.select-mode-btn');
+                    if (selectBtn) {
+                        selectBtn.addEventListener('click', function() {
+                            // Update active mode in the chat interface
+                            const modeName = mode.name;
+                            const modeIcon = mode.icon;
+                            
+                            const activeModeElement = document.querySelector('.active-mode');
+                            activeModeElement.innerHTML = `
+                                <i class="fas fa-${modeIcon} mode-icon"></i>
+                                <span class="mode-name">${modeName}</span>
+                            `;
+                            
+                            // Show chat interface and hide AI modes section
+                            document.querySelector('.ai-modes-section').style.display = 'none';
+                            document.querySelector('.chat-interface').style.display = 'flex';
+                        });
+                    }
+                });
+            }
+            
+            // Function to update stats
+            function updateStats(stats) {
+                // Update stats cards
+                const interactionsElement = document.querySelector('.stats-card:nth-child(1) .main-stat');
+                const creditsElement = document.querySelector('.stats-card:nth-child(2) .main-stat');
+                const contentElement = document.querySelector('.stats-card:nth-child(3) .main-stat');
+                
+                if (interactionsElement) {
+                    interactionsElement.textContent = stats.interactions.toLocaleString();
+                }
+                
+                if (creditsElement) {
+                    creditsElement.textContent = stats.credits.toLocaleString();
+                }
+                
+                if (contentElement) {
+                    contentElement.textContent = (stats.content / 1000).toFixed(1) + 'k';
+                }
+                
+                // Update change indicators
+                const interactionsChangeElement = document.querySelector('.stats-card:nth-child(1) .stat-change');
+                const creditsChangeElement = document.querySelector('.stats-card:nth-child(2) .stat-change');
+                const contentChangeElement = document.querySelector('.stats-card:nth-child(3) .stat-change');
+                
+                if (interactionsChangeElement) {
+                    interactionsChangeElement.className = `stat-change ${stats.interactionsChange >= 0 ? 'positive' : 'negative'}`;
+                    interactionsChangeElement.innerHTML = `
+                        <i class="fas fa-arrow-${stats.interactionsChange >= 0 ? 'up' : 'down'}"></i> 
+                        ${Math.abs(stats.interactionsChange)}%
+                    `;
+                }
+                
+                if (creditsChangeElement) {
+                    creditsChangeElement.className = `stat-change ${stats.creditsChange >= 0 ? 'positive' : 'negative'}`;
+                    creditsChangeElement.innerHTML = `
+                        <i class="fas fa-arrow-${stats.creditsChange >= 0 ? 'up' : 'down'}"></i> 
+                        ${Math.abs(stats.creditsChange)}%
+                    `;
+                }
+                
+                if (contentChangeElement) {
+                    contentChangeElement.className = `stat-change ${stats.contentChange >= 0 ? 'positive' : 'negative'}`;
+                    contentChangeElement.innerHTML = `
+                        <i class="fas fa-arrow-${stats.contentChange >= 0 ? 'up' : 'down'}"></i> 
+                        ${Math.abs(stats.contentChange)}%
+                    `;
+                }
+                
+                // Update sidebar stats
+                const sidebarCreditsElement = document.querySelector('.stats-summary .summary-item:nth-child(1) span');
+                if (sidebarCreditsElement) {
+                    sidebarCreditsElement.textContent = `Credits: ${stats.credits}`;
+                }
+            }
+            
+            // Function to update user profile
+            function updateUserProfile(profile) {
+                const userNameElement = document.querySelector('.user-name');
+                const userTierElement = document.querySelector('.subscription-tier');
+                const avatarElement = document.querySelector('.avatar');
+                
+                if (userNameElement) {
+                    userNameElement.textContent = profile.name;
+                }
+                
+                if (userTierElement) {
+                    userTierElement.textContent = profile.plan;
+                }
+                
+                if (avatarElement && profile.avatar) {
+                    avatarElement.src = profile.avatar;
+                }
+                
+                // Update credits in sidebar
+                const creditsElement = document.querySelector('.stats-summary .summary-item:nth-child(1) span');
+                if (creditsElement) {
+                    creditsElement.textContent = `Credits: ${profile.credits}`;
+                }
             }
             
             // Simplified chart rendering

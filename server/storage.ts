@@ -195,5 +195,5 @@ class MemStorage implements IStorage {
 }
 
 // Export the storage instance
-// Switch to DatabaseStorage when ready to use the database
-export const storage = new MemStorage();
+// Using DatabaseStorage for database-backed functionality
+export const storage = new DatabaseStorage();
