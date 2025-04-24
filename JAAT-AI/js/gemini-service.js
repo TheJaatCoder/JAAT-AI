@@ -1,257 +1,200 @@
 /**
- * Google Gemini Service for JAAT-AI
- * Provides integration with Google's Gemini AI API
+ * JAAT-AI Gemini Service
+ * Implements the Google Gemini API service
  */
 
-class GeminiService {
-    constructor() {
-        this.apiKey = null;
-        this.baseUrl = 'https://generativelanguage.googleapis.com/v1beta';
-        this.model = 'models/gemini-1.5-pro'; // The most capable Gemini model
-        
-        // Try to get API key from environment or configuration
-        this.loadConfiguration();
+import AIService from './ai-service.js';
+
+class GeminiService extends AIService {
+  /**
+   * Initialize the Gemini service
+   */
+  constructor() {
+    super();
+    this.providerName = 'Gemini';
+    this.baseUrl = 'https://generativelanguage.googleapis.com/v1beta';
+    this.defaultModel = 'gemini-1.5-pro'; // Latest model as of April 2025
+  }
+
+  /**
+   * Send a message to the Gemini API
+   * @param {string} message - The message to send
+   * @param {string} [mode='default'] - The AI mode to use
+   * @returns {Promise<object>} - The Gemini response
+   */
+  async sendMessage(message, mode = 'default') {
+    if (!this.checkReady()) {
+      throw new Error('Gemini service is not ready. API key not set.');
+    }
+
+    try {
+      // Get the appropriate model and system message for the mode
+      const { model, systemMessage } = this.getModeConfig(mode);
+      
+      const modelPath = model.replace(/\./g, '-');
+      
+      // Make the API request
+      const response = await fetch(`${this.baseUrl}/models/${modelPath}:generateContent?key=${this.apiKey}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: 'user',
+              parts: [
+                { text: `${systemMessage}\n\n${message}` }
+              ]
+            }
+          ],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 2048,
+            topP: 0.95,
+            topK: 40
+          }
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Gemini API error: ${errorData.error?.message || response.statusText}`);
+      }
+      
+      const data = await response.json();
+      
+      // Extract the response text
+      let responseText = '';
+      if (data.candidates && data.candidates.length > 0) {
+        const content = data.candidates[0].content;
+        if (content && content.parts && content.parts.length > 0) {
+          responseText = content.parts[0].text || '';
+        }
+      }
+      
+      return {
+        text: responseText,
+        model: model,
+        provider: this.providerName,
+        usage: {
+          input_tokens: data.usageMetadata?.promptTokenCount || 0,
+          output_tokens: data.usageMetadata?.candidatesTokenCount || 0,
+          total_tokens: data.usageMetadata?.totalTokenCount || 0
+        },
+        timestamp: new Date().toISOString()
+      };
+    } catch (error) {
+      console.error('Error in Gemini service:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get configuration for a specific AI mode
+   * @param {string} mode - The AI mode
+   * @returns {object} - The mode configuration
+   */
+  getModeConfig(mode) {
+    // Default configuration
+    let model = this.defaultModel;
+    let systemMessage = 'You are Gemini, a helpful AI assistant developed by Google. Provide thoughtful, detailed responses to the user\'s questions.';
+    
+    // Configure based on mode
+    switch (mode) {
+      case 'chatgpt':
+        // Use default configuration with Gemini-specific instructions
+        systemMessage = 'You are Gemini, a helpful AI assistant developed by Google. Provide thoughtful, detailed responses to the user\'s questions in a conversational style.';
+        break;
+      
+      case 'code':
+        model = this.defaultModel;
+        systemMessage = 'You are Gemini, a coding expert AI assistant. Provide clear, working code examples and explanations for programming questions. Format code properly using markdown code blocks with the appropriate language syntax.';
+        break;
+      
+      case 'content':
+        model = this.defaultModel;
+        systemMessage = 'You are Gemini, a creative writing AI assistant. Help the user with writing tasks, providing high-quality, creative content. Consider tone, style, and audience in your responses.';
+        break;
+      
+      case 'character':
+        model = this.defaultModel;
+        systemMessage = 'You are Gemini, a character-based AI roleplaying assistant. Respond in character based on the context provided by the user. Be creative, consistent, and engaging while maintaining appropriate boundaries.';
+        break;
+      
+      case 'knowledge':
+        model = this.defaultModel;
+        systemMessage = 'You are Gemini, a knowledgeable AI research assistant. Provide detailed, accurate information with citations where possible. Prioritize factual correctness and academic-style responses.';
+        break;
+      
+      default:
+        // Use default configuration for unknown modes
+        console.warn(`Unknown mode '${mode}', using default configuration.`);
     }
     
-    /**
-     * Load configuration from environment or local storage
-     */
-    async loadConfiguration() {
-        try {
-            // Check if API key is available in session storage
-            const storedKey = sessionStorage.getItem('gemini_api_key');
-            if (storedKey) {
-                this.apiKey = storedKey;
-                console.log('Gemini API key loaded from session storage');
-            }
-            
-            // For server-side use, the API key would be loaded from environment variables
-        } catch (error) {
-            console.error('Error loading Gemini configuration:', error);
-        }
+    return { model, systemMessage };
+  }
+
+  /**
+   * Get available models from Gemini
+   * @returns {Promise<Array>} - List of available models
+   */
+  async getAvailableModels() {
+    if (!this.checkReady()) {
+      throw new Error('Gemini service is not ready. API key not set.');
     }
-    
-    /**
-     * Set the API key
-     * @param {string} apiKey - Gemini API key
-     */
-    setApiKey(apiKey) {
-        this.apiKey = apiKey;
-        // Save to session storage for temporary persistence
-        try {
-            sessionStorage.setItem('gemini_api_key', apiKey);
-        } catch (error) {
-            console.error('Error saving API key to session storage:', error);
+
+    try {
+      const response = await fetch(`${this.baseUrl}/models?key=${this.apiKey}`);
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Gemini API error: ${errorData.error?.message || response.statusText}`);
+      }
+      
+      const data = await response.json();
+      
+      // Filter for Gemini models only
+      const geminiModels = data.models.filter(model => 
+        model.name.includes('gemini')
+      );
+      
+      return geminiModels.map(model => {
+        const id = model.name.split('/').pop();
+        return {
+          id: id,
+          name: id.charAt(0).toUpperCase() + id.slice(1).replace(/-/g, ' '),
+          provider: this.providerName,
+          created: new Date().toISOString() // Gemini API doesn't provide creation date
+        };
+      });
+    } catch (error) {
+      console.error('Error fetching Gemini models:', error);
+      
+      // Return a static list as fallback
+      return [
+        {
+          id: 'gemini-1.5-pro',
+          name: 'Gemini 1.5 Pro',
+          provider: this.providerName,
+          created: new Date().toISOString()
+        },
+        {
+          id: 'gemini-1.5-flash',
+          name: 'Gemini 1.5 Flash',
+          provider: this.providerName,
+          created: new Date().toISOString()
+        },
+        {
+          id: 'gemini-1.0-pro',
+          name: 'Gemini 1.0 Pro',
+          provider: this.providerName,
+          created: new Date().toISOString()
         }
+      ];
     }
-    
-    /**
-     * Generate text completion
-     * @param {string} prompt - The prompt to generate text from
-     * @param {Object} options - Additional options
-     * @returns {Promise<string>} - Generated text
-     */
-    async generateCompletion(prompt, options = {}) {
-        await this.ensureApiKey();
-        
-        const systemPrompt = options.systemPrompt || 'You are a helpful AI assistant.';
-        const model = options.model || this.model;
-        const temperature = options.temperature || 0.7;
-        const modelEndpoint = `/${model}:generateContent`;
-        
-        try {
-            // Call our API endpoint wrapper
-            const response = await this.sendRequest(modelEndpoint, {
-                method: 'POST',
-                body: JSON.stringify({
-                    contents: [
-                        {
-                            role: 'user',
-                            parts: [
-                                { text: systemPrompt },
-                                { text: prompt }
-                            ]
-                        }
-                    ],
-                    generationConfig: {
-                        temperature: temperature,
-                        topK: 40,
-                        topP: 0.95,
-                        maxOutputTokens: 8192,
-                    },
-                    safetySettings: [
-                        {
-                            category: 'HARM_CATEGORY_HARASSMENT',
-                            threshold: 'BLOCK_MEDIUM_AND_ABOVE'
-                        },
-                        {
-                            category: 'HARM_CATEGORY_HATE_SPEECH',
-                            threshold: 'BLOCK_MEDIUM_AND_ABOVE'
-                        },
-                        {
-                            category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
-                            threshold: 'BLOCK_MEDIUM_AND_ABOVE'
-                        },
-                        {
-                            category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
-                            threshold: 'BLOCK_MEDIUM_AND_ABOVE'
-                        }
-                    ]
-                })
-            });
-            
-            if (!response.candidates || response.candidates.length === 0) {
-                throw new Error('No response generated');
-            }
-            
-            // Extract the text content from the response
-            const candidate = response.candidates[0];
-            if (candidate.content && candidate.content.parts && candidate.content.parts.length > 0) {
-                return candidate.content.parts[0].text;
-            } else {
-                throw new Error('Unexpected response format');
-            }
-        } catch (error) {
-            console.error('Gemini completion error:', error);
-            throw error;
-        }
-    }
-    
-    /**
-     * Analyze an image
-     * @param {string} imageUrl - URL of the image to analyze
-     * @param {string} prompt - Prompt for image analysis
-     * @param {Object} options - Additional options
-     * @returns {Promise<string>} - Analysis of the image
-     */
-    async analyzeImage(imageUrl, prompt, options = {}) {
-        await this.ensureApiKey();
-        
-        const model = options.model || this.model;
-        const temperature = options.temperature || 0.7;
-        const modelEndpoint = `/${model}:generateContent`;
-        
-        try {
-            // For image URLs, we need to convert to base64 first if using API directly
-            // For server-side approach, we'll send the URL directly
-            
-            try {
-                // First try with server-side approach (which handles the image URL)
-                const serverUrl = `/api/gemini/analyze`;
-                const response = await fetch(serverUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        imageUrl: imageUrl,
-                        prompt: prompt
-                    })
-                });
-                
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(`Server API error: ${errorData.error || response.statusText}`);
-                }
-                
-                const data = await response.json();
-                return data.text;
-            } catch (serverError) {
-                console.error('Server-side image analysis failed:', serverError);
-                
-                // Fallback to direct API approach
-                // This would require loading the image and converting to base64
-                // which might not work due to CORS restrictions on many image URLs
-                
-                throw new Error('Image analysis via direct API not implemented in client-side mode. Use server-side approach.');
-            }
-        } catch (error) {
-            console.error('Gemini image analysis error:', error);
-            throw error;
-        }
-    }
-    
-    /**
-     * Make sure an API key is available
-     * @returns {Promise<void>}
-     */
-    async ensureApiKey() {
-        if (!this.apiKey) {
-            // If API key not set, try to load it again
-            await this.loadConfiguration();
-            
-            // If still not available, check if we can call the server to get it
-            if (!this.apiKey) {
-                try {
-                    const response = await fetch('/api/config/gemini');
-                    const data = await response.json();
-                    if (data.apiKey) {
-                        this.setApiKey(data.apiKey);
-                    } else {
-                        throw new Error('API key not available');
-                    }
-                } catch (error) {
-                    throw new Error('Gemini API key not available. Please provide an API key.');
-                }
-            }
-        }
-    }
-    
-    /**
-     * Send request to Gemini API with API key
-     * @param {string} endpoint - API endpoint
-     * @param {Object} options - Fetch options
-     * @returns {Promise<Object>} - API response
-     */
-    async sendRequest(endpoint, options = {}) {
-        // Try client-side approach first
-        try {
-            // Add API key to URL
-            const url = `${this.baseUrl}${endpoint}?key=${this.apiKey}`;
-            const headers = {
-                'Content-Type': 'application/json'
-            };
-            
-            const response = await fetch(url, {
-                ...options,
-                headers: {
-                    ...headers,
-                    ...(options.headers || {})
-                }
-            });
-            
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`Gemini API error: ${errorData.error?.message || response.statusText}`);
-            }
-            
-            return await response.json();
-        } catch (clientError) {
-            console.error('Client-side API call failed:', clientError);
-            
-            // Try server-side approach as fallback
-            try {
-                const serverUrl = `/api/gemini${endpoint}`;
-                const response = await fetch(serverUrl, {
-                    method: options.method || 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: options.body
-                });
-                
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(`Server API error: ${errorData.error || response.statusText}`);
-                }
-                
-                return await response.json();
-            } catch (serverError) {
-                console.error('Server-side API call failed:', serverError);
-                throw serverError;
-            }
-        }
-    }
+  }
 }
 
+// Export the Gemini service
 export default GeminiService;
