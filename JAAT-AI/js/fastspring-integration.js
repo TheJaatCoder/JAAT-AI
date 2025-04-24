@@ -1,291 +1,311 @@
 /**
  * JAAT-AI FastSpring Integration
- * Handles subscription management through FastSpring
+ * Handles subscription management and payment processing through FastSpring
  */
 
-// Create FastSpring integration namespace
-window.FastSpringIntegration = (function() {
-    // Variable to store the FastSpring storefront ID
-    let storefrontId = null;
+// FastSpring API Configuration (connection details stored securely server-side)
+const FastSpringConfig = {
+  // These values will be set from environment variables on the server side
+  // Never expose actual API keys in client-side code
+  username: null, // Set through secure server proxy 
+  password: null, // Set through secure server proxy
+  storeId: 'jaat-ai',
+  secureMode: true,
+  testMode: false,
+  debug: false
+};
 
-    // Plans configuration - maps our internal plan IDs to FastSpring products
-    const plans = {
-        premium: {
-            monthly: 'jaat-premium-monthly',
-            annual: 'jaat-premium-annual',
+// Establish a namespace for the FastSpring integration
+const FastSpringService = (() => {
+  /**
+   * Initialize the FastSpring service
+   * @returns {Promise} Promise that resolves when initialization is complete
+   */
+  async function initialize() {
+    try {
+      // Fetch config from server (proxies the actual credentials)
+      const config = await fetchConfig();
+      if (!config.available) {
+        console.warn('FastSpring subscription system not configured');
+        return false;
+      }
+      
+      console.log('FastSpring subscription system initialized');
+      loadFastSpringLibrary();
+      return true;
+    } catch (error) {
+      console.error('Failed to initialize FastSpring:', error);
+      return false;
+    }
+  }
+  
+  /**
+   * Fetch FastSpring configuration from server
+   * This avoids exposing credentials in client-side code
+   * @returns {Promise<Object>} Configuration object
+   */
+  async function fetchConfig() {
+    try {
+      const response = await fetch('/api/config/fastspring');
+      if (!response.ok) {
+        throw new Error('Failed to fetch FastSpring configuration');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching FastSpring config:', error);
+      return { available: false };
+    }
+  }
+  
+  /**
+   * Load the FastSpring library dynamically
+   */
+  function loadFastSpringLibrary() {
+    const script = document.createElement('script');
+    script.src = 'https://d1f8f9xcsvx3ha.cloudfront.net/sbl/0.8.3/fastspring-builder.min.js';
+    script.id = 'fastspring-script';
+    script.defer = true;
+    script.onload = setupFastSpringEvents;
+    document.head.appendChild(script);
+  }
+  
+  /**
+   * Set up FastSpring event handlers
+   */
+  function setupFastSpringEvents() {
+    if (typeof fastspring === 'undefined') {
+      console.error('FastSpring library not loaded');
+      return;
+    }
+    
+    fastspring.builder.secure = FastSpringConfig.secureMode;
+    fastspring.builder.debug = FastSpringConfig.debug;
+    fastspring.builder.testMode = FastSpringConfig.testMode;
+    
+    fastspring.builder.add({
+      'products': {
+        'jaat-ai-monthly': {
+          'path': 'jaat-ai-monthly',
+          'priceValue': 19.99,
+          'discountValue': 0
         },
-        enterprise: {
-            monthly: 'jaat-enterprise-monthly',
-            annual: 'jaat-enterprise-annual',
+        'jaat-ai-annual': {
+          'path': 'jaat-ai-annual',
+          'priceValue': 199.99,
+          'discountValue': 39.99
+        },
+        'jaat-ai-enterprise': {
+          'path': 'jaat-ai-enterprise',
+          'priceValue': 49.99,
+          'discountValue': 0
         }
-    };
-
-    /**
-     * Initialize FastSpring integration
-     * @param {string} customStorefrontId - Custom storefront ID (optional)
-     */
-    function initialize(customStorefrontId = null) {
-        // Get storefront ID from server or use a custom one if provided
-        fetchStorefrontId(customStorefrontId)
-            .then(id => {
-                storefrontId = id;
-                
-                // Load FastSpring script if not already loaded
-                if (!document.getElementById('fsc-api')) {
-                    loadFastSpringScript(storefrontId);
-                }
-                
-                // Configure FastSpring helpers when API is ready
-                window.fastSpringCallbackFunction = onFastSpringReady;
-            })
-            .catch(error => {
-                console.error('Failed to initialize FastSpring:', error);
-            });
-    }
-
-    /**
-     * Fetch storefront ID from the server or use default
-     * @param {string} customId - Custom storefront ID (optional)
-     * @returns {Promise<string>} FastSpring storefront ID
-     */
-    function fetchStorefrontId(customId = null) {
-        // If a custom ID is provided, use it
-        if (customId) {
-            return Promise.resolve(customId);
-        }
-        
-        // Check for ID in URL parameters (for testing)
-        const urlParams = new URLSearchParams(window.location.search);
-        const paramId = urlParams.get('fs_storefront');
-        if (paramId) {
-            return Promise.resolve(paramId);
-        }
-        
-        // Otherwise use the environment variable (injected by the server)
-        if (window.ENV && window.ENV.FASTSPRING_STOREFRONT_ID) {
-            return Promise.resolve(window.ENV.FASTSPRING_STOREFRONT_ID);
-        }
-        
-        // If no ID is available, fetch from server
-        return fetch('/api/fastspring-config')
-            .then(response => response.json())
-            .then(config => {
-                if (config.storefrontId) {
-                    return config.storefrontId;
-                }
-                throw new Error('No FastSpring storefront ID available');
-            })
-            .catch(() => {
-                // Fallback to a default value if server request fails
-                console.warn('Using fallback FastSpring storefront ID');
-                return 'example.test.onfastspring.com';
-            });
-    }
-
-    /**
-     * Load the FastSpring script dynamically
-     * @param {string} storefrontId - FastSpring storefront ID
-     */
-    function loadFastSpringScript(storefrontId) {
-        const script = document.createElement('script');
-        script.id = 'fsc-api';
-        script.src = 'https://d1f8f9xcsvx3ha.cloudfront.net/sbl/0.9.5/fastspring-builder.min.js';
-        script.type = 'text/javascript';
-        script.setAttribute('data-storefront', storefrontId);
-        script.setAttribute('data-popup-closed', 'onPopupClose');
-        script.setAttribute('data-data-callback', 'fastSpringCallbackFunction');
-        
-        document.head.appendChild(script);
-        
-        // Add global callback for popup close
-        window.onPopupClose = onFastSpringPopupClose;
-    }
-
-    /**
-     * Callback when FastSpring is ready
-     * @param {Object} data - FastSpring session data
-     */
-    function onFastSpringReady(data) {
-        console.log('FastSpring is ready');
-        
-        // Set up UI elements after FastSpring is ready
-        setupSubscriptionButtons();
-    }
-
-    /**
-     * Setup subscription buttons
-     */
-    function setupSubscriptionButtons() {
-        // Get all premium/subscription buttons with class 'fastspring-btn'
-        const buttons = document.querySelectorAll('.fastspring-btn, #premium-buy-btn, #cta-buy-btn');
-        
-        buttons.forEach(button => {
-            // Get plan ID and billing cycle from button attributes
-            const planId = button.getAttribute('data-plan') || 'premium';
-            const billingCycle = button.getAttribute('data-billing') || getCurrentBillingCycle();
-            
-            // Replace the click event listener
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                
-                // Save user info to localStorage for reference
-                saveUserInfo();
-                
-                // Launch FastSpring checkout for the selected plan
-                launchCheckout(planId, billingCycle);
-            });
+      }
+    });
+    
+    // Setup event listeners
+    fastspring.builder.checkout.complete(handleCheckoutComplete);
+    fastspring.builder.checkout.error(handleCheckoutError);
+  }
+  
+  /**
+   * Handle successful checkout completion
+   * @param {Object} data FastSpring checkout data
+   */
+  function handleCheckoutComplete(data) {
+    console.log('Checkout complete:', data);
+    
+    if (data && data.id) {
+      // Record subscription in our system
+      recordSubscription(data)
+        .then(result => {
+          if (result.success) {
+            // Redirect to success page or update UI
+            window.location.href = '/subscription/success?order=' + data.id;
+          } else {
+            console.error('Failed to record subscription:', result.error);
+            showErrorMessage('Your payment was processed, but we had trouble updating your account. Please contact support.');
+          }
+        })
+        .catch(error => {
+          console.error('Error recording subscription:', error);
+          showErrorMessage('Your payment was processed, but we had trouble updating your account. Please contact support.');
         });
     }
-
-    /**
-     * Get current billing cycle based on active tab
-     * @returns {string} Billing cycle ('monthly' or 'annual')
-     */
-    function getCurrentBillingCycle() {
-        const activeBillingTab = document.querySelector('.pricing-tab.active');
-        return activeBillingTab ? activeBillingTab.getAttribute('data-billing') : 'monthly';
+  }
+  
+  /**
+   * Handle checkout errors
+   * @param {Object} error FastSpring error data
+   */
+  function handleCheckoutError(error) {
+    console.error('Checkout error:', error);
+    showErrorMessage('There was an error processing your payment. Please try again or contact support.');
+  }
+  
+  /**
+   * Record subscription in our system
+   * @param {Object} data Subscription data from FastSpring
+   * @returns {Promise<Object>} Result of the operation
+   */
+  async function recordSubscription(data) {
+    try {
+      const response = await fetch('/api/subscriptions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          orderId: data.id,
+          plan: data.products[0].product,
+          startDate: new Date().toISOString(),
+          status: 'active',
+          details: data
+        })
+      });
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Error recording subscription:', error);
+      return { success: false, error: error.message };
     }
-
-    /**
-     * Save user information to localStorage
-     */
-    function saveUserInfo() {
-        // Get user info from form if available
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        
-        if (nameInput && nameInput.value) {
-            localStorage.setItem('jaat_name', nameInput.value);
-        }
-        
-        if (emailInput && emailInput.value) {
-            localStorage.setItem('jaat_email', emailInput.value);
-        }
+  }
+  
+  /**
+   * Open the FastSpring popup for a specific product
+   * @param {string} productId The product ID to purchase
+   */
+  function purchaseProduct(productId) {
+    if (typeof fastspring === 'undefined') {
+      console.error('FastSpring library not loaded');
+      showErrorMessage('Payment system is not available right now. Please try again later.');
+      return;
     }
-
-    /**
-     * Launch FastSpring checkout
-     * @param {string} planId - Plan ID ('premium' or 'enterprise')
-     * @param {string} billingCycle - Billing cycle ('monthly' or 'annual')
-     */
-    function launchCheckout(planId, billingCycle) {
-        // Get FastSpring product ID from plan configuration
-        const product = plans[planId]?.[billingCycle];
-        
-        if (!product) {
-            console.error('Invalid plan or billing cycle:', planId, billingCycle);
-            return;
+    
+    // Set the current user data
+    const user = getCurrentUser();
+    if (user) {
+      fastspring.builder.push({
+        'tags': {
+          'userId': user.id
+        },
+        'recipient': {
+          'email': user.email,
+          'firstName': user.firstName || '',
+          'lastName': user.lastName || ''
         }
-        
-        try {
-            // Get customer info
-            const customerName = localStorage.getItem('jaat_name') || '';
-            const customerEmail = localStorage.getItem('jaat_email') || '';
-            
-            // Launch FastSpring popup with the selected product
-            window.fastspring.builder.push({
-                reset: true,
-                products: [
-                    {
-                        path: product
-                    }
-                ],
-                paymentContact: {
-                    firstName: customerName.split(' ')[0] || '',
-                    lastName: customerName.split(' ').slice(1).join(' ') || '',
-                    email: customerEmail
-                },
-                checkout: true
-            });
-            
-            // Close payment modal if it's open
-            const paymentModal = document.getElementById('payment-modal');
-            if (paymentModal && paymentModal.classList.contains('active')) {
-                paymentModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        } catch (error) {
-            console.error('Error launching FastSpring checkout:', error);
-            alert('Sorry, there was an error launching the checkout. Please try again later.');
-        }
+      });
     }
-
-    /**
-     * Callback when FastSpring popup is closed
-     * @param {Object} data - FastSpring order data
-     */
-    function onFastSpringPopupClose(data) {
-        // Check if an order was completed
-        if (data && data.id && data.reference) {
-            console.log('FastSpring order completed:', data.reference);
-            
-            // Redirect to success page with order reference
-            const successUrl = new URL('payment-success.html', window.location.origin);
-            successUrl.searchParams.set('reference', data.reference);
-            
-            if (data.products && data.products.length > 0) {
-                successUrl.searchParams.set('product', data.products[0].product);
-            }
-            
-            if (data.total) {
-                successUrl.searchParams.set('total', data.total);
-            }
-            
-            window.location.href = successUrl.toString();
-        }
-    }
-
-    /**
-     * Check if user has an active subscription
-     * @returns {boolean} Whether user has an active subscription
-     */
-    function hasActiveSubscription() {
-        const subscription = JSON.parse(localStorage.getItem('jaat_subscription') || '{}');
-        
-        if (!subscription.active) {
-            return false;
-        }
-        
-        // Check if subscription has expired
-        if (subscription.expiryDate) {
-            const expiryDate = new Date(subscription.expiryDate);
-            const now = new Date();
-            
-            if (expiryDate < now) {
-                // Subscription has expired
-                subscription.active = false;
-                localStorage.setItem('jaat_subscription', JSON.stringify(subscription));
-                return false;
-            }
-        }
-        
-        return true;
-    }
-
-    /**
-     * Get current user subscription details
-     * @returns {Object|null} Subscription details or null if none
-     */
-    function getSubscription() {
-        const subscription = JSON.parse(localStorage.getItem('jaat_subscription') || '{}');
-        
-        if (Object.keys(subscription).length === 0) {
-            return null;
-        }
-        
-        return subscription;
-    }
-
-    // Initialize FastSpring when the DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        initialize();
-    });
-
-    // Public API
+    
+    // Launch the checkout
+    fastspring.builder.checkout(productId);
+  }
+  
+  /**
+   * Get information about the current user
+   * @returns {Object|null} User information or null if not logged in
+   */
+  function getCurrentUser() {
+    // This would typically come from your auth system
+    // For now, return placeholder data or fetch from a user API endpoint
     return {
-        initialize,
-        launchCheckout,
-        hasActiveSubscription,
-        getSubscription
+      id: 'user-123',
+      email: 'user@example.com',
+      firstName: 'John',
+      lastName: 'Doe'
     };
+  }
+  
+  /**
+   * Display an error message to the user
+   * @param {string} message The error message to display
+   */
+  function showErrorMessage(message) {
+    // Implementation depends on your UI, could show a toast, modal, etc.
+    alert(message);
+  }
+  
+  /**
+   * Get active subscription for the current user
+   * @returns {Promise<Object>} User's subscription data
+   */
+  async function getUserSubscription() {
+    try {
+      const response = await fetch('/api/user/subscription');
+      if (!response.ok) {
+        throw new Error('Failed to fetch subscription data');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching subscription:', error);
+      return { status: 'error', message: error.message };
+    }
+  }
+  
+  /**
+   * Cancel the user's subscription
+   * @returns {Promise<Object>} Result of the cancellation
+   */
+  async function cancelSubscription() {
+    try {
+      const response = await fetch('/api/user/subscription/cancel', {
+        method: 'POST'
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to cancel subscription');
+      }
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Error cancelling subscription:', error);
+      return { success: false, error: error.message };
+    }
+  }
+  
+  /**
+   * Upgrade user's subscription plan
+   * @param {string} newPlanId The ID of the new plan
+   * @returns {Promise<Object>} Result of the upgrade
+   */
+  async function upgradePlan(newPlanId) {
+    try {
+      const response = await fetch('/api/user/subscription/upgrade', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ planId: newPlanId })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to upgrade subscription');
+      }
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Error upgrading subscription:', error);
+      return { success: false, error: error.message };
+    }
+  }
+  
+  // Public API
+  return {
+    initialize,
+    purchaseProduct,
+    getUserSubscription,
+    cancelSubscription,
+    upgradePlan
+  };
 })();
+
+// Auto-initialize when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  FastSpringService.initialize()
+    .then(initialized => {
+      if (initialized) {
+        console.log('FastSpring integration ready');
+      } else {
+        console.warn('FastSpring integration failed to initialize');
+      }
+    });
+});

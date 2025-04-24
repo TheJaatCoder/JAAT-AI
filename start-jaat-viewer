@@ -1,5 +1,0 @@
-#!/bin/bash
-# Quick launcher for JAAT-AI Viewer
-
-echo "Launching JAAT-AI Viewer..."
-python serve-jaat-ai.py

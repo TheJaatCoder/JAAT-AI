@@ -136,16 +136,9 @@ const apiKeysRelations = relations(apiKeys, ({ one }) => ({
 }));
 
 // Zod Schemas
-const insertUserSchema = createInsertSchema(users, {
-  email: (schema) => schema.email.email(),
-  username: (schema) => schema.username.min(3).max(20),
-  passwordHash: (schema) => schema.passwordHash.min(8),
-}).omit({ id: true, createdAt: true, updatedAt: true });
+const insertUserSchema = createInsertSchema(users).omit({ id: true, createdAt: true, updatedAt: true });
 
-const insertAiModeSchema = createInsertSchema(aiModes, {
-  name: (schema) => schema.name.min(2),
-  description: (schema) => schema.description.min(10),
-}).omit({ id: true, createdAt: true, updatedAt: true });
+const insertAiModeSchema = createInsertSchema(aiModes).omit({ id: true, createdAt: true, updatedAt: true });
 
 const insertConversationSchema = createInsertSchema(conversations).omit({ id: true, createdAt: true, updatedAt: true });
 const insertMessageSchema = createInsertSchema(messages).omit({ id: true, createdAt: true });

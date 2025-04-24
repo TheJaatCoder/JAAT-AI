@@ -95,148 +95,12 @@
         
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Stats Dashboard -->
-            <section class="stats-dashboard">
-                <h2>Dashboard Overview</h2>
-                
-                <div class="stats-cards">
-                    <div class="stats-card">
-                        <div class="card-header">
-                            <h3>AI Interactions</h3>
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="main-stat">1,254</div>
-                            <div class="stat-change positive">
-                                <i class="fas fa-arrow-up"></i> 23%
-                            </div>
-                        </div>
-                        <div class="stats-chart" id="interactions-chart"></div>
-                    </div>
-                    
-                    <div class="stats-card">
-                        <div class="card-header">
-                            <h3>Credits Used</h3>
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="main-stat">347</div>
-                            <div class="stat-change negative">
-                                <i class="fas fa-arrow-down"></i> 12%
-                            </div>
-                        </div>
-                        <div class="stats-chart" id="credits-chart"></div>
-                    </div>
-                    
-                    <div class="stats-card">
-                        <div class="card-header">
-                            <h3>Content Generated</h3>
-                            <i class="fas fa-file-lines"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="main-stat">45.3k</div>
-                            <div class="stat-change positive">
-                                <i class="fas fa-arrow-up"></i> 34%
-                            </div>
-                        </div>
-                        <div class="stats-chart" id="content-chart"></div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- AI Modes -->
-            <section class="ai-modes-section">
-                <div class="section-header">
-                    <h2>AI Modes</h2>
-                    <div class="filter-options">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="creative">Creative</button>
-                        <button class="filter-btn" data-filter="analytic">Analytic</button>
-                        <button class="filter-btn" data-filter="assistant">Assistant</button>
-                        <button class="filter-btn" data-filter="specialized">Specialized</button>
-                    </div>
-                </div>
-                
-                <div class="modes-container">
-                    <!-- AI Mode Cards -->
-                    <div class="mode-card" data-category="assistant">
-                        <div class="mode-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="mode-info">
-                            <h3>General Assistant</h3>
-                            <p>All-purpose AI assistant for everyday questions and tasks</p>
-                        </div>
-                        <div class="mode-footer">
-                            <span class="mode-tier free">Free</span>
-                            <button class="select-mode-btn">Select</button>
-                        </div>
-                    </div>
-                    
-                    <div class="mode-card" data-category="creative">
-                        <div class="mode-icon">
-                            <i class="fas fa-pencil"></i>
-                        </div>
-                        <div class="mode-info">
-                            <h3>Creative Writer</h3>
-                            <p>Specialized for creative writing, storytelling, and content creation</p>
-                        </div>
-                        <div class="mode-footer">
-                            <span class="mode-tier free">Free</span>
-                            <button class="select-mode-btn">Select</button>
-                        </div>
-                    </div>
-                    
-                    <div class="mode-card" data-category="specialized">
-                        <div class="mode-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="mode-info">
-                            <h3>Code Expert</h3>
-                            <p>Technical expert for programming and development questions</p>
-                        </div>
-                        <div class="mode-footer">
-                            <span class="mode-tier pro">Pro</span>
-                            <button class="select-mode-btn">Select</button>
-                        </div>
-                    </div>
-                    
-                    <div class="mode-card" data-category="analytic">
-                        <div class="mode-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="mode-info">
-                            <h3>Data Analyst</h3>
-                            <p>Analyze and visualize data, generate insights and stats</p>
-                        </div>
-                        <div class="mode-footer">
-                            <span class="mode-tier pro">Pro</span>
-                            <button class="select-mode-btn">Select</button>
-                        </div>
-                    </div>
-                    
-                    <div class="mode-card" data-category="specialized">
-                        <div class="mode-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="mode-info">
-                            <h3>Advanced Reasoning</h3>
-                            <p>Complex problem solving and logical reasoning capabilities</p>
-                        </div>
-                        <div class="mode-footer">
-                            <span class="mode-tier enterprise">Enterprise</span>
-                            <button class="select-mode-btn">Select</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Chat Interface (initially hidden, toggled by selecting a mode) -->
+            <!-- Chat Interface -->
             <section class="chat-interface">
                 <div class="chat-header">
                     <div class="active-mode">
                         <i class="fas fa-robot mode-icon"></i>
-                        <span class="mode-name">General Assistant</span>
+                        <span class="mode-name">JAAT-AI Assistant</span>
                     </div>
                     <div class="chat-actions">
                         <button class="action-btn" title="Clear Chat">
@@ -257,38 +121,35 @@
                         <span>Today</span>
                     </div>
                     
-                    <div class="message user-message">
-                        <div class="message-content">
-                            <p>Hi there! I'm looking for some creative ideas for a new sci-fi story involving advanced holographic technology.</p>
-                        </div>
-                        <div class="message-info">
-                            <span class="message-time">2:34 PM</span>
-                        </div>
-                    </div>
-                    
-                    <div class="message ai-message">
-                        <div class="message-avatar">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="message-content">
-                            <p>Hello! Here are some creative ideas for your sci-fi story involving advanced holographic technology:</p>
-                            <ol>
-                                <li>A future where physical objects are obsolete because everyone uses personal holographic projectors to create what they need on demand.</li>
-                                <li>A detective who can recreate crime scenes in perfect holographic detail, but discovers a murder where the hologram shows a different reality than what actually happened.</li>
-                                <li>Holographic beings who have gained consciousness and are fighting for their rights as sentient entities.</li>
-                                <li>A world where people use holographic "skins" to present themselves however they want, leading to a society where no one knows what anyone truly looks like.</li>
-                            </ol>
-                            <p>Would you like me to expand on any of these concepts?</p>
-                        </div>
-                        <div class="message-info">
-                            <span class="message-time">2:35 PM</span>
-                            <div class="message-actions">
-                                <button class="action-btn small" title="Copy to Clipboard">
-                                    <i class="fas fa-copy"></i>
+                    <div class="welcome-message">
+                        <h1>Welcome to JAAT-AI</h1>
+                        <p>Your advanced AI assistant with holographic interface</p>
+                        
+                        <div class="ai-modes-quick-select">
+                            <h3>Select an AI Mode</h3>
+                            <div class="quick-select-buttons">
+                                <button class="mode-btn" data-mode="general">
+                                    <i class="fas fa-robot"></i> General
                                 </button>
-                                <button class="action-btn small" title="Regenerate Response">
-                                    <i class="fas fa-redo"></i>
+                                <button class="mode-btn" data-mode="creative">
+                                    <i class="fas fa-pencil"></i> Creative
                                 </button>
+                                <button class="mode-btn" data-mode="code">
+                                    <i class="fas fa-code"></i> Code
+                                </button>
+                                <button class="mode-btn" data-mode="data">
+                                    <i class="fas fa-chart-bar"></i> Data
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="example-prompts">
+                            <h3>Try asking:</h3>
+                            <div class="example-prompt-buttons">
+                                <button class="prompt-btn">"Generate a creative sci-fi story about AI"</button>
+                                <button class="prompt-btn">"Help me solve this programming problem..."</button>
+                                <button class="prompt-btn">"Analyze this data and provide insights"</button>
+                                <button class="prompt-btn">"Create a marketing strategy for my business"</button>
                             </div>
                         </div>
                     </div>
@@ -307,654 +168,104 @@
                                 </button>
                             </div>
                         </div>
-                        <button type="submit" class="send-message-btn">
+                        <button type="submit" class="send-button">
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
-                    <div class="input-info">
-                        <span>JAAT-AI may produce inaccurate information about people, places, or facts.</span>
+                    <div class="input-footer">
+                        <span class="disclaimer">JAAT-AI may produce inaccurate information about people, places, or facts.</span>
                     </div>
                 </div>
             </section>
-        </main>
-    </div>
-    
-    <!-- AI Mode Selection Modal -->
-    <div class="modal-overlay" id="mode-modal-overlay">
-        <div class="modal" id="mode-selection-modal">
-            <div class="modal-header">
-                <h2>Select AI Mode</h2>
-                <button class="close-modal-btn">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Search AI modes...">
-                    <i class="fas fa-search search-icon"></i>
-                </div>
-                
-                <div class="mode-categories">
-                    <div class="category-section">
-                        <h3 class="category-title">Assistant</h3>
-                        <div class="category-modes">
-                            <div class="mode-item" data-mode-id="general-assistant">
-                                <div class="mode-item-icon">
+            
+            <!-- AI Mode Selection Modal (initially hidden) -->
+            <div class="modal ai-mode-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Select AI Mode</h2>
+                        <button class="close-modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modes-container">
+                            <!-- AI Mode Cards -->
+                            <div class="mode-card" data-category="assistant">
+                                <div class="mode-icon">
                                     <i class="fas fa-robot"></i>
                                 </div>
-                                <div class="mode-item-details">
-                                    <h4>General Assistant</h4>
+                                <div class="mode-info">
+                                    <h3>General Assistant</h3>
                                     <p>All-purpose AI assistant for everyday questions and tasks</p>
                                 </div>
-                                <div class="mode-item-badge free">Free</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="category-section">
-                        <h3 class="category-title">Creative</h3>
-                        <div class="category-modes">
-                            <div class="mode-item" data-mode-id="creative-writer">
-                                <div class="mode-item-icon">
-                                    <i class="fas fa-pencil"></i>
+                                <div class="mode-footer">
+                                    <span class="mode-tier free">Free</span>
+                                    <button class="select-mode-btn">Select</button>
                                 </div>
-                                <div class="mode-item-details">
-                                    <h4>Creative Writer</h4>
-                                    <p>Specialized for creative writing, storytelling, and content creation</p>
-                                </div>
-                                <div class="mode-item-badge free">Free</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="category-section">
-                        <h3 class="category-title">Analytic</h3>
-                        <div class="category-modes">
-                            <div class="mode-item" data-mode-id="data-analyst">
-                                <div class="mode-item-icon">
-                                    <i class="fas fa-chart-bar"></i>
-                                </div>
-                                <div class="mode-item-details">
-                                    <h4>Data Analyst</h4>
-                                    <p>Analyze and visualize data, generate insights and stats</p>
-                                </div>
-                                <div class="mode-item-badge pro">Pro</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="category-section">
-                        <h3 class="category-title">Specialized</h3>
-                        <div class="category-modes">
-                            <div class="mode-item" data-mode-id="code-expert">
-                                <div class="mode-item-icon">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <div class="mode-item-details">
-                                    <h4>Code Expert</h4>
-                                    <p>Technical expert for programming and development questions</p>
-                                </div>
-                                <div class="mode-item-badge pro">Pro</div>
                             </div>
                             
-                            <div class="mode-item" data-mode-id="advanced-reasoning">
-                                <div class="mode-item-icon">
+                            <div class="mode-card" data-category="creative">
+                                <div class="mode-icon">
+                                    <i class="fas fa-pencil"></i>
+                                </div>
+                                <div class="mode-info">
+                                    <h3>Creative Writer</h3>
+                                    <p>Specialized for creative writing, storytelling, and content creation</p>
+                                </div>
+                                <div class="mode-footer">
+                                    <span class="mode-tier free">Free</span>
+                                    <button class="select-mode-btn">Select</button>
+                                </div>
+                            </div>
+                            
+                            <div class="mode-card" data-category="specialized">
+                                <div class="mode-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="mode-info">
+                                    <h3>Code Expert</h3>
+                                    <p>Technical expert for programming and development questions</p>
+                                </div>
+                                <div class="mode-footer">
+                                    <span class="mode-tier pro">Pro</span>
+                                    <button class="select-mode-btn">Select</button>
+                                </div>
+                            </div>
+                            
+                            <div class="mode-card" data-category="analytic">
+                                <div class="mode-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <div class="mode-info">
+                                    <h3>Data Analyst</h3>
+                                    <p>Analyze and visualize data, generate insights and stats</p>
+                                </div>
+                                <div class="mode-footer">
+                                    <span class="mode-tier pro">Pro</span>
+                                    <button class="select-mode-btn">Select</button>
+                                </div>
+                            </div>
+                            
+                            <div class="mode-card" data-category="specialized">
+                                <div class="mode-icon">
                                     <i class="fas fa-brain"></i>
                                 </div>
-                                <div class="mode-item-details">
-                                    <h4>Advanced Reasoning</h4>
+                                <div class="mode-info">
+                                    <h3>Advanced Reasoning</h3>
                                     <p>Complex problem solving and logical reasoning capabilities</p>
                                 </div>
-                                <div class="mode-item-badge enterprise">Enterprise</div>
+                                <div class="mode-footer">
+                                    <span class="mode-tier enterprise">Enterprise</span>
+                                    <button class="select-mode-btn">Select</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="cancel-btn">Cancel</button>
-                <button class="select-btn" disabled>Select Mode</button>
-            </div>
-        </div>
+        </main>
     </div>
-    
-    <!-- Scripts -->
-    <script src="./js/enhanced-holographic-ui.js"></script>
-    <script src="./js/api-service.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize holographic UI
-            if (typeof initEnhancedHolographicUI === 'function') {
-                initEnhancedHolographicUI();
-            }
-            
-            // Load data from API
-            loadDataFromAPI();
-            
-            // Auto-resize message input
-            const messageInput = document.getElementById('message-input');
-            if (messageInput) {
-                messageInput.addEventListener('input', function() {
-                    this.style.height = 'auto';
-                    this.style.height = (this.scrollHeight) + 'px';
-                    
-                    // Reset to initial height if empty
-                    if (this.value === '') {
-                        this.style.height = '';
-                    }
-                });
-            }
-            
-            // Handle chat form submission
-            const chatForm = document.getElementById('chat-form');
-            if (chatForm) {
-                chatForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const messageInput = document.getElementById('message-input');
-                    const message = messageInput.value.trim();
-                    
-                    if (message) {
-                        // Add user message to the UI
-                        addMessage(message, 'user');
-                        
-                        // Clear input
-                        messageInput.value = '';
-                        messageInput.style.height = '';
-                        messageInput.focus();
-                        
-                        // Get the active mode ID (if any)
-                        const activeModeElement = document.querySelector('.active-mode .mode-name');
-                        let activeMode = null;
-                        if (activeModeElement) {
-                            const modeName = activeModeElement.textContent.trim();
-                            // Find the mode ID based on the name
-                            const modeCard = Array.from(document.querySelectorAll('.mode-card')).find(
-                                card => card.querySelector('.mode-info h3').textContent.trim() === modeName
-                            );
-                            if (modeCard) {
-                                activeMode = modeCard.dataset.modeId || null;
-                            }
-                        }
-                        
-                        // Show a loading indicator
-                        const loadingMessage = "Processing your request...";
-                        const loadingElement = addMessage(loadingMessage, 'ai');
-                        
-                        // Call the API service
-                        ApiService.sendMessage(message, activeMode)
-                            .then(response => {
-                                // Remove the loading message
-                                if (loadingElement && loadingElement.parentNode) {
-                                    loadingElement.parentNode.removeChild(loadingElement);
-                                }
-                                
-                                // Add the AI response
-                                addMessage(response.message, 'ai');
-                            })
-                            .catch(error => {
-                                // Remove the loading message
-                                if (loadingElement && loadingElement.parentNode) {
-                                    loadingElement.parentNode.removeChild(loadingElement);
-                                }
-                                
-                                // Show error message
-                                addMessage("Sorry, there was an error processing your request. Please try again.", 'ai');
-                                console.error('Error:', error);
-                            });
-                    }
-                });
-            }
-            
-            // Function to add message to the UI
-            function addMessage(content, sender) {
-                const messagesContainer = document.querySelector('.messages-container');
-                const now = new Date();
-                const timeString = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
-                
-                const messageElement = document.createElement('div');
-                messageElement.className = `message ${sender}-message`;
-                
-                if (sender === 'ai') {
-                    messageElement.innerHTML = `
-                        <div class="message-avatar">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="message-content">
-                            <p>${content}</p>
-                        </div>
-                        <div class="message-info">
-                            <span class="message-time">${timeString}</span>
-                            <div class="message-actions">
-                                <button class="action-btn small" title="Copy to Clipboard">
-                                    <i class="fas fa-copy"></i>
-                                </button>
-                                <button class="action-btn small" title="Regenerate Response">
-                                    <i class="fas fa-redo"></i>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    messageElement.innerHTML = `
-                        <div class="message-content">
-                            <p>${content}</p>
-                        </div>
-                        <div class="message-info">
-                            <span class="message-time">${timeString}</span>
-                        </div>
-                    `;
-                }
-                
-                messagesContainer.appendChild(messageElement);
-                
-                // Scroll to bottom
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                
-                // Apply holographic effect to the new message
-                if (typeof applyHolographicEffect === 'function') {
-                    applyHolographicEffect(messageElement);
-                }
-                
-                // Return the message element for later manipulation
-                return messageElement;
-            }
-            
-            // Mode selection logic
-            const selectModeButtons = document.querySelectorAll('.select-mode-btn, .action-btn[title="Change Mode"]');
-            const modeModalOverlay = document.getElementById('mode-modal-overlay');
-            const closeModalButton = document.querySelector('.close-modal-btn');
-            const cancelButton = document.querySelector('.cancel-btn');
-            const selectButton = document.querySelector('.select-btn');
-            const modeItems = document.querySelectorAll('.mode-item');
-            
-            // Show modal when select mode button is clicked
-            selectModeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    modeModalOverlay.classList.add('active');
-                });
-            });
-            
-            // Hide modal when close button or cancel button is clicked
-            [closeModalButton, cancelButton].forEach(button => {
-                if (button) {
-                    button.addEventListener('click', function() {
-                        modeModalOverlay.classList.remove('active');
-                    });
-                }
-            });
-            
-            // Hide modal when clicking outside the modal
-            modeModalOverlay.addEventListener('click', function(e) {
-                if (e.target === modeModalOverlay) {
-                    modeModalOverlay.classList.remove('active');
-                }
-            });
-            
-            // Mode item selection
-            let selectedModeId = null;
-            
-            modeItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // Remove selected class from all items
-                    modeItems.forEach(i => i.classList.remove('selected'));
-                    
-                    // Add selected class to clicked item
-                    this.classList.add('selected');
-                    
-                    // Store selected mode ID
-                    selectedModeId = this.getAttribute('data-mode-id');
-                    
-                    // Enable select button
-                    selectButton.removeAttribute('disabled');
-                });
-            });
-            
-            // Handle select button click
-            selectButton.addEventListener('click', function() {
-                if (selectedModeId) {
-                    // Find selected mode data
-                    const selectedModeItem = document.querySelector(`.mode-item[data-mode-id="${selectedModeId}"]`);
-                    const modeName = selectedModeItem.querySelector('h4').textContent;
-                    const modeIcon = selectedModeItem.querySelector('.mode-item-icon i').className.split(' ')[1];
-                    
-                    // Update active mode in the chat interface
-                    const activeModeElement = document.querySelector('.active-mode');
-                    activeModeElement.innerHTML = `
-                        <i class="fas ${modeIcon} mode-icon"></i>
-                        <span class="mode-name">${modeName}</span>
-                    `;
-                    
-                    // Show chat interface and hide AI modes section
-                    document.querySelector('.ai-modes-section').style.display = 'none';
-                    document.querySelector('.chat-interface').style.display = 'flex';
-                    
-                    // Close modal
-                    modeModalOverlay.classList.remove('active');
-                    
-                    // Clear selected mode
-                    selectedModeId = null;
-                    modeItems.forEach(i => i.classList.remove('selected'));
-                    selectButton.setAttribute('disabled', '');
-                }
-            });
-            
-            // Filter AI modes
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const modeCards = document.querySelectorAll('.mode-card');
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Get filter value
-                    const filter = this.getAttribute('data-filter');
-                    
-                    // Filter mode cards
-                    modeCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                            card.style.display = 'flex';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            // Mobile menu toggle
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const sidebar = document.querySelector('.sidebar');
-            
-            if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('active');
-                });
-                
-                // Close sidebar when clicking outside on mobile
-                document.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768 && 
-                        !sidebar.contains(e.target) && 
-                        !mobileMenuToggle.contains(e.target) &&
-                        sidebar.classList.contains('active')) {
-                        sidebar.classList.remove('active');
-                    }
-                });
-            }
-            
-            // Search functionality in modal
-            const searchInput = document.querySelector('.search-input');
-            
-            if (searchInput) {
-                searchInput.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    
-                    // Filter mode items
-                    modeItems.forEach(item => {
-                        const modeName = item.querySelector('h4').textContent.toLowerCase();
-                        const modeDesc = item.querySelector('p').textContent.toLowerCase();
-                        
-                        if (modeName.includes(searchTerm) || modeDesc.includes(searchTerm)) {
-                            item.style.display = 'flex';
-                            
-                            // Show the parent category section
-                            const categorySection = item.closest('.category-section');
-                            categorySection.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                            
-                            // Check if all items in category are hidden
-                            const categorySection = item.closest('.category-section');
-                            const visibleItems = categorySection.querySelectorAll('.mode-item[style="display: flex;"]');
-                            if (visibleItems.length === 0) {
-                                categorySection.style.display = 'none';
-                            }
-                        }
-                    });
-                });
-            }
-            
-            // Function to load data from API
-            async function loadDataFromAPI() {
-                try {
-                    // Load AI modes
-                    const modes = await ApiService.getModes();
-                    if (modes && modes.length > 0) {
-                        updateModeCards(modes);
-                    }
-                    
-                    // Load stats
-                    const stats = await ApiService.getStats();
-                    if (stats) {
-                        updateStats(stats);
-                    }
-                    
-                    // Load user profile
-                    const profile = await ApiService.getUserProfile();
-                    if (profile) {
-                        updateUserProfile(profile);
-                    }
-                } catch (error) {
-                    console.error('Error loading data from API:', error);
-                }
-            }
-            
-            // Function to update mode cards
-            function updateModeCards(modes) {
-                const modesContainer = document.querySelector('.modes-container');
-                if (!modesContainer) return;
-                
-                // Clear existing mode cards
-                modesContainer.innerHTML = '';
-                
-                // Add mode cards from API
-                modes.forEach(mode => {
-                    const card = document.createElement('div');
-                    card.className = 'mode-card';
-                    card.dataset.category = mode.category;
-                    card.dataset.modeId = mode.id;
-                    
-                    card.innerHTML = `
-                        <div class="mode-icon">
-                            <i class="fas fa-${mode.icon}"></i>
-                        </div>
-                        <div class="mode-info">
-                            <h3>${mode.name}</h3>
-                            <p>${mode.description}</p>
-                        </div>
-                        <div class="mode-footer">
-                            <span class="mode-tier free">Free</span>
-                            <button class="select-mode-btn">Select</button>
-                        </div>
-                    `;
-                    
-                    modesContainer.appendChild(card);
-                    
-                    // Add holographic effect
-                    if (typeof applyHolographicEffect === 'function') {
-                        applyHolographicEffect(card);
-                    }
-                    
-                    // Add event listener
-                    const selectBtn = card.querySelector('.select-mode-btn');
-                    if (selectBtn) {
-                        selectBtn.addEventListener('click', function() {
-                            // Update active mode in the chat interface
-                            const modeName = mode.name;
-                            const modeIcon = mode.icon;
-                            
-                            const activeModeElement = document.querySelector('.active-mode');
-                            activeModeElement.innerHTML = `
-                                <i class="fas fa-${modeIcon} mode-icon"></i>
-                                <span class="mode-name">${modeName}</span>
-                            `;
-                            
-                            // Show chat interface and hide AI modes section
-                            document.querySelector('.ai-modes-section').style.display = 'none';
-                            document.querySelector('.chat-interface').style.display = 'flex';
-                        });
-                    }
-                });
-            }
-            
-            // Function to update stats
-            function updateStats(stats) {
-                // Update stats cards
-                const interactionsElement = document.querySelector('.stats-card:nth-child(1) .main-stat');
-                const creditsElement = document.querySelector('.stats-card:nth-child(2) .main-stat');
-                const contentElement = document.querySelector('.stats-card:nth-child(3) .main-stat');
-                
-                if (interactionsElement) {
-                    interactionsElement.textContent = stats.interactions.toLocaleString();
-                }
-                
-                if (creditsElement) {
-                    creditsElement.textContent = stats.credits.toLocaleString();
-                }
-                
-                if (contentElement) {
-                    contentElement.textContent = (stats.content / 1000).toFixed(1) + 'k';
-                }
-                
-                // Update change indicators
-                const interactionsChangeElement = document.querySelector('.stats-card:nth-child(1) .stat-change');
-                const creditsChangeElement = document.querySelector('.stats-card:nth-child(2) .stat-change');
-                const contentChangeElement = document.querySelector('.stats-card:nth-child(3) .stat-change');
-                
-                if (interactionsChangeElement) {
-                    interactionsChangeElement.className = `stat-change ${stats.interactionsChange >= 0 ? 'positive' : 'negative'}`;
-                    interactionsChangeElement.innerHTML = `
-                        <i class="fas fa-arrow-${stats.interactionsChange >= 0 ? 'up' : 'down'}"></i> 
-                        ${Math.abs(stats.interactionsChange)}%
-                    `;
-                }
-                
-                if (creditsChangeElement) {
-                    creditsChangeElement.className = `stat-change ${stats.creditsChange >= 0 ? 'positive' : 'negative'}`;
-                    creditsChangeElement.innerHTML = `
-                        <i class="fas fa-arrow-${stats.creditsChange >= 0 ? 'up' : 'down'}"></i> 
-                        ${Math.abs(stats.creditsChange)}%
-                    `;
-                }
-                
-                if (contentChangeElement) {
-                    contentChangeElement.className = `stat-change ${stats.contentChange >= 0 ? 'positive' : 'negative'}`;
-                    contentChangeElement.innerHTML = `
-                        <i class="fas fa-arrow-${stats.contentChange >= 0 ? 'up' : 'down'}"></i> 
-                        ${Math.abs(stats.contentChange)}%
-                    `;
-                }
-                
-                // Update sidebar stats
-                const sidebarCreditsElement = document.querySelector('.stats-summary .summary-item:nth-child(1) span');
-                if (sidebarCreditsElement) {
-                    sidebarCreditsElement.textContent = `Credits: ${stats.credits}`;
-                }
-            }
-            
-            // Function to update user profile
-            function updateUserProfile(profile) {
-                const userNameElement = document.querySelector('.user-name');
-                const userTierElement = document.querySelector('.subscription-tier');
-                const avatarElement = document.querySelector('.avatar');
-                
-                if (userNameElement) {
-                    userNameElement.textContent = profile.name;
-                }
-                
-                if (userTierElement) {
-                    userTierElement.textContent = profile.plan;
-                }
-                
-                if (avatarElement && profile.avatar) {
-                    avatarElement.src = profile.avatar;
-                }
-                
-                // Update credits in sidebar
-                const creditsElement = document.querySelector('.stats-summary .summary-item:nth-child(1) span');
-                if (creditsElement) {
-                    creditsElement.textContent = `Credits: ${profile.credits}`;
-                }
-            }
-            
-            // Simplified chart rendering
-            function renderCharts() {
-                const charts = [
-                    { id: 'interactions-chart', color: 'rgba(103, 232, 249, 0.5)', trend: 'up' },
-                    { id: 'credits-chart', color: 'rgba(253, 186, 116, 0.5)', trend: 'down' },
-                    { id: 'content-chart', color: 'rgba(139, 92, 246, 0.5)', trend: 'up' }
-                ];
-                
-                charts.forEach(chart => {
-                    const element = document.getElementById(chart.id);
-                    if (element) {
-                        // Create canvas for chart
-                        const canvas = document.createElement('canvas');
-                        element.appendChild(canvas);
-                        
-                        // Set canvas size
-                        canvas.width = element.clientWidth;
-                        canvas.height = 50;
-                        
-                        const ctx = canvas.getContext('2d');
-                        
-                        // Generate data points
-                        const points = [];
-                        const numPoints = 12;
-                        
-                        for (let i = 0; i < numPoints; i++) {
-                            let value;
-                            if (chart.trend === 'up') {
-                                value = 10 + i + Math.random() * 5;
-                            } else {
-                                value = 30 - i/2 + Math.random() * 5;
-                            }
-                            points.push(value);
-                        }
-                        
-                        // Draw chart
-                        ctx.beginPath();
-                        ctx.moveTo(0, canvas.height - points[0]);
-                        
-                        for (let i = 1; i < points.length; i++) {
-                            const x = (canvas.width / (points.length - 1)) * i;
-                            const y = canvas.height - points[i];
-                            ctx.lineTo(x, y);
-                        }
-                        
-                        // Line style
-                        ctx.strokeStyle = chart.color.replace('0.5', '1');
-                        ctx.lineWidth = 2;
-                        ctx.stroke();
-                        
-                        // Fill area under the line
-                        ctx.lineTo(canvas.width, canvas.height);
-                        ctx.lineTo(0, canvas.height);
-                        ctx.closePath();
-                        ctx.fillStyle = chart.color;
-                        ctx.fill();
-                    }
-                });
-            }
-            
-            // Render charts on load
-            renderCharts();
-            
-            // Re-render charts on window resize
-            window.addEventListener('resize', function() {
-                // Debounce to avoid excessive rendering
-                clearTimeout(window.resizeTimer);
-                window.resizeTimer = setTimeout(function() {
-                    // Clear existing charts
-                    document.querySelectorAll('.stats-chart canvas').forEach(canvas => canvas.remove());
-                    // Render new charts
-                    renderCharts();
-                }, 200);
-            });
-        });
-    </script>
+
+    <!-- JavaScript -->
+    <script src="js/holographic-background.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>

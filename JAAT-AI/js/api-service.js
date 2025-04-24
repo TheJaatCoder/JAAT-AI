@@ -1,96 +1,118 @@
 /**
  * JAAT-AI API Service
- * Handles all API interactions for the JAAT-AI dashboard
+ * Provides a clean interface to interact with the JAAT-AI API endpoints
  */
 
-const API_BASE_URL = 'http://localhost:5000/api';
-
-// API Service object
-const ApiService = {
+class ApiService {
+    constructor() {
+        this.baseUrl = '/api';
+        this.endpoints = {
+            modes: '/modes',
+            stats: '/stats',
+            profile: '/profile',
+            chat: '/chat',
+            config: '/config'
+        };
+    }
+    
+    /**
+     * Set the base URL for API calls
+     * @param {string} url - The base URL
+     */
+    setBaseUrl(url) {
+        this.baseUrl = url;
+    }
+    
+    /**
+     * Make an API request
+     * @param {string} endpoint - API endpoint
+     * @param {Object} options - Fetch options
+     * @returns {Promise<Object>} - API response
+     */
+    async request(endpoint, options = {}) {
+        try {
+            const url = `${this.baseUrl}${endpoint}`;
+            const headers = {
+                'Content-Type': 'application/json',
+                ...(options.headers || {})
+            };
+            
+            const response = await fetch(url, {
+                ...options,
+                headers
+            });
+            
+            if (!response.ok) {
+                let errorData;
+                try {
+                    errorData = await response.json();
+                } catch (e) {
+                    errorData = { error: response.statusText };
+                }
+                throw new Error(errorData.error || 'API request failed');
+            }
+            
+            return await response.json();
+        } catch (error) {
+            console.error(`API request error (${endpoint}):`, error);
+            throw error;
+        }
+    }
+    
     /**
      * Get all available AI modes
      * @returns {Promise<Array>} - List of AI modes
      */
-    getModes: async function() {
-        try {
-            const response = await fetch(`${API_BASE_URL}/modes`);
-            if (!response.ok) {
-                throw new Error(`Failed to fetch modes: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Error fetching AI modes:', error);
-            return [];
-        }
-    },
-
+    async getModes() {
+        return this.request(this.endpoints.modes);
+    }
+    
     /**
      * Get user statistics
      * @returns {Promise<Object>} - User stats
      */
-    getStats: async function() {
-        try {
-            const response = await fetch(`${API_BASE_URL}/stats`);
-            if (!response.ok) {
-                throw new Error(`Failed to fetch stats: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Error fetching stats:', error);
-            return null;
-        }
-    },
-
+    async getStats() {
+        return this.request(this.endpoints.stats);
+    }
+    
     /**
-     * Get user profile information
+     * Get user profile
      * @returns {Promise<Object>} - User profile
      */
-    getUserProfile: async function() {
-        try {
-            const response = await fetch(`${API_BASE_URL}/profile`);
-            if (!response.ok) {
-                throw new Error(`Failed to fetch profile: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Error fetching user profile:', error);
-            return null;
-        }
-    },
-
+    async getProfile() {
+        return this.request(this.endpoints.profile);
+    }
+    
     /**
-     * Send a message to the AI
-     * @param {string} message - The message to send
-     * @param {string} modeId - The mode ID (optional)
+     * Send a chat message to the AI
+     * @param {string} message - The user message
+     * @param {string} modeId - The AI mode ID
      * @returns {Promise<Object>} - AI response
      */
-    sendMessage: async function(message, modeId = null) {
-        try {
-            const response = await fetch(`${API_BASE_URL}/chat`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message,
-                    modeId
-                })
-            });
-            
-            if (!response.ok) {
-                throw new Error(`Failed to send message: ${response.status}`);
-            }
-            
-            return await response.json();
-        } catch (error) {
-            console.error('Error sending message:', error);
-            return {
-                message: "Sorry, I couldn't process your request. Please try again.",
-                mode: "Error"
-            };
-        }
+    async sendMessage(message, modeId = null) {
+        return this.request(this.endpoints.chat, {
+            method: 'POST',
+            body: JSON.stringify({
+                message,
+                modeId
+            })
+        });
     }
-};
+    
+    /**
+     * Get configuration for a specific service
+     * @param {string} service - Service name (e.g., 'openai', 'anthropic')
+     * @returns {Promise<Object>} - Service configuration
+     */
+    async getConfig(service) {
+        return this.request(`${this.endpoints.config}/${service}`);
+    }
+}
 
-// Export the API Service
-window.ApiService = ApiService;
+// Create singleton instance
+const apiService = new ApiService();
+
+// Expose to window object for global access
+window.ApiService = apiService;
+
+export default apiService;

@@ -28,8 +28,8 @@ async function initializeDatabase() {
     console.log('Initializing database connection...');
 
     // Test connection
-    const result = await sql`SELECT NOW()`.execute(pool);
-    console.log('Database connected successfully at:', result.rows[0].now);
+    const result = await db.execute(sql`SELECT NOW()`);
+    console.log('Database connected successfully at:', result[0].now);
 
     // Check if tables exist by querying users table
     const userCount = await db.select({ count: sql`count(*)` }).from(schema.users);
