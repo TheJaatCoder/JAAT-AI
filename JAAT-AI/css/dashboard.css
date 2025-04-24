@@ -173,7 +173,26 @@ body {
 
 .subscription-tier {
   font-size: 12px;
-  color: var(--accent-secondary);
+  color: white;
+  background: linear-gradient(135deg, #ff7b00, #ff004c);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(255, 123, 0, 0.3);
+  animation: pulse-subscription 2s infinite;
+}
+
+@keyframes pulse-subscription {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Conversations Section */
@@ -486,11 +505,55 @@ body {
   -webkit-background-clip: text;
   color: transparent;
   font-size: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.limited-edition-tag {
+  font-size: 14px;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, #ff7b00, #ff004c);
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(255, 123, 0, 0.3);
+  animation: pulse-tag 2s infinite;
+  background-clip: initial;
+  -webkit-background-clip: initial;
+}
+
+@keyframes pulse-tag {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .welcome-message p {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   color: var(--text-secondary);
+}
+
+.developer-credit {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+  font-style: italic;
+}
+
+.developer-credit .highlight {
+  color: var(--accent-secondary);
+  font-weight: 600;
 }
 
 .ai-modes-quick-select, .example-prompts {
