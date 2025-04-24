@@ -174,6 +174,58 @@ function initScrollEffects() {
         opacity: 1;
         transform: translateY(0);
       }
+      
+      .scroll-indicator {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: rgba(84, 100, 247, 0.2);
+        border: 1px solid var(--glass-border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        z-index: 100;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      
+      .scroll-indicator:hover {
+        background: rgba(84, 100, 247, 0.4);
+        transform: translateY(-3px);
+      }
+      
+      .scroll-indicator.up {
+        bottom: 90px;
+      }
+      
+      .scroll-to-top {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      
+      .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
     `;
     document.head.appendChild(style);
     
@@ -183,6 +235,9 @@ function initScrollEffects() {
         section.classList.add('reveal');
       }
     });
+    
+    // Add scroll indicators
+    addScrollIndicators();
   }
   
   // Reveal sections on scroll
@@ -197,6 +252,9 @@ function initScrollEffects() {
         section.classList.add('active');
       }
     });
+    
+    // Show/hide scroll to top button
+    updateScrollToTop();
   }
   
   // Initial check on page load
@@ -204,6 +262,153 @@ function initScrollEffects() {
   
   // Check on scroll
   window.addEventListener('scroll', revealSections);
+  
+  // Initialize auto-scrolling
+  initAutoScroll();
+}
+
+/**
+ * Add scroll indicators to the page
+ */
+function addScrollIndicators() {
+  const body = document.body;
+  
+  // Create scroll down indicator
+  const scrollDownIndicator = document.createElement('div');
+  scrollDownIndicator.className = 'scroll-indicator down';
+  scrollDownIndicator.innerHTML = '<i class="fas fa-chevron-down"></i>';
+  scrollDownIndicator.addEventListener('click', () => {
+    scrollToNextSection();
+  });
+  
+  // Create scroll up indicator
+  const scrollUpIndicator = document.createElement('div');
+  scrollUpIndicator.className = 'scroll-indicator up scroll-to-top';
+  scrollUpIndicator.innerHTML = '<i class="fas fa-chevron-up"></i>';
+  scrollUpIndicator.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
+  // Add indicators to the page
+  body.appendChild(scrollDownIndicator);
+  body.appendChild(scrollUpIndicator);
+  
+  // Add animation to scroll down indicator
+  scrollDownIndicator.style.animation = 'bounce 2s infinite';
+}
+
+/**
+ * Scroll to the next section
+ */
+function scrollToNextSection() {
+  const sections = document.querySelectorAll('section');
+  const scrollPosition = window.scrollY + window.innerHeight / 2;
+  
+  // Find the next section
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i];
+    const sectionTop = section.offsetTop;
+    const sectionBottom = sectionTop + section.offsetHeight;
+    
+    // If the current scroll position is above the middle of this section,
+    // scroll to this section
+    if (scrollPosition < sectionTop + (section.offsetHeight / 2)) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+  }
+  
+  // If we're at the bottom, scroll to the top
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+/**
+ * Update the scroll to top button visibility
+ */
+function updateScrollToTop() {
+  const scrollUpIndicator = document.querySelector('.scroll-to-top');
+  
+  if (scrollUpIndicator) {
+    if (window.scrollY > window.innerHeight) {
+      scrollUpIndicator.classList.add('visible');
+    } else {
+      scrollUpIndicator.classList.remove('visible');
+    }
+  }
+}
+
+/**
+ * Initialize auto-scrolling
+ */
+function initAutoScroll() {
+  // Set up auto-scroll for testimonials
+  const testimonials = document.querySelectorAll('.testimonial');
+  if (testimonials.length > 1) {
+    // Add CSS for auto-scrolling testimonials
+    if (!document.getElementById('auto-scroll-styles')) {
+      const style = document.createElement('style');
+      style.id = 'auto-scroll-styles';
+      style.textContent = `
+        .testimonials-slider {
+          position: relative;
+          overflow: hidden;
+          height: 280px;
+        }
+        
+        .testimonial {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          opacity: 0;
+          transform: translateX(100px);
+          transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .testimonial.active {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        
+        .testimonial.prev {
+          opacity: 0;
+          transform: translateX(-100px);
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    // Set initial active testimonial
+    testimonials[0].classList.add('active');
+    
+    // Auto-scroll testimonials
+    let currentTestimonial = 0;
+    setInterval(() => {
+      // Remove active class from current testimonial
+      testimonials[currentTestimonial].classList.remove('active');
+      testimonials[currentTestimonial].classList.add('prev');
+      
+      // Update current testimonial index
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      
+      // Remove prev class from all testimonials
+      testimonials.forEach((testimonial, index) => {
+        if (index !== currentTestimonial - 1 && index !== testimonials.length - 1) {
+          testimonial.classList.remove('prev');
+        }
+      });
+      
+      // Add active class to next testimonial
+      testimonials[currentTestimonial].classList.remove('prev');
+      testimonials[currentTestimonial].classList.add('active');
+    }, 5000);
+  }
 }
 
 /**
